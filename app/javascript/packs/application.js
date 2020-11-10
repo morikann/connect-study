@@ -15,3 +15,10 @@ import 'materialize-css/dist/js/materialize'
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+
+// materializeの初期化
+document.addEventListener('DOMContentLoaded', function() {
+  const elems = document.querySelectorAll('.sidenav');
+  const instancs = M.Sidenav.init(elems, [])
+});
