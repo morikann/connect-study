@@ -11,7 +11,11 @@
   </head>
 
   <body class="orange lighten-5">
-    <%= render 'shared/header' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/guest_header' %>
+    <% end %>
       <div class="container">
         <%= yield %>
       </div>
