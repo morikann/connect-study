@@ -1,40 +1,34 @@
-<h3 class="center-align">アカウント作成</h3>
+<h3 class="center-align signup-title">アカウント登録</h3>
 
 <div class="row">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
-    <%
-=begin%>
- <div class="field">
-      <%= f.label :username %><br />
-      <%= f.text_field :username, autocomplete: "name" %>
-    </div> 
-<%
-=end%>
-
     <div class="input-field col s12">
       <i class="material-icons prefix">account_circle</i>
       <%= f.text_field :username, autocomplete: 'name', id: 'user_username' %>
-      <%= f.label :username, 'ユーザー名' %>
+      <%= f.label :username %>
     </div>
 
     <div class="input-field col s12">
       <i class="material-icons prefix">mail</i>
       <%= f.text_field :email, autocomplete: 'email', id: 'user_email' %>
-      <%= f.label :email, 'メールアドレス' %>
+      <%= f.label :email %>
     </div>
 
     <div class="input-field col s12">
       <i class="material-icons prefix">lock</i>
       <%= f.password_field :password, id: 'user_password' %>
-      <%= f.label :password, 'パスワード' %>
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
     </div>
 
     <div class="input-field col s12">
       <i class="material-icons prefix">lock</i>
       <%= f.password_field :password_confirmation, id: 'user_password_confirmation' %>
-      <%= f.label :password_confirmation, 'パスワード確認' %>    
+      <%= f.label :password_confirmation %>    
     </div>
 
     <%
@@ -64,7 +58,7 @@
 =end%>
     <div class="center-align">
       <button class="btn waves-effect waves-light">
-        <%= f.submit 'アカウント作成', class: 'submit-btn' %>
+        <%= f.submit 'アカウント登録', class: 'submit-btn' %>
         <i class="material-icons right">send</i>
       </button>
     </div>

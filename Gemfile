@@ -55,5 +55,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # cssフレームワーク
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons' 
-# ログイン周り
+# 認証機能
 gem 'devise'
+# devise日本語化
+gem 'devise-i18n'
+gem 'devise-i18n-views'
