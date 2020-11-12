@@ -3,13 +3,13 @@
     <a href="#" class="brand-logo">Connesta</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#">ホーム</a></li>
+      <li><%= link_to 'ホーム', root_path %><li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
-  <li><a href="#">ホーム</a></li>
+  <li><%= link_to 'ホーム', root_path %><li>
   <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 </ul>
