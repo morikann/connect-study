@@ -17,8 +17,11 @@
       <%= render 'shared/guest_header' %>
     <% end %>
       <div class="container">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if notice %>
+          <p class="teal"><%= notice %></p>
+        <% else %>
+          <p class="pink"><%= alert %></p>
+        <% end %>
         <%= yield %>
       </div>
   </body>
