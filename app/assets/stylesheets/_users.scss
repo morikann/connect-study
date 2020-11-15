@@ -1,0 +1,42 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// edit_user
+@import "media_queries";
+
+.edit-profile-wrapper {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+
+  @include mq(sm) {
+    flex-direction: column;
+  }
+}
+
+.edit-profile-item1 {
+  max-width: 300px;
+
+  @include mq(sm) {
+    width: 200px;
+  } 
+}
+
+.edit-profile-item2 {
+  margin-left: 80px;
+  width: 100%;
+
+  @include mq(sm) {
+    margin-left: 0px;
+  }
+}
+
+.edit-profile-name {
+  margin-bottom: 50px;
+}
+
+.genre-label {
+  color: #9e9e9e;
+  font-size: 0.8rem;
+}

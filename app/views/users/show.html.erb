@@ -1,0 +1,55 @@
+<h4 class="center-align signup-title">プロフィール</h4>
+
+<%
+=begin%>
+ <div class="edit-profile-wrapper">
+  <div class="edit-profile-item1">
+    <%= image_tag 'boy.png', class: 'circle responsive-img' %>
+  </div>
+  <div class="edit-profile-item2">
+    <div class="input-field edit-profile-name">
+      <%= f.text_field :username, autocomplete: 'name', autofocus: true, id: 'user_username' %>
+      <%= f.label :username %>
+    </div>
+    <div class="input-field">
+      <select>
+        <option value="" disabled selected>お選びください</option>
+        <option value="1">愛知県</option>
+        <option value="2">岐阜県</option>
+        <option value="3">富山県</option>
+      </select>
+      <label>お住まいの県</label>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">mode_edit</i>
+    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+    <label for="icon_prefix2">自己紹介</label>
+  </div>
+
+  <div class="input-field col s12">
+    <p class="genre-label">勉強ジャンル</p>
+    <div class="chip">
+      プログラミング
+      <i class="close material-icons">close</i>
+    </div>
+    <div class="chip">
+      英語
+      <i class="close material-icons">close</i>
+    </div>
+    <div class="chip">
+      Javascript
+      <i class="close material-icons">close</i>
+    </div>
+  </div>
+
+  <div class="input-field col s12">
+    <textarea id="textarea1" class="materialize-textarea"></textarea>
+    <label for="textarea1">Textarea</label>
+  </div>
+</div> 
+<%
+=end%>

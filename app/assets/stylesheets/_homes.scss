@@ -1,0 +1,28 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "media_queries";
+
+@font-face {
+  font-family: "brand-name";
+  src: font-url('NaishoMoji-Regular.otf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.brand-name {
+  font-family: "brand-name";
+  font-size: 110px;
+
+  @include mq(sm) {
+    font-size: 80px;
+  }
+}
+
+.top-button-wrapper {
+  margin-top: 100px;
+}
+
+.easy-login-btn-wrapper {
+  margin-top: 20px;
+}
