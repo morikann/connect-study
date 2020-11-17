@@ -17,11 +17,6 @@
     </div>
 
     <div class="input-field col s12">
-      <i class="material-icons prefix">add_location</i>
-      <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県を選んでください" %>
-    </div>
-
-    <div class="input-field col s12">
       <i class="material-icons prefix">lock</i>
       <%= f.password_field :password, id: 'user_password' %>
       <%= f.label :password %>

@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     get '/users', to: 'users/registrations#new'
   end
 
-  resources :users, only: :show
+  resources :users
 end
