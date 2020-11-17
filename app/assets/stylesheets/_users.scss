@@ -5,14 +5,46 @@
 // user_profile
 @import "media_queries";
 
+.profile-card {
+  margin: 0 auto;
+  margin-top: 60px;
+  max-width: 600px;
+
+  @include mq(sm) {
+    margin-top: 30px;
+  }
+}
+
 .profile-title {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 28px;
+  position: relative;
+  margin-bottom: 1em;
+  margin-top: 0px;
+  display: inline-block;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    display: inline-block;
+    width: 60px;
+    height: 5px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: black;
+    border-radius: 2px;
+    background-color: #4db6ac;
+  }
 
   @include mq(sm) {
     font-size: 26px;
   }
+}
+
+.profile-title-wrapper {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .profile-wrapper {
@@ -25,14 +57,9 @@
   }
 }
 
-.profile-item1 {
-  max-width: 250px;
-  margin-bottom: 30px;
+.profile-avatar-wrapper {
+  margin-bottom: 10px;
   text-align: center;
-
-  @include mq(sm) {
-    width: 200px;
-  } 
 }
 
 .circle-img {
@@ -43,17 +70,9 @@
   max-width: 100%;
 }
 
-.profile-item2 {
-  margin-left: 80px;
-  width: 100%;
-
-  @include mq(sm) {
-    margin-left: 0px;
-  }
-}
-
-.birthday-wrapper {
-  margin-top: 30px;
+.avatar-file {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .genre-label {

@@ -67,4 +67,7 @@ gem 'active_hash'
 # 画像アップロード
 gem 'carrierwave', '~> 2.0'
 # 画像のリサイズ
-gem "mini_magick"
+gem 'mini_magick'
+# デバッグツール
+gem 'pry-rails'
+gem 'pry-byebug'

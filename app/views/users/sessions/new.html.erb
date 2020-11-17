@@ -1,36 +1,39 @@
-<h4 class="center-align signup-title">ログイン</h4>
+<div class="card-panel profile-card">
+  <div class="profile-title-wrapper">
+    <h1 class="profile-title">ログイン</h1>
+  </div>
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<div class="row">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mail</i>
+        <%= f.email_field :email, autocomplete: 'email', id: 'user_email' %>
+        <%= f.label :email %>
+      </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">mail</i>
-      <%= f.email_field :email, autocomplete: 'email', id: 'user_email' %>
-      <%= f.label :email %>
-    </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">lock</i>
+        <%= f.password_field :password, id: 'user_password' %>
+        <%= f.label :password %>
+      </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">lock</i>
-      <%= f.password_field :password, id: 'user_password' %>
-      <%= f.label :password %>
-    </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="col s12">
+          <%= f.label :remember_me do %>
+            <%= f.check_box :remember_me %>
+            <span class="login-checkbox">次回から自動でログイン</span>
+          <% end %>
+        </div>
+      <% end %>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="col s12">
-        <%= f.label :remember_me do %>
-          <%= f.check_box :remember_me %>
-          <span class="login-checkbox">次回から自動でログイン</span>
-        <% end %>
+      <div class="center-align">
+        <button class="btn waves-effect waves-light login-btn">
+          <%= f.submit 'ログイン', class: 'submit-btn' %>
+          <i class="material-icons right">send</i>
+        </button>
       </div>
     <% end %>
+  </div>
 
-    <div class="center-align">
-      <button class="btn waves-effect waves-light login-btn">
-        <%= f.submit 'ログイン', class: 'submit-btn' %>
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
-  <% end %>
+  <%= render "users/shared/links" %>
 </div>
-
-<%= render "users/shared/links" %>

@@ -1,43 +1,46 @@
-<h4 class="center-align signup-title">アカウント登録</h4>
+<div class="card-panel profile-card">
+  <div class="profile-title-wrapper">
+    <h1 class="profile-title">アカウント登録</h1>
+  </div>
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
-<div class="row">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <%= f.text_field :username, autocomplete: 'name', id: 'user_username' %>
+        <%= f.label :username %>
+      </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">account_circle</i>
-      <%= f.text_field :username, autocomplete: 'name', id: 'user_username' %>
-      <%= f.label :username %>
-    </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mail</i>
+        <%= f.email_field :email, autocomplete: 'email', id: 'user_email' %>
+        <%= f.label :email %>
+      </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">mail</i>
-      <%= f.email_field :email, autocomplete: 'email', id: 'user_email' %>
-      <%= f.label :email %>
-    </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">lock</i>
+        <%= f.password_field :password, id: 'user_password' %>
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(英数字 <%= @minimum_password_length %>文字以上)</em>
+        <% end %><br />
+      </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">lock</i>
-      <%= f.password_field :password, id: 'user_password' %>
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(英数字 <%= @minimum_password_length %>文字以上)</em>
-      <% end %><br />
-    </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">lock</i>
+        <%= f.password_field :password_confirmation, id: 'user_password_confirmation' %>
+        <%= f.label :password_confirmation %>    
+      </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">lock</i>
-      <%= f.password_field :password_confirmation, id: 'user_password_confirmation' %>
-      <%= f.label :password_confirmation %>    
-    </div>
+      <div class="center-align">
+        <button class="btn waves-effect waves-light">
+          <%= f.submit 'アカウント登録', class: 'submit-btn' %>
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    <% end %>
+  </div>
 
-    <div class="center-align">
-      <button class="btn waves-effect waves-light">
-        <%= f.submit 'アカウント登録', class: 'submit-btn' %>
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
-  <% end %>
+  <%= render "users/shared/links" %>
 </div>
-
-<%= render "users/shared/links" %>
