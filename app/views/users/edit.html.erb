@@ -1,74 +1,79 @@
-<h1 class="profile-title">プロフィール</h1>
 
-<%= form_with model: @user_profile, local: true do |f| %>
-  <div class="profile-wrapper">
-    <div class="profile-item1">
-      <% if @user_profile.avatar? %>
-        <%= image_tag @user_profile.avatar.url, class: "circle-img" %>
-      <% else %>
-        <%= image_tag 'boy.png', class: 'circle responsive-img' %>
-      <% end %>
-      <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %>
-    </div>
-    <div class="profile-item2">
+<div class="card-panel profile-card">
+  <div class="profile-title-wrapper">
+    <h1 class="profile-title">プロフィール</h1>
+  </div>
+  <%= form_with model: @user_profile, local: true do |f| %>
+
+    <div class="row">
+      <div class="profile-avatar-wrapper">
+        <% if @user_profile.avatar? %>
+          <%= image_tag @user_profile.avatar.url, class: "circle-img" %>
+        <% else %>
+          <%= image_tag 'icon_default.png', class: 'circle-img' %>
+        <% end %>
+      </div>
+
+      <div class="avatar-file">
+        <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %>
+      </div> 
+
       <div class="input-field col s12">
         <i class="material-icons prefix">account_circle</i>
         <%= f.text_field :username, autocomplete: 'name', autofocus: true, id: 'user_username' %>
-        <%= f.label :username, style: "margin-left: 33px" %>
+        <%= f.label :username %>
       </div>
 
-      <div class="input-field col s12 birthday-wrapper">
+      <div class="input-field col s12">
         <i class="material-icons prefix">today</i>
         <%= f.date_select :birth_date, start_year: 1950, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
-        <%= f.label :birth_date, style: "margin-left: 33px" %>
+        <%= f.label :birth_date %>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12 prefecture-wrapper">
-      <i class="material-icons prefix">place</i>
-      <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県を選んでください" %>
-    </div>
-
-    <div class="input-field col s12">
-      <i class="material-icons prefix">mode_edit</i>
-      <%= f.text_area :profile, autofocues: true, class: "materialize-textarea" %>
-      <!-- <textarea id="icon_prefix2" class="materialize-textarea"></textarea> 
-      <label for="icon_prefix2">自己紹介</label> -->
-      <%= f.label :profile, class: "active" %>
-    </div>
-
-    <div class="input-field col s12">
-      <p class="genre-label">勉強ジャンル</p>
-      <div class="chip">
-        プログラミング
-        <i class="close material-icons">close</i>
+      <div class="input-field col s12 prefecture-wrapper">
+        <i class="material-icons prefix">place</i>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県を選んでください" %>
       </div>
-      <div class="chip">
-        英語
-        <i class="close material-icons">close</i>
+
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <%= f.text_area :profile, autofocues: true, class: "materialize-textarea" %>
+        <!-- <textarea id="icon_prefix2" class="materialize-textarea"></textarea> 
+        <label for="icon_prefix2">自己紹介</label> -->
+        <%= f.label :profile, class: "active" %>
       </div>
-      <div class="chip">
-        Javascript
-        <i class="close material-icons">close</i>
+
+      <div class="input-field col s12">
+        <p class="genre-label">勉強ジャンル</p>
+        <div class="chip">
+          プログラミング
+          <i class="close material-icons">close</i>
+        </div>
+        <div class="chip">
+          英語
+          <i class="close material-icons">close</i>
+        </div>
+        <div class="chip">
+          Javascript
+          <i class="close material-icons">close</i>
+        </div>
       </div>
-    </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">all_out</i>
-      <%= f.text_area :aim, class: "materialize-textarea" %>
-  <!--    <textarea id="textarea1" class="materialize-textarea"></textarea>
-      <label for="textarea1">Textarea</label> -->
-      <%= f.label :aim, class: "active" %>
-    </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">all_out</i>
+        <%= f.text_area :aim, class: "materialize-textarea" %>
+    <!--    <textarea id="textarea1" class="materialize-textarea"></textarea>
+        <label for="textarea1">Textarea</label> -->
+        <%= f.label :aim, class: "active" %>
+      </div>
 
-    <div class="center-align">
-      <button class="btn waves-effect waves-light">
-        <%= f.submit 'プロフィール登録', class: 'submit-btn' %>
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
+      <div class="center-align">
+        <button class="btn waves-effect waves-light">
+          <%= f.submit 'プロフィール登録', class: 'submit-btn' %>
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
 
-  </div> 
-<% end %>
+    </div> 
+  <% end %>
+</div>

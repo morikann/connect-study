@@ -1,14 +1,12 @@
 <% if user_signed_in? %>
+
   <%= current_user.username %>
   <%= current_user.profile %>
   <%= current_user.aim %>
-  <%= current_user.prefecture.name %>
-  <%
-=begin%>
- <%= current_user.prefecture.name %> 
-<%
-=end%>
+  <%= current_user.prefecture.name %> 
+
   <%= current_user.birth_date %>
+
 <% else %>
   <h1 class="brand-name center-align">コネクト</h1>
   <div class="row top-button-wrapper">
