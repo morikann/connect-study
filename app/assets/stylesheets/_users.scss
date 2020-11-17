@@ -26,11 +26,21 @@
 }
 
 .profile-item1 {
-  max-width: 300px;
+  max-width: 250px;
+  margin-bottom: 30px;
+  text-align: center;
 
   @include mq(sm) {
     width: 200px;
   } 
+}
+
+.circle-img {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
 }
 
 .profile-item2 {

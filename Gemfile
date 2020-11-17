@@ -64,3 +64,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 # 都道府県データ
 gem 'active_hash'
+# 画像アップロード
+gem 'carrierwave', '~> 2.0'
+# 画像のリサイズ
+gem "mini_magick"
