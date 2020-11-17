@@ -5,6 +5,7 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><%= link_to 'ホーム', root_path %><li>
       <li><%= link_to '編集', edit_user_registration_path %><li>
+      <li><%= link_to 'プロフィール', edit_user_path(current_user) %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>

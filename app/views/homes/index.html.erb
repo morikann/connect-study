@@ -1,12 +1,25 @@
-<h1 class="brand-name center-align">コネクト</h1>
-<div class="row top-button-wrapper">
-  <div class="right-align col m6 s6">
-    <%= link_to '新規登録', new_user_registration_path, class: 'btn brown darken-1' %>
+<% if user_signed_in? %>
+  <%= current_user.username %>
+  <%= current_user.profile %>
+  <%= current_user.aim %>
+  <%= current_user.prefecture.name %>
+  <%
+=begin%>
+ <%= current_user.prefecture.name %> 
+<%
+=end%>
+  <%= current_user.birth_date %>
+<% else %>
+  <h1 class="brand-name center-align">コネクト</h1>
+  <div class="row top-button-wrapper">
+    <div class="right-align col m6 s6">
+      <%= link_to '新規登録', new_user_registration_path, class: 'btn brown darken-1' %>
+    </div>
+    <div class="left-align col m6 s6">
+      <%= link_to 'ログイン', new_user_session_path, class: 'btn brown darken-1' %>
+    </div>
+    <div class="center-align col m12 s12 easy-login-btn-wrapper">
+      <%= link_to 'かんたんログイン', '#', class: 'btn orange lighten-1' %>
+    </div>
   </div>
-  <div class="left-align col m6 s6">
-    <%= link_to 'ログイン', new_user_session_path, class: 'btn brown darken-1' %>
-  </div>
-  <div class="center-align col m12 s12 easy-login-btn-wrapper">
-    <%= link_to 'かんたんログイン', '#', class: 'btn orange lighten-1' %>
-  </div>
-</div>
+<% end %>
