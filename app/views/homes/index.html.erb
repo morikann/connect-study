@@ -1,12 +1,30 @@
 <% if user_signed_in? %>
+  <div class="profile-title-wrapper top">
+    <h1 class="profile-title">勉強仲間</h1>
+  </div>
 
-  <%= current_user.username %>
-  <%= current_user.profile %>
-  <%= current_user.aim %>
-  <%= current_user.prefecture.name %> 
-
-  <%= current_user.birth_date %>
-
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col s12 m6 l4">
+        <div class="card">
+          <div class="card-image">
+            <% if user.avatar? %>
+              <%= image_tag user.avatar.url, class: 'circle-img' %>
+            <% else %>
+              <%= image_tag 'icon_default.png', class: 'circle-img' %>
+            <% end %>
+            <span class="card-title"><%= user.username %></span>
+          </div>
+          <div class="card-content">
+            <p><%= user.aim %></p>
+          </div>
+          <div class="card-action">
+            <a href="#">フォローする</a>
+          </div>
+        </div>
+      </div>
+    <% end %>  
+  </div>
 <% else %>
   <h1 class="brand-name center-align">コネクト</h1>
   <div class="row top-button-wrapper">
