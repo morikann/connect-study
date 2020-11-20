@@ -1,10 +1,10 @@
-
 <div class="card-panel profile-card">
+  
   <div class="profile-title-wrapper">
     <h1 class="profile-title">プロフィール</h1>
   </div>
-  <%= form_with model: @user_profile, local: true do |f| %>
 
+  <%= form_with model: @user_profile, local: true do |f| %>
     <div class="row">
       <div class="profile-avatar-wrapper">
         <% if @user_profile.avatar? %>

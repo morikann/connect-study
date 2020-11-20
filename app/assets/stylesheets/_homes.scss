@@ -26,3 +26,32 @@
 .easy-login-btn-wrapper {
   margin-top: 20px;
 }
+
+ul {
+  margin: 0;
+}
+
+.side-footer {
+  height: 250px;
+  margin-top: auto;
+}
+
+.logo {
+  padding: 20px 30px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.nav-link {
+  padding: 0 30px;
+  line-height: 40px;
+  transition: all .2s;
+  
+  &:hover {
+    background: #f5f4f4;
+  }
+}
+
+.top {
+  margin-top: 30px;
+}

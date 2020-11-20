@@ -16,3 +16,77 @@
  */
 
  @import "materialize";
+ @import "media_queries";
+
+ .debug_dump {
+   white-space: pre-wrap;
+   margin-top: 300px;
+ }
+
+ body {
+   display: flex;
+   min-height: 100vh;
+ }
+
+ main {
+   flex-grow: 1;
+ }
+
+ aside {
+   width: 20%;
+   min-width: 250px;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+
+   @include mq(sm) {
+     position: absolute;
+     left: -250px;
+     height: 100%;
+     transition: all 0.2s;
+     background-color: #fafafa;
+     z-index: 999;
+   }
+ }
+
+ .container {
+   min-height: 100vh;
+   width: 90%;
+ }
+
+ // hamburger
+
+ .open,
+ .close {
+   display: none;
+
+   @include mq(sm) {
+     display: block;
+   }
+ }
+
+ .open {
+   @include mq(sm) {
+     position: absolute;
+   }
+ }
+
+ input[type="checkbox"] {
+   position: absolute;
+   left: -50vw;
+ }
+
+ input[type="checkbox"]:checked ~ aside {
+   @include mq(sm) {
+     left: 0;
+   }
+ }
+
+ input[type="checkbox"]:checked ~ .back {
+   @include mq(sm) {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.7);
+   }
+ }
