@@ -12,6 +12,11 @@
         <%= f.label :username %>
       </div>
 
+      <div class="input-field col s12 prefecture-wrapper">
+        <i class="material-icons prefix">place</i>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県を選んでください" %>
+      </div>
+
       <div class="input-field col s12">
         <i class="material-icons prefix">mail</i>
         <%= f.email_field :email, autocomplete: 'email', id: 'user_email' %>
