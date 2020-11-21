@@ -1,0 +1,80 @@
+<div class="card-panel profile-card">
+  
+  <div class="profile-title-wrapper">
+    <h1 class="profile-title">プロフィール</h1>
+  </div>
+
+  <%= form_with model: @user_profile, local: true do |f| %>
+    <%= render 'shared/error_messages'%>
+    <div class="row">
+      <div class="profile-avatar-wrapper">
+        <%= image_tag 'icon_default.png', class: 'circle-img' %>
+      </div>
+
+      <div class="avatar-file">
+        <%= f.label :avatar, class: 'avatar-upload' do |file| %>
+          画像を変更する
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", style: "display: none" %>
+        <% end %>
+      </div> 
+
+      <div class="input-field col s12">
+        <span class="essential">*</span>
+        <i class="material-icons prefix">account_circle</i>
+        <%= f.text_field :username, autocomplete: 'name', autofocus: true %>
+        <%= f.label :username %>
+      </div>
+
+      <div class="input-field col s12">
+        <span class="essential">*</span>
+        <i class="material-icons prefix">today</i>
+        <%= f.date_select :birth_date, start_year: 1950, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
+        <%= f.label :birth_date %>
+      </div>
+
+      <div class="input-field col s12 prefecture-wrapper">
+        <span class="essential">*</span>
+        <i class="material-icons prefix">place</i>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県" %>
+      </div>
+
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <%= f.text_area :self_introduction, autofocues: true, class: "materialize-textarea", style: "height: 200px" %>
+        <%= f.label :self_introduction, class: "active" %>
+      </div>
+
+      <div class="input-field col s12">
+        <p class="genre-label">勉強ジャンル</p>
+        <div class="chip">
+          プログラミング
+          <i class="close material-icons">close</i>
+        </div>
+        <div class="chip">
+          英語
+          <i class="close material-icons">close</i>
+        </div>
+        <div class="chip">
+          Javascript
+          <i class="close material-icons">close</i>
+        </div>
+      </div>
+
+      <div class="input-field col s12">
+        <span class="essential">*</span>
+        <i class="material-icons prefix">all_out</i>
+        <%= f.text_field :purpose, class: "materialize-textarea", style: "height: 100px" %>
+        <%= f.label :purpose, class: "active" %>
+      </div>
+
+      <div class="center-align">
+        <button class="btn waves-effect waves-light">
+          <%= f.submit 'プロフィール登録', class: 'submit-btn' %>
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+
+    </div> 
+  <% end %>
+</div>
+

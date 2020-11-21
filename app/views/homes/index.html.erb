@@ -6,17 +6,17 @@
   <div class="row">
     <% @users.each do |user| %>
       <div class="col s12 m6 l4">
-        <div class="card">
+        <div class="card card-pointer">
           <div class="card-image">
-            <% if user.avatar? %>
-              <%= image_tag user.avatar.url, class: 'circle-img' %>
+            <% if user.profile.avatar? %>
+              <%= image_tag user.profile.avatar.url, class: 'circle-img' %>
             <% else %>
               <%= image_tag 'icon_default.png', class: 'circle-img' %>
             <% end %>
-            <span class="card-title"><%= user.username %></span>
+            <span class="card-title" style="padding: 10px; font-size: 12px; background: #090909; "><%= user.profile.username %></span>
           </div>
           <div class="card-content">
-            <p><%= user.aim %></p>
+            <p><%= user.profile.purpose %></p>
           </div>
           <div class="card-action">
             <a href="#">フォローする</a>

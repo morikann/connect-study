@@ -1,0 +1,7 @@
+<% if @user_profile.errors.any? %>
+  <% @user_profile.errors.full_messages.each do |message| %>
+    <div class="card-panel red lighten-4 flash_message">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>

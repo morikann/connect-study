@@ -10,6 +10,10 @@
   font-style: normal;
 }
 
+nav {
+  background: #039be5;
+}
+
 .brand-name {
   font-family: "brand-name";
   font-size: 110px;
@@ -54,4 +58,17 @@ ul {
 
 .top {
   margin-top: 30px;
+}
+
+.nav-link a {
+  display: block;
+}
+
+.card-pointer {
+  cursor: pointer;
+  transition: all .3s;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
 }

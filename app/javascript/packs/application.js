@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require('jquery')
 import 'materialize-css/dist/js/materialize'
 require("frame_work/materialize")
 // Uncomment to copy all static images under ../images to the output folder and reference
