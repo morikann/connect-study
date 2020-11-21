@@ -1,0 +1,59 @@
+<div class="card-panel profile-card">
+
+    <div class="profile-avatar-wrapper">
+      <% if @user_profile.avatar? %>
+        <%= image_tag @user_profile.avatar.url, class: 'circle-img' %>
+      <% else %>
+        <%= image_tag 'icon_default.png', class: 'circle-img' %>
+      <% end %>
+    </div>
+
+    <div class="profile-user-name">
+      <%= @user_profile.username %>
+    </div>
+
+    <div class="profile-prefecture">
+      <%= @user.profile.prefecture.name %><span class="profile-age"><%= user_age(@user_profile.birth_date) %>歳</span>
+    </div>
+
+    <div class="profile-user-purpose">
+      <%= @user_profile.purpose %>
+    </div>
+
+    <div class="profile-user-introduction">
+      <%= simple_format(h(@user_profile.self_introduction), {}, sanitize: false, wrapper_tag: "div") %>
+    </div>
+
+    <p class="genre-label">勉強ジャンル</p>
+    <div class="chip">
+      プログラミング
+      <i class="close material-icons">close</i>
+    </div>
+    <div class="chip">
+      英語
+      <i class="close material-icons">close</i>
+    </div>
+    <div class="chip">
+      Javascript
+      <i class="close material-icons">close</i>
+    </div>
+
+    <div class="profile-edit-link">
+      <%= link_to "プロフィールを編集する", edit_profile_path(@user), class: "profile-edit_link" %>
+    </div>
+
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  </div>
+</div>
+
+
