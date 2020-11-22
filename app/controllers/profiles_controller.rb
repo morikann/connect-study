@@ -1,19 +1,22 @@
 class ProfilesController < ApplicationController
   before_action :prohibit_duplicate_profile, only: :new
   before_action :correct_user, only: [:edit, :update]
+  skip_before_action :registration_profile, only: [:new, :create]
 
   def new
     @user_profile = current_user.build_profile
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = Profile.find(params[:id]).user
     @user_profile = @user.profile
   end
 
   def create
     @user_profile = current_user.build_profile(profile_params)
+    tag_list = params[:profile][:tag_ids].split(',')
     if @user_profile.save
+      @user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの設定が完了しました"
       redirect_to root_url
     else
@@ -22,7 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = Profile.find(params[:id]).user
     @user_profile = @user.profile
     if @user_profile.update(profile_params)
       flash[:notice] = "プロフィールの変更が完了しました"
@@ -33,7 +36,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = Profile.find(params[:id]).user
     @user_profile = @user.profile
   end
 
@@ -51,7 +54,7 @@ class ProfilesController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = Profile.find(params[:id]).user
     redirect_to root_url unless @user == current_user
   end
 
