@@ -25,21 +25,15 @@
     </div>
 
     <p class="genre-label">勉強ジャンル</p>
-    <div class="chip">
-      プログラミング
+    <% @user_profile.tags.each do |tag| %>
+      <div class="chip">
+        <%= tag.name %>
       <i class="close material-icons">close</i>
-    </div>
-    <div class="chip">
-      英語
-      <i class="close material-icons">close</i>
-    </div>
-    <div class="chip">
-      Javascript
-      <i class="close material-icons">close</i>
-    </div>
+      </div>
+    <% end %>
 
     <div class="profile-edit-link">
-      <%= link_to "プロフィールを編集する", edit_profile_path(@user), class: "profile-edit_link" %>
+      <%= link_to "プロフィールを編集する", edit_profile_path(@user_profile), class: "profile-edit_link" %>
     </div>
 
     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>

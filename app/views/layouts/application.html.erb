@@ -29,7 +29,7 @@
           <ul>
             <li class="logo"><%= link_to 'Connect', root_path %></li>
             <li class="nav-link"><%= link_to 'ホーム', root_path %></li>
-            <li class="nav-link"><%= link_to 'プロフィール', profile_path(current_user) %></li>
+            <li class="nav-link"><%= link_to 'プロフィール', profile_path(current_user.profile) %></li>
             <li class="nav-link"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>
