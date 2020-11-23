@@ -25,7 +25,7 @@
     </div>
 
     <p class="genre-label">勉強ジャンル</p>
-    <% @user_profile.tags.each do |tag| %>
+    <% @user_profile.tags.map do |tag| %>
       <div class="chip">
         <%= tag.name %>
       <i class="close material-icons">close</i>

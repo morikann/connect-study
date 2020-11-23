@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
   def edit
     @user = Profile.find(params[:id]).user
     @user_profile = @user.profile
+    @tag_list = @user_profile.tags.pluck(:name).join(',')
   end
 
   def create
@@ -27,7 +28,9 @@ class ProfilesController < ApplicationController
   def update
     @user = Profile.find(params[:id]).user
     @user_profile = @user.profile
+    tag_list = params[:profile][:tag_ids].split(',')
     if @user_profile.update(profile_params)
+      @user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの変更が完了しました"
       redirect_to root_url
     else
