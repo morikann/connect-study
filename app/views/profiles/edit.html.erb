@@ -45,19 +45,8 @@
       </div>
 
       <div class="input-field col s12">
-        <p class="genre-label">勉強ジャンル</p>
-        <div class="chip">
-          プログラミング
-          <i class="close material-icons">close</i>
-        </div>
-        <div class="chip">
-          英語
-          <i class="close material-icons">close</i>
-        </div>
-        <div class="chip">
-          Javascript
-          <i class="close material-icons">close</i>
-        </div>
+        <i class="material-icons prefix">local_offer</i>
+        <%= f.text_field :tag_ids, value: @tag_list, placeholder: "タグを複数つけるには' , 'で区切ってください" %>
       </div>
 
       <div class="input-field col s12">
