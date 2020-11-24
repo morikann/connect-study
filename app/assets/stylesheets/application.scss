@@ -30,6 +30,9 @@
 
  main {
    flex-grow: 1;
+ }
+
+ .main-padding {
    padding-left: 300px;
 
    @include mq(sm) {
