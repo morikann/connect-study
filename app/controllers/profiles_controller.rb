@@ -16,7 +16,6 @@ class ProfilesController < ApplicationController
   def create
     @user_profile = current_user.build_profile(profile_params)
     tag_list = params[:profile][:tag].split(',')
-    binding.pry
     if @user_profile.save
       @user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの設定が完了しました"

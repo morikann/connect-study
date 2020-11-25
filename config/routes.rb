@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     get '/users', to: 'users/registrations#new'
   end
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   resources :profiles   
+  resources :relationships, only: [:create, :destroy]
 end

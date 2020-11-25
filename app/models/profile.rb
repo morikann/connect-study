@@ -14,10 +14,10 @@ class Profile < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  def save_tags(tags)
+  def save_tags(profile_tag)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    old_tags = current_tags - tags
-    new_tags = tags - current_tags
+    old_tags = current_tags - profile_tag
+    new_tags = profile_tag - current_tags
 
     # 古いタグを削除
     old_tags.each do |old_tag|
@@ -26,8 +26,8 @@ class Profile < ApplicationRecord
 
     # 新しいタグを追加
     new_tags.each do |new_tag|
-      profile_tag = Tag.find_or_create_by(name: new_tag)
-      self.tags << profile_tag
+      add_tag = Tag.find_or_create_by(name: new_tag)
+      self.tags << add_tag
     end
   end
 end
