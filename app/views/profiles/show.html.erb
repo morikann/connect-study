@@ -1,7 +1,7 @@
 <div class="card-panel profile-card">
 
   <% unless current_user?(@user) %>
-    <div class="follow-btn">
+    <div id="follow-form">
       <% if current_user.following?(@user) %>
         <%= render 'users/unfollow' %>
       <% else %>
@@ -27,10 +27,10 @@
   </div>
 
   <div class="stats">
-    <div class="follow">
+    <div id="follow">
       フォロー<%= @user.following.count %>
     </div>
-    <div class="follower">
+    <div id="follower">
       フォロワー<%= @user.followers.count %>
     </div>
   </div>
