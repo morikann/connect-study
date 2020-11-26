@@ -5,4 +5,8 @@ module ProfilesHelper
     age = ( today - birthday) / 10000 
     return age
   end
+
+  def current_user?(user)
+    current_user == user
+  end
 end
