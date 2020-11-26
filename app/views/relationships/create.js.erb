@@ -1,0 +1,2 @@
+document.getElementById('follow-form').innerHTML = ("<%= escape_javascript(render('users/unfollow')) %>");
+document.getElementById('follower').innerHTML = ("フォロワー<%= @user.followers.count %>");
