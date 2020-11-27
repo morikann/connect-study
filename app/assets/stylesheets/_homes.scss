@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 @import "media_queries";
+@import "profiles";
 
 @font-face {
   font-family: "brand-name";
@@ -71,4 +72,16 @@ ul {
   &:hover {
     transform: scale(1.1);
   }
+}
+
+.card .card-action {
+  padding: 16px 2px;
+}
+
+.top-user-purpose {
+  @extend .profile-user-purpose;
+  color: #1A1A1A;
+  margin: 0 24px;
+  max-width: 252px;
+  margin-bottom: 24px;
 }

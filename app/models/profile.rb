@@ -30,4 +30,5 @@ class Profile < ApplicationRecord
       self.tags << add_tag
     end
   end
+
 end

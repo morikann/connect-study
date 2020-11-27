@@ -10,6 +10,7 @@ ja:
     models:
       user: ユーザー
       profile: プロフィール
+      tag: タグ
     attributes:
       user:
         id: ID
@@ -25,6 +26,7 @@ ja:
         birth_date: 生年月日
         purpose: 目標
         prefecture_id: お住まいの県
+        tags: タグ
         created_at: 登録日時
         updated_at: 更新日時
         
