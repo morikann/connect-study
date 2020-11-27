@@ -78,6 +78,12 @@ ul {
   padding: 16px 2px;
 }
 
+.top-other-user-purpose {
+  color: #1a1a1a;
+  font-style: italic;
+  font-size: 18px;
+}
+
 .top-user-purpose {
   @extend .profile-user-purpose;
   color: #1A1A1A;

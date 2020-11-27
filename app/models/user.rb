@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :following
 
+  default_scope -> { order(created_at: :desc) }
+
 
   def follow(other_user)
     following << other_user

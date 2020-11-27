@@ -2,7 +2,7 @@ class HomesController < ApplicationController
   skip_before_action :authenticate_user! 
 
   def index
-    @users = User.all
-    @user_profile = current_user.profile
+    @users = User.page(params[:page])
+    @user_profile = current_user.profile if current_user.present?
   end
 end
