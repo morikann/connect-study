@@ -71,3 +71,5 @@ gem 'mini_magick'
 # デバッグツール
 gem 'pry-rails'
 gem 'pry-byebug'
+# ページネーション
+gem 'kaminari'
