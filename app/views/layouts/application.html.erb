@@ -23,6 +23,9 @@
         <div>
           <ul>
             <li class="logo"><%= link_to 'Connect', root_path %></li>
+            <div class="top-user-purpose">
+              <%= simple_format(h(@user_profile.purpose), {}, sanitize: false) %>
+            </div>
             <li class="nav-link"><%= link_to 'ホーム', root_path %></li>
             <% if !current_user.profile.id.nil? %>
               <li class="nav-link"><%= link_to 'プロフィール', profile_path(current_user.profile)%></li>
@@ -36,17 +39,6 @@
       </aside> 
     <% end %>
     <main class="<%= 'main-padding' if current_user %>">
-      <nav>
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </div>
-      </nav>
       <div class="container">
         <%= render 'shared/flash' %>
         <%= yield %>

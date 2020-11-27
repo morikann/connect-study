@@ -32,11 +32,12 @@
 .profile-user-purpose {
   position: relative;
   padding: 0.25em 1em;
-  border-top: solid 2px black;
-  border-bottom: solid 2px black;
+  border-top: solid 2px #1a1a1a;
+  border-bottom: solid 2px #1a1a1a;
   text-align: center;
   font-size: 20px;
   font-style: italic;
+  max-width: 100%;
 
   &::before, &::after {
     content: '';
@@ -45,7 +46,7 @@
     width: 2px;
     height: -webkit-calc(100% + 14px);
     height: calc(100% + 14px);
-    background-color: black;
+    background-color: #1a1a1a;
   }
 
   &:before {

@@ -19,22 +19,19 @@
       </div> 
 
       <div class="input-field col s12">
-        <span class="essential">*</span>
-        <i class="material-icons prefix">account_circle</i>
+        <i class="material-icons prefix"><span class="essential">*</span>account_circle</i>
         <%= f.text_field :username, autocomplete: 'name', autofocus: true %>
         <%= f.label :username %>
       </div>
 
       <div class="input-field col s12">
-        <span class="essential">*</span>
-        <i class="material-icons prefix">today</i>
+        <i class="material-icons prefix"><span class="essential">*</span>today</i>
         <%= f.date_select :birth_date, start_year: 1950, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
         <%= f.label :birth_date %>
       </div>
 
       <div class="input-field col s12 prefecture-wrapper">
-        <span class="essential">*</span>
-        <i class="material-icons prefix">place</i>
+        <i class="material-icons prefix"><span class="essential">*</span>place</i>
         <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県" %>
       </div>
 
@@ -45,13 +42,12 @@
       </div>
 
       <div class="input-field col s12">
-        <i class="material-icons prefix">local_offer</i>
-        <%= f.text_field :tag, placeholder: "タグを複数つけるには' , 'で区切ってください" %>
+        <i class="material-icons prefix"><span class="essential">*</span>local_offer</i>
+        <%= f.text_field :tag, placeholder: "勉強ジャンル   例: プログラミング,英語" %>
       </div>
 
       <div class="input-field col s12">
-        <span class="essential">*</span>
-        <i class="material-icons prefix">all_out</i>
+        <i class="material-icons prefix"><span class="essential">*</span>all_out</i>
         <%= f.text_field :purpose, class: "materialize-textarea", style: "height: 100px" %>
         <%= f.label :purpose, class: "active" %>
       </div>
