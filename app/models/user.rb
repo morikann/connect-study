@@ -14,6 +14,11 @@ class User < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
+  def self.search(search_word)
+    self.joins(profile: :tags).where(tags: {name: search_word})
+    # User.joins(profile: :tags).where(tags: {name: search_word})
+    # joins(profile: :tags).where('name LIKE ?', "%#{search_word}%")
+  end
 
   def follow(other_user)
     following << other_user

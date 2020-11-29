@@ -1,4 +1,11 @@
 <% if user_signed_in? %>
+  <%= form_with url: root_url, method: :get, local: true do |f| %>
+    <div class="input-field">
+      <%= f.text_field :search %>
+      <%= f.label :search, '勉強ジャンルで検索' %>
+      <%= f.submit '検索', class: "btn waves-effect waves-light submit-btn" %>
+    </div>
+  <% end %>
   <div class="profile-title-wrapper top">
     <h1 class="profile-title">勉強仲間</h1>
   </div>
