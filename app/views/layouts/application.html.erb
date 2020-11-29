@@ -27,10 +27,36 @@
               <div class="top-user-purpose">
                 <%= simple_format(h(current_user.profile.purpose), {}, sanitize: false) %>
               </div>
-              <li class="nav-link"><%= link_to 'プロフィール', profile_path(current_user.profile)%></li>
+              <li class="nav-link">
+                <%= link_to profile_path(current_user.profile) do %>
+                  <i class="fas fa-user fa-fw"></i>
+                  <span>プロフィール</span>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to notifications_path do %>
+                  <% if unchecked_notifications.any? %>
+                    <i class="fas fa-bell fa-fw" style="color: #ffd600;"></i>
+                    <span>通知</span>
+                  <% else %>
+                    <i class="far fa-bell fa-fw"></i>
+                    <span>通知</span>
+                  <% end %>
+                <% end %>
+              </li>
             <% end %>
-            <li class="nav-link"><%= link_to 'ホーム', root_path %></li>
-            <li class="nav-link"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <li class="nav-link">
+              <%= link_to root_path do %>
+                <i class="fas fa-home fa-fw"></i>
+                <span>ホーム</span>
+              <% end %>
+            </li>
+            <li class="nav-link">
+              <%= link_to  destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt fa-fw"></i>
+                <span>ログアウト</span>
+              <% end %>
+            </li>
           </ul>
         </div>
         <div class="side-footer">

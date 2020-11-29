@@ -17,6 +17,12 @@
 
  @import "materialize";
  @import "media_queries";
+ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+  @import '@fortawesome/fontawesome-free/scss/fontawesome';
+  @import '@fortawesome/fontawesome-free/scss/solid';
+  @import '@fortawesome/fontawesome-free/scss/regular';
+  @import '@fortawesome/fontawesome-free/scss/brands';
+  @import '@fortawesome/fontawesome-free/scss/v4-shims';
 
  .debug_dump {
    white-space: pre-wrap;
