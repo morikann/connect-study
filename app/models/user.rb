@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :following
 
+  has_many :active_notifications, class_name: "Notification", foreign_key: :visitor_id, dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: :visited_id, dependent: :destroy
+
   default_scope -> { order(created_at: :desc) }
 
   def self.search(search_word)
@@ -30,6 +33,17 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, self.id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 
 end
