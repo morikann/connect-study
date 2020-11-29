@@ -27,7 +27,7 @@ class Profile < ApplicationRecord
     # 新しいタグを追加
     new_tags.each do |new_tag|
       add_tag = Tag.find_or_create_by(name: new_tag)
-      self.tags << add_tag
+      tags << add_tag
     end
   end
 

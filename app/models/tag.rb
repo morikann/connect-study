@@ -3,4 +3,5 @@ class Tag < ApplicationRecord
   has_many :profiles, through: :tag_relationships
 
   validates :name, uniqueness: true, presence: true
+
 end
