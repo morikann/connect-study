@@ -13,62 +13,7 @@
 
   <body>
     <% if user_signed_in? %>
-      
-      <input id="menu" type="checkbox" />
-      <label for="menu" class="open"><i class="material-icons">menu</i></label>
-      <label for="menu" class="back"></label>
-
-      <aside class="z-depth-2">
-
-        <div>
-          <ul>
-            <li class="logo"><%= link_to 'Connect', root_path %></li>    
-            <% if !current_user.profile.id.nil? %>
-              <div class="top-user-purpose">
-                <%= simple_format(h(current_user.profile.purpose), {}, sanitize: false) %>
-              </div>
-              <li class="nav-link">
-                <%= link_to profile_path(current_user.profile) do %>
-                  <i class="fas fa-user fa-fw"></i>
-                  <span>プロフィール</span>
-                <% end %>
-              </li>
-              <li class="nav-link">
-                <%= link_to notifications_path do %>
-                  <% if unchecked_notifications.any? %>
-                    <i class="fas fa-bell fa-fw" style="color: #ffd600;"></i>
-                    <span>通知</span>
-                  <% else %>
-                    <i class="far fa-bell fa-fw"></i>
-                    <span>通知</span>
-                  <% end %>
-                <% end %>
-              </li>
-            <% end %>
-            <li class="nav-link">
-              <%= link_to root_path do %>
-                <i class="fas fa-home fa-fw"></i>
-                <span>ホーム</span>
-              <% end %>
-            </li>
-            <li class="nav-link">
-              <%= link_to  destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-fw"></i>
-                <span>ログアウト</span>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-        <div class="side-footer">
-          <div class="tag-wrapper">
-            <% tags.each do |tag| %>
-              <div class="chip">
-                <%= tag %>
-              </div>
-            <% end %>
-          </div>
-       </div>
-      </aside> 
+      <%= render 'shared/sidenav' %>  
     <% end %>
     <main class="<%= 'main-padding' if current_user %>">
       <div class="container">
