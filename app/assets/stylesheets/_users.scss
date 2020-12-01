@@ -49,7 +49,6 @@
 
 .profile-wrapper {
   display: flex;
-  // justify-content: space-between;
   align-items: center;
 
   @include mq(sm) {
@@ -57,16 +56,11 @@
   }
 }
 
-.profile-avatar-wrapper {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
 .circle-img {
   object-fit: cover;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   max-width: 100%;
 }
 
@@ -86,9 +80,9 @@
 }
 
 .unfollow-btn {
-
+  transition: all .1s;
   &:hover {
-    background: #f48fb1;
+    background: rgb(202, 32, 85);
   }
 
   input {

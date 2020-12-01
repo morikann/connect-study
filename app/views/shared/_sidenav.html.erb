@@ -12,6 +12,12 @@
           <%= simple_format(h(current_user.profile.purpose), {}, sanitize: false) %>
         </div>
         <li class="nav-link">
+          <%= link_to root_path do %>
+            <i class="fas fa-home fa-fw"></i>
+            <span>ホーム</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
           <%= link_to profile_path(current_user.profile) do %>
             <i class="fas fa-user fa-fw"></i>
             <span>プロフィール</span>
@@ -28,15 +34,15 @@
             <% end %>
           <% end %>
         </li>
+        <li class="nav-link">
+          <%= link_to rooms_path do %>
+            <i class="far fa-comments fa-fw"></i>
+            <span>メッセージ</span>
+          <% end %>
+        </li>
       <% end %>
       <li class="nav-link">
-        <%= link_to root_path do %>
-          <i class="fas fa-home fa-fw"></i>
-          <span>ホーム</span>
-        <% end %>
-      </li>
-      <li class="nav-link">
-        <%= link_to  destroy_user_session_path, method: :delete do %>
+        <%= link_to  destroy_user_session_path, method: :delete, data: { confirm: "ログアウトします。よろしいですか？" } do %>
           <i class="fas fa-sign-out-alt fa-fw"></i>
           <span>ログアウト</span>
         <% end %>

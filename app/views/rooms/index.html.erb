@@ -1,0 +1,5 @@
+<% @rooms.each do |room| %>
+  <% room.users.each do |user| %>
+    <%= user.profile.username %>
+  <% end %>
+<% end %>

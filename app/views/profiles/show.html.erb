@@ -1,29 +1,55 @@
 <div class="card-panel profile-card">
 
   <% unless current_user?(@user) %>
-    <div id="follow-form">
-      <% if current_user.following?(@user) %>
-        <%= render 'users/unfollow' %>
-      <% else %>
-        <%= render 'users/follow' %>
+    <div class="current-user-option-wrapper">
+      <div id="follow-form">
+        <% if current_user.following?(@user) %>
+          <%= render 'users/unfollow' %>
+        <% else %>
+          <%= render 'users/follow' %>
+        <% end %>
+      </div>
+
+      <% if current_user.followed_by?(@user) && @user.followed_by?(current_user) %>
+        <% if @isRoom == true %>
+          <%= link_to room_path(@room_id) do %>
+            <div class="btn-floating btn-small red profile-dm">
+              <i class="large material-icons">mail_outline</i>
+            </div>
+          <% end %>
+        <% else %>
+          <%= form_with model: @room, local: true do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= button_tag type: 'submit', class: 'btn-floating btn-small red profile-dm' do %>
+              <i class="large material-icons">mail_outline</i>
+            <% end %>
+          <% end %>
+        <% end %>
+        
       <% end %>
     </div>
   <% end %>
 
-  <div class="profile-avatar-wrapper">
-    <% if @user_profile.avatar? %>
-      <%= image_tag @user_profile.avatar.url, class: 'circle-img' %>
-    <% else %>
-      <%= image_tag 'icon_default.png', class: 'circle-img' %>
-    <% end %>
-  </div>
+  <div class="profile-main-wrapper">
+    <div class="profile-main-left">
+      <% if @user.profile.avatar? %>
+        <%= image_tag @user.profile.avatar.url, class: 'circle-img' %>
+      <% else %>
+        <%= image_tag 'icon_default.png', class: 'circle-img' %>
+      <% end %>
+    </div>
 
-  <div class="profile-user-name">
-    <%= @user_profile.username %>
-  </div>
+    <div class="profile-main-right">
+      <div class="profile-user-name">
+        <%= @user.profile.username %>
+      </div>
 
-  <div class="profile-prefecture">
-    <%= @user.profile.prefecture.name %><span class="profile-age"><%= user_age(@user_profile.birth_date) %>歳</span>
+      <div class="profile-prefecture">
+        <%= @user.profile.prefecture.name %><span class="profile-age"><%= user_age(@user.profile.birth_date) %>歳</span>
+      </div>
+    </div>
   </div>
 
   <div class="stats">
@@ -36,15 +62,15 @@
   </div>
 
   <div class="profile-user-purpose">
-    <%= @user_profile.purpose %>
+    <%= @user.profile.purpose %>
   </div>
 
   <div class="profile-user-introduction">
-    <%= simple_format(h(@user_profile.self_introduction), {}, sanitize: false, wrapper_tag: "div") %>
+    <%= simple_format(h(@user.profile.self_introduction), {}, sanitize: false, wrapper_tag: "div") %>
   </div>
 
   <p class="genre-label">勉強ジャンル</p>
-  <% @user_profile.tags.map do |tag| %>
+  <% @user.profile.tags.map do |tag| %>
     <div class="chip">
       <%= tag.name %>
     </div>
@@ -52,7 +78,7 @@
 
   <% if @user == current_user %>
     <div class="profile-edit-link">
-      <%= link_to "プロフィールを編集する", edit_profile_path(@user_profile), class: "profile-edit_link" %>
+      <%= link_to "プロフィールを編集する", edit_profile_path(@user.profile), class: "profile-edit_link" %>
     </div>
   <% end %>
 
