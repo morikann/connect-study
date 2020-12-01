@@ -23,7 +23,9 @@
                 <% else %>
                   <%= image_tag 'icon_default.png', class: 'circle-img' %>
                 <% end %>
-                <span class="card-title" style="padding: 10px; font-size: 12px; background: #090909; "><%= user.profile.username %></span>
+                <span class="card-title" style="padding: 10px; font-size: 12px; background: #090909; ">
+                  <%= user.profile.username %>
+                </span>
               </div>
               <div class="card-content">
                 <p class="top-other-user-purpose"><%= user.profile.purpose %></p>
