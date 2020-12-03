@@ -24,6 +24,12 @@
   @import '@fortawesome/fontawesome-free/scss/brands';
   @import '@fortawesome/fontawesome-free/scss/v4-shims';
 
+  $main_color: #26a69a;
+
+  .main_color {
+    color: $main_color;
+  }
+
  .debug_dump {
    white-space: pre-wrap;
    margin-top: 300px;

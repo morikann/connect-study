@@ -1,5 +1,29 @@
-<% @rooms.each do |room| %>
-  <% room.users.each do |user| %>
-    <%= user.profile.username %>
+<blockquote>
+  メッセージ
+</blockquote>
+
+<ul class="collection">
+  <% @rooms.each do |room| %>
+    <% room.users.each do |user| %>
+      <% unless user.id == current_user.id %>
+        <%= link_to room_path(room) do %>
+          <li class="collection-item avatar" style="padding-left: 20px;">
+            <%= link_to profile_path(user.profile) do %>
+              <% if user.profile.avatar? %>
+                <%= image_tag user.profile.avatar.url, class: 'circle-small-img' %>
+              <% else %>
+                <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+              <% end %>
+              <strong><%= user.profile.username %></strong>
+            <% end %>
+            <%= link_to room_path(room) do %>
+              <div class="btn-floating btn-small red profile-dm secondary-content">
+                <i class="large material-icons">mail_outline</i>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
+</ul>

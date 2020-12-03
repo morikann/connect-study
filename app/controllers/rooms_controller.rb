@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = current_user.rooms.includes(:messages).order(created_at: :desc)
+    @rooms = current_user.rooms.includes(users: :profile)
   end
 
   def show
@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
     if Entry.where(room_id: @room.id, user_id: current_user.id).present?
       @messages = @room.messages.includes(user: :profile).order(created_at: :desc)
       @message = Message.new
-      @entries = @room.entries
+      @entries = @room.entries.includes(user: :profile)
     else
       redirect_back(fallback_location: root_path)
     end
