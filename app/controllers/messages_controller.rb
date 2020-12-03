@@ -7,7 +7,8 @@ class MessagesController < ApplicationController
         flash[:notice] = "メッセージを送信しました"
         redirect_to room_path(message_params[:room_id])
       else
-        flash[:alert] = "メッセージの送信に失敗しました"}
+        flash[:alert] = "メッセージの送信に失敗しました"
+        redirect_back(fallback_location: root_path)
       end
     end
   end

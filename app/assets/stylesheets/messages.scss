@@ -1,0 +1,68 @@
+.message-top-wrapper {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  background: #fafafa;
+}
+
+.messages-wrapper {
+  padding-top: 20px;
+  min-height: 75vh;
+}
+
+.my-message-wrapper {
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 25px;
+  text-align: right;
+
+  .my-message {
+    display: inline-block;
+    border: 1px solid rgb(29, 161, 242);
+    background-color: rgb(29, 161, 242);
+    border-radius: 10px;
+    color: #fafafa;
+    padding: 10px 15px;
+    text-align: left;
+    word-wrap: break-word;
+  }
+}
+
+* {
+  max-width: 100%;
+}
+
+.friend-message-wrapper {
+  width: 100%;
+  margin-right: auto;
+  text-align: left;
+
+  .friend-message {
+    display: inline-block;
+    background-color: rgb(235, 238, 240);
+    border: 1px solid rgb(235, 238, 240);
+    border-radius: 10px;
+    color: #1a1a1a;
+    padding: 10px 15px;
+  }
+}
+
+.friend-message-flex {
+  display: flex;
+  margin-bottom: 25px;
+  align-items: flex-end;
+}
+
+.friend-message-img {
+  margin-right: 10px;
+}
+
+.message-form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .message-form-left {
+    width: 80%;
+  }
+}

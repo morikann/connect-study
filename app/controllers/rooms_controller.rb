@@ -1,12 +1,12 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = current_user.rooms.includes(users: :profile)
+    @rooms = current_user.rooms.includes(users: :profile).order(created_at: :desc)
   end
 
   def show
     @room = Room.find(params[:id])
     if Entry.where(room_id: @room.id, user_id: current_user.id).present?
-      @messages = @room.messages.includes(user: :profile).order(created_at: :desc)
+      @messages = @room.messages.includes(user: :profile)
       @message = Message.new
       @entries = @room.entries.includes(user: :profile)
     else
