@@ -6,21 +6,6 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
 
-      <%
-=begin%>
- <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <%= f.text_field :username, autocomplete: 'name', id: 'user_username' %>
-        <%= f.label :username %>
-      </div>
-
-      <div class="input-field col s12 prefecture-wrapper">
-        <i class="material-icons prefix">place</i>
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "お住まいの県を選んでください" %>
-      </div> 
-<%
-=end%>
-
       <div class="input-field col s12">
         <i class="material-icons prefix">mail</i>
         <%= f.email_field :email, autocomplete: 'email', id: 'user_email' %>

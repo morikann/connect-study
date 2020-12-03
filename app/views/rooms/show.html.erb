@@ -1,2 +1,50 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div class="section center-align">
+  <% @entries.each do |e| %>
+    <% unless e.user == current_user %>
+      <%= link_to(profile_path(e.user.profile)) do %>
+        <% if e.user.profile.avatar? %>
+          <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
+        <% else %>
+          <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+        <% end %>
+        <strong><%= e.user.profile.username %></strong>
+      <% end %>
+    <% end %>
+  <% end %> 
+</div>
+<div class="divider"></div>
+
+<% @messages.each do |m| %>
+  <% if m.user == current_user %>
+    <div class="my-message-wrapper">
+      <%= m.message %>
+    </div>
+  <% else %>
+    <div>
+      <% if m.message.user.profile.avatar? %>
+        <%= image_tag m.message.user.profile.avatar.url, class: 'circle-small-img' %>
+      <% else %>
+        <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+      <% end %>
+      <%= m.message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <%= form_with model: @message, local: true, class: 'col s12' do |f| %>
+    <div class="row">
+      <div class="input-field col s10">
+        <i class="material-icons prefix">mode_edit</i>
+        <%= f.text_area :message, class: 'materialize-textarea' %>
+        <%= f.label :message %>
+        <%= f.hidden_field :room_id, value: @room.id %>  
+      </div>
+      <button class="btn waves-effect waves-light col s2">
+        <%= f.submit '送信', class: 'submit-btn' %>
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  <% end %>
+</div>
+
