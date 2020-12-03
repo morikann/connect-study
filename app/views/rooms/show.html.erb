@@ -1,50 +1,63 @@
-<div class="section center-align">
-  <% @entries.each do |e| %>
-    <% unless e.user == current_user %>
-      <%= link_to(profile_path(e.user.profile)) do %>
-        <% if e.user.profile.avatar? %>
-          <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
-        <% else %>
-          <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+<div class="message-top-wrapper">
+  <div class="section center-align">
+    <% @entries.each do |e| %>
+      <% unless e.user == current_user %>
+        <%= link_to(profile_path(e.user.profile)) do %>
+          <% if e.user.profile.avatar? %>
+            <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
+          <% else %>
+            <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+          <% end %>
+          <strong><%= e.user.profile.username %></strong>
         <% end %>
-        <strong><%= e.user.profile.username %></strong>
       <% end %>
-    <% end %>
-  <% end %> 
+    <% end %> 
+  </div>
+  <div class="divider"></div>
 </div>
-<div class="divider"></div>
 
-<% @messages.each do |m| %>
-  <% if m.user == current_user %>
-    <div class="my-message-wrapper">
-      <%= m.message %>
-    </div>
-  <% else %>
-    <div>
-      <% if m.message.user.profile.avatar? %>
-        <%= image_tag m.message.user.profile.avatar.url, class: 'circle-small-img' %>
-      <% else %>
-        <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
-      <% end %>
-      <%= m.message %>
-    </div>
+<div class="messages-wrapper">
+  <% @messages.each do |m| %>
+    <% if m.user == current_user %>
+      <div class="my-message-wrapper">
+        <div class="my-message">
+          <%= safe_join(m.message.split("\n"), tag(:br)) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="friend-message-flex">
+        <div class="friend-message-img">
+          <% if m.user.profile.avatar? %>
+            <%= image_tag m.user.profile.avatar.url, class: 'circle-small-img' %>
+          <% else %>
+            <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+          <% end %>
+        </div>
+        <div class="friend-message-wrapper">
+          <div class="friend-message">
+            <%= safe_join(m.message.split("\n"), tag(:br)) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
+</div>
+
+
+<%= form_with model: @message, local: true, class: 'col s12' do |f| %>
+  <div class="message-form-wrapper">
+    <div class="input-field message-form-left">
+      <i class="material-icons prefix">mode_edit</i>
+      <%= f.text_area :message, class: 'materialize-textarea' %>
+      <%= f.label :message, 'メッセージ内容を入力' %>
+      <%= f.hidden_field :room_id, value: @room.id %>  
+    </div>
+    <div class="message-form-right">
+      <%= button_tag type: 'submit', class: 'btn-floating btn-small teal profile-dm' do %>
+        <i class="material-icons">send</i>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
-<div class="row">
-  <%= form_with model: @message, local: true, class: 'col s12' do |f| %>
-    <div class="row">
-      <div class="input-field col s10">
-        <i class="material-icons prefix">mode_edit</i>
-        <%= f.text_area :message, class: 'materialize-textarea' %>
-        <%= f.label :message %>
-        <%= f.hidden_field :room_id, value: @room.id %>  
-      </div>
-      <button class="btn waves-effect waves-light col s2">
-        <%= f.submit '送信', class: 'submit-btn' %>
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
-  <% end %>
-</div>
 
