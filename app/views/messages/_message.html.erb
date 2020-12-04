@@ -1,0 +1,26 @@
+<% messages.each do |message| %> 
+  <% if message.user == current_user %>
+    <div class="my-message-wrapper">
+      <div class="my-message">
+        <%= safe_join(message.message.split("\n"), tag(:br)) %>
+      </div>
+      <div class="message-created-at"><%= l(message.created_at, format: :long) %></div>
+    </div>
+  <% else %>
+    <div class="friend-message-flex">
+      <div class="friend-message-img">
+        <% if message.user.profile.avatar? %>
+          <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
+        <% else %>
+          <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
+        <% end %>
+      </div>
+      <div class="friend-message-wrapper">
+        <div class="friend-message">
+          <%= safe_join(message.message.split("\n"), tag(:br)) %>
+        </div>
+      </div>
+    </div>
+    <div class="message-created-at"><%= l(message.created_at, format: :long) %></div>
+  <% end %>
+<% end %>

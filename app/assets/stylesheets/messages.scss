@@ -5,7 +5,7 @@
   background: #fafafa;
 }
 
-.messages-wrapper {
+#messages-wrapper {
   padding-top: 20px;
   min-height: 75vh;
 }
@@ -18,8 +18,8 @@
 
   .my-message {
     display: inline-block;
-    border: 1px solid rgb(29, 161, 242);
-    background-color: rgb(29, 161, 242);
+    border: 1px solid #26a69a;
+    background-color: #26a69a;
     border-radius: 10px;
     color: #fafafa;
     padding: 10px 15px;
@@ -49,7 +49,6 @@
 
 .friend-message-flex {
   display: flex;
-  margin-bottom: 25px;
   align-items: flex-end;
 }
 
@@ -66,3 +65,11 @@
     width: 80%;
   }
 }
+
+.message-created-at {
+  margin-left: 60px;
+  margin-bottom: 25px;
+  color: rgb(91, 112, 131);
+  font-size: 12px;
+}
+

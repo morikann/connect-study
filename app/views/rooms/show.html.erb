@@ -16,39 +16,15 @@
   <div class="divider"></div>
 </div>
 
-<div class="messages-wrapper">
-  <% @messages.each do |m| %>
-    <% if m.user == current_user %>
-      <div class="my-message-wrapper">
-        <div class="my-message">
-          <%= safe_join(m.message.split("\n"), tag(:br)) %>
-        </div>
-      </div>
-    <% else %>
-      <div class="friend-message-flex">
-        <div class="friend-message-img">
-          <% if m.user.profile.avatar? %>
-            <%= image_tag m.user.profile.avatar.url, class: 'circle-small-img' %>
-          <% else %>
-            <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
-          <% end %>
-        </div>
-        <div class="friend-message-wrapper">
-          <div class="friend-message">
-            <%= safe_join(m.message.split("\n"), tag(:br)) %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<div id="messages-wrapper">
+  <%= render partial: 'messages/message', locals: { messages: @messages } %>
 </div>
 
-
-<%= form_with model: @message, local: true, class: 'col s12' do |f| %>
+<%= form_with model: @message, remote: true do |f| %>
   <div class="message-form-wrapper">
     <div class="input-field message-form-left">
       <i class="material-icons prefix">mode_edit</i>
-      <%= f.text_area :message, class: 'materialize-textarea' %>
+      <%= f.text_area :message, class: 'materialize-textarea', id: 'message-textarea' %>
       <%= f.label :message, 'メッセージ内容を入力' %>
       <%= f.hidden_field :room_id, value: @room.id %>  
     </div>
