@@ -4,8 +4,11 @@ class MessagesController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: message_params[:room_id]).present?
       @message = Message.new(message_params)
       if @message.save
-        flash[:notice] = "メッセージを送信しました"
-        redirect_to room_path(message_params[:room_id])
+        gets_entries_all_messages
+        respond_to do |format|
+          format.html { redirect_to room_url(message_params[:room_id]) }
+          format.js
+        end
       else
         flash[:alert] = "メッセージの送信に失敗しました"
         redirect_back(fallback_location: root_path)
@@ -25,7 +28,12 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:message, :room_id).merge(user_id: current_user.id)
+    params.require(:message).permit(:message, :room_id, :user_id).merge(user_id: current_user.id)
+  end
+
+  def gets_entries_all_messages
+    @room = Room.find(params[:message][:room_id])
+    @messages = @room.messages.includes(user: :profile)
   end
   
 end

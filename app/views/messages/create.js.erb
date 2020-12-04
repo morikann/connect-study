@@ -1,0 +1,4 @@
+document.getElementById('messages-wrapper').innerHTML = ("<%= escape_javascript(render('messages/message', messages: @messages )) %>");
+document.getElementById('message-textarea').value = "";
+
+

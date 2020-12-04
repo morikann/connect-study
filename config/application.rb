@@ -17,5 +17,7 @@ module ConnectStudy
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     # 認証トークンをリモートフォームに埋め込む
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    # 日本時間にする
+    config.time_zone = 'Asia/Tokyo'
   end
 end
