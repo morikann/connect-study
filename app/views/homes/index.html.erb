@@ -18,11 +18,7 @@
           <%= link_to profile_path(user.profile) do %>
             <div class="card card-pointer">
               <div class="card-image">
-                <% if user.profile.avatar? %>
-                  <%= image_tag user.profile.avatar.url, class: 'circle-img' %>
-                <% else %>
-                  <%= image_tag 'icon_default.png', class: 'circle-img' %>
-                <% end %>
+                <%= image_tag user.profile.avatar.url, class: 'circle-img' %>
                 <span class="card-title" style="padding: 10px; font-size: 12px; background: #090909; ">
                   <%= user.profile.username %>
                 </span>

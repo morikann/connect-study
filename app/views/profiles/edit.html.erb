@@ -7,17 +7,13 @@
   <%= form_with model: @user_profile, local: true do |f| %>
     <div class="row">
       <div class="profile-avatar-wrapper">
-        <% if @user_profile.avatar? %>
-          <%= image_tag @user_profile.avatar.url, class: "circle-img" %>
-        <% else %>
-          <%= image_tag 'icon_default.png', class: 'circle-img' %>
-        <% end %>
+        <%= image_tag @user_profile.avatar.url, class: "circle-img", id: 'file-preview' %>
       </div>
 
       <div class="avatar-file">
         <%= f.label :avatar, class: 'avatar-upload' do |file| %>
           画像を変更する
-          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", style: "display: none" %>
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", id: 'profile_avatar', style: "display: none" %>
         <% end %>
       </div>
 

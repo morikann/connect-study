@@ -34,11 +34,7 @@
 
   <div class="profile-main-wrapper">
     <div class="profile-main-left">
-      <% if @user.profile.avatar? %>
-        <%= image_tag @user.profile.avatar.url, class: 'circle-img' %>
-      <% else %>
-        <%= image_tag 'icon_default.png', class: 'circle-img' %>
-      <% end %>
+      <%= image_tag @user.profile.avatar.url, class: 'circle-img' %>
     </div>
 
     <div class="profile-main-right">

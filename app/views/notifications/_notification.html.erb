@@ -1,10 +1,6 @@
 <div class="section">
   <%= link_to(profile_path(notification.visitor.profile)) do %>
-    <% if notification.visitor.profile.avatar? %>
-      <%= image_tag notification.visitor.profile.avatar.url, class: 'circle-small-img' %>
-    <% else %>
-      <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
-    <% end %>
+    <%= image_tag notification.visitor.profile.avatar.url, class: 'circle-small-img' %>
     <strong><%= notification.visitor.profile.username %></strong>
     <span class="notification-message">さんが</span>
   <% end %>

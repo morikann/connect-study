@@ -3,11 +3,7 @@
     <% @entries.each do |e| %>
       <% unless e.user == current_user %>
         <%= link_to(profile_path(e.user.profile)) do %>
-          <% if e.user.profile.avatar? %>
-            <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
-          <% else %>
-            <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
-          <% end %>
+          <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
           <strong><%= e.user.profile.username %></strong>
         <% end %>
       <% end %>
