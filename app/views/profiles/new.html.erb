@@ -8,7 +8,7 @@
     <%= render 'shared/error_messages'%>
     <div class="row">
       <div class="profile-avatar-wrapper">
-        <%= image_tag 'icon_default.png', class: 'circle-img' %>
+        <%= image_tag @user_profile.avatar.url, class: 'circle-img', id: 'file-preview' %>
       </div>
 
       <div class="avatar-file">

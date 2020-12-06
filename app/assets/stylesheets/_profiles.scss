@@ -10,15 +10,15 @@
   padding: 10px;
   border-radius: 4px;
   max-width: 120px;
-  border: 1px solid #039be5;
+  border: 1px solid #26a69a;
   display: block;
-  color: #039be5;
+  color: #26a69a;
   cursor: pointer;
   transition: all .2s;
 
   &:hover {
     color: #fafafa;
-    background: #039be5;
+    background: #26a69a;
   }
 }
 
@@ -138,5 +138,9 @@
 
 .profile-dm {
   margin-left: 20px;
+}
+
+#tag-wrap {
+  margin-left: 42px;
 }
 

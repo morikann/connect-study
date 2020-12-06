@@ -9,11 +9,7 @@
   <% else %>
     <div class="friend-message-flex">
       <div class="friend-message-img">
-        <% if message.user.profile.avatar? %>
-          <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
-        <% else %>
-          <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
-        <% end %>
+        <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
       </div>
       <div class="friend-message-wrapper">
         <div class="friend-message">

@@ -9,11 +9,7 @@
         <%= link_to room_path(room) do %>
           <li class="collection-item avatar" style="padding-left: 20px;">
             <%= link_to profile_path(user.profile) do %>
-              <% if user.profile.avatar? %>
-                <%= image_tag user.profile.avatar.url, class: 'circle-small-img' %>
-              <% else %>
-                <%= image_tag 'icon_default.png', class: 'circle-small-img' %>
-              <% end %>
+              <%= image_tag user.profile.avatar.url, class: 'circle-small-img' %>
               <strong><%= user.profile.username %></strong>
             <% end %>
             <%= link_to room_path(room) do %>
