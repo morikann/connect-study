@@ -73,3 +73,7 @@ gem 'pry-rails'
 gem 'pry-byebug'
 # ページネーション
 gem 'kaminari'
+# 画像の保存先をS3にする
+gem 'fog-aws'
+# 環境変数を管理
+gem 'dotenv-rails'
