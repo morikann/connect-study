@@ -32,7 +32,7 @@
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    background-color: black;
+    background-color: #262626;
     border-radius: 2px;
     background-color: #26a69a;
   }
@@ -99,4 +99,10 @@
   input {
     color: #ffffff;
   }
+}
+
+.show-follow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -79,14 +79,14 @@ ul {
 }
 
 .top-other-user-purpose {
-  color: #1a1a1a;
+  color: #262626;
   font-style: italic;
   font-size: 18px;
 }
 
 .top-user-purpose {
   @extend .profile-user-purpose;
-  color: #1A1A1A;
+  color: #262626;
   margin: 0 24px;
   max-width: 252px;
   margin-bottom: 24px;
@@ -99,4 +99,32 @@ ul {
 
 input[type="submit"] {
   color: #fafafa;
+}
+
+// paginate
+.pagination li.active {
+  background-color: #26a69a;
+}
+
+// search
+
+.home-search-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.home-search {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.search-btn {
+  color: #fafafa;
+  width: 80px;
+  margin-left: 10px;
+}
+
+.search-btn input {
+  padding: 0px;
 }
