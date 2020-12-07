@@ -8,13 +8,13 @@
     <%= render 'shared/error_messages'%>
     <div class="row">
       <div class="profile-avatar-wrapper">
-        <%= image_tag @user_profile.avatar.url, class: 'circle-img', id: 'file-preview' %>
+        <%= image_tag 'icon_default.png', class: 'circle-img', id: 'file-preview' %>
       </div>
 
       <div class="avatar-file">
         <%= f.label :avatar, class: 'avatar-upload' do |file| %>
           画像を変更する
-          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", style: "display: none" %>
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", id: 'profile_avatar', style: "display: none" %>
         <% end %>
       </div> 
 
@@ -42,8 +42,9 @@
       </div>
 
       <div class="input-field col s12">
-        <i class="material-icons prefix"><span class="essential">*</span>local_offer</i>
-        <%= f.text_field :tag, placeholder: "勉強ジャンル   例:プログラミング 英語", id: 'tag-input' %>
+        <i class="material-icons prefix">local_offer</i>
+        <%= f.text_field :tag, placeholder: "プログラミング 英語", id: 'tag-input' %>
+        <%= f.label :tag, '勉強ジャンル' %>
         <div id="tag-wrap"></div>
       </div>
 
