@@ -49,12 +49,16 @@
   </div>
 
   <div class="stats">
-    <div id="follow">
-      フォロー<%= @user.following.count %>
-    </div>
-    <div id="follower">
-      フォロワー<%= @user.followers.count %>
-    </div>
+    <%= link_to following_user_path(@user) do %>
+      <div id="follow">
+        フォロー<span><%= @user.following.count %></span>人
+      </div>
+    <% end %>
+    <%= link_to followers_user_path(@user) do %>
+      <div id="follower">
+        フォロワー<span><%= @user.followers.count %></span>人
+      </div>
+    <% end %>
   </div>
 
   <div class="profile-user-purpose">

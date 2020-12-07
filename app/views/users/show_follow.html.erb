@@ -1,0 +1,20 @@
+<blockquote>
+  <%= @title %>
+</blockquote>
+
+<% @users.each do |user| %>
+  <div class="section show-follow-wrapper">
+    <%= link_to(profile_path(user.profile)) do %>
+      <%= image_tag user.profile.avatar.url, class: 'circle-small-img' %>
+      <strong><%= user.profile.username %></strong>
+    <% end %>
+
+    <div class="right-align">
+      <% user.profile.tags.pluck(:name).each do |tag| %>
+        <div class="chip"><%= tag %></div>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="divider"></div>
+<% end %>
