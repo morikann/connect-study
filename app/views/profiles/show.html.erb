@@ -54,6 +54,7 @@
         フォロー<span><%= @user.following.count %></span>人
       </div>
     <% end %>
+    <div class="profile-vertical-line"></div>
     <%= link_to followers_user_path(@user) do %>
       <div id="follower">
         フォロワー<span><%= @user.followers.count %></span>人
@@ -61,10 +62,12 @@
     <% end %>
   </div>
 
+  <div class="profile-label">目標</div>
   <div class="profile-user-purpose">
     <%= @user.profile.purpose %>
   </div>
 
+  <div class="profile-label">自己紹介</div>
   <div class="profile-user-introduction">
     <%= simple_format(h(@user.profile.self_introduction), {}, sanitize: false, wrapper_tag: "div") %>
   </div>
