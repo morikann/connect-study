@@ -1,6 +1,6 @@
 document.addEventListener('turbolinks:load', () => {
   // 画像をアップロードするinput要素を取得
-  document.getElementById('profile_avatar').addEventListener('change', (e) => {
+  document.getElementById('profile_avatar')?.addEventListener('change', (e) => {
 
     // FileReaderオブジェクトを使用してユーザーのファイルを非同期に読み取る
     const fileReader = new FileReader;
