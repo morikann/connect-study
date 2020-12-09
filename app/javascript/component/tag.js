@@ -6,7 +6,7 @@ document.addEventListener("turbolinks:load", () => {
   const container = document.getElementById('tag-wrap');
 
   // 内容が変わりfocusが外れたときにイベントを発火
-  inputTags.addEventListener('change', (e) => {
+  inputTags?.addEventListener('change', (e) => {
     // 既存のプレビューしている要素があった時は一つずつ削除
     if(container.firstChild) {
       while(container.firstChild) {
