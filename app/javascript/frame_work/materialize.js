@@ -11,12 +11,7 @@ document.addEventListener('turbolinks:load', function() {
   const instances = M.FormSelect.init(elems, []);
 });
 
-// document.addEventListener('turbolink:load', function() {
-//   document.querySelectorAll('.modal').addEventListener('click', function() {
-//     modal();
-//   });
-// })
-// $(document).ready(function(){
-//   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-//   $('.modal').modal();
-// });
+document.addEventListener('turbolinks:load', function() {
+  const elems = document.querySelectorAll('.modal');
+  const instances = M.Modal.init(elems, []);
+});
