@@ -12,11 +12,11 @@
   <div class="divider"></div>
 </div>
 
-<div id="messages-wrapper">
-  <%= render partial: 'messages/message', locals: { messages: @messages } %>
+<div id="messages-wrapper" data-room_id="<%= @room.id %>" data-user_id="<%= current_user.id %>">
+  <%= render @messages %>
 </div>
 
-<%= form_with model: @message, remote: true do |f| %>
+<%= form_with model: @message, id: 'chat-form' do |f| %>
   <div class="message-form-wrapper">
     <div class="input-field message-form-left">
       <i class="material-icons prefix">mode_edit</i>
