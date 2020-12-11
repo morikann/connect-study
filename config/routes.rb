@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   root to: 'homes#index'
 
   devise_for :users, controllers: {
@@ -22,5 +21,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :notifications, only: :index
   resources :rooms, only: [:index, :show, :create]
-  resources :messages, only: [:create, :edit, :update, :destroy]
+  resources :messages, only: :create
 end
