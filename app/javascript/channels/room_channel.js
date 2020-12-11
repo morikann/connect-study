@@ -2,12 +2,13 @@ import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', () => {
   const messagesWrapper = document.getElementById('messages-wrapper');
-  const room_id = messagesWrapper.dataset.room_id;
-  const channel_user_id = messagesWrapper.dataset.user_id;
 
   if (messagesWrapper === null) {
     return 
   }
+  
+  const room_id = messagesWrapper.dataset.room_id;
+  const channel_user_id = messagesWrapper.dataset.user_id;
 
   consumer.subscriptions.create({channel: "RoomChannel", room: room_id }, {
     connected() {
