@@ -1,22 +1,21 @@
-<% messages.each do |message| %> 
-  <% if message.user == current_user %>
-    <div class="my-message-wrapper">
-      <div class="my-message">
-        <%= safe_join(message.message.split("\n"), tag(:br)) %>
-      </div>
-      <div class="message-created-at"><%= l(message.created_at, format: :long) %></div>
-    </div>
-  <% else %>
-    <div class="friend-message-flex">
-      <div class="friend-message-img">
-        <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
-      </div>
-      <div class="friend-message-wrapper">
-        <div class="friend-message">
-          <%= safe_join(message.message.split("\n"), tag(:br)) %>
-        </div>
-      </div>
+<!-- broadcastされたパーシャルはrequest['warden']がnilなのでfriend-message-flexの方が出力される -->
+<% if !request.env['warden'].nil? && message.user == current_user %>  
+  <div class="my-message-wrapper">
+    <div class="my-message">
+      <%= safe_join(message.message.split("\n"), tag(:br)) %>
     </div>
     <div class="message-created-at"><%= l(message.created_at, format: :long) %></div>
-  <% end %>
+  </div>
+<% else %>
+  <div class="friend-message-flex">
+    <div class="friend-message-img">
+      <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
+    </div>
+    <div class="friend-message-wrapper">
+      <div class="friend-message">
+        <%= safe_join(message.message.split("\n"), tag(:br)) %>
+      </div>
+    </div>
+  </div>
+  <div class="message-created-at"><%= l(message.created_at, format: :long) %></div>
 <% end %>
