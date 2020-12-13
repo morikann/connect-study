@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :notifications, only: :index
   resources :rooms, only: [:index, :show, :create]
+  get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
 end

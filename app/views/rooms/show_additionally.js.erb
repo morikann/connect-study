@@ -1,0 +1,12 @@
+// メッセージが存在する時のみ処理を行う
+<% if @messages %>
+  // letは再宣言が禁止でconstは再宣言、再代入が禁止なので2回目以降にエラーが生じる。よってvarを用いる
+  var messageHeight = messagesWrapper.scrollHeight;
+  // 上からメッセージを追加
+  messagesWrapper.insertAdjacentHTML('afterbegin', "<%= escape_javascript(render @messages) %>");
+  var newMessageHeight = messagesWrapper.scrollHeight;
+  // メッセージが追加されたときにスクロール位置が一番上に行かず、同じメッセージが見える状態にしておく
+  window.scrollBy(0, newMessageHeight - messageHeight)
+  // メッセージが存在する時のみ読み込み可能にする
+  showAdditionally = true
+<% end %>

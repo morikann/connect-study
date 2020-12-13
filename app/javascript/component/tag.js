@@ -14,8 +14,8 @@ document.addEventListener("turbolinks:load", () => {
       };
     };
 
-    // イベントが発火した要素の値を空白で区切り、配列にする
-    array = e.target.value.split(' ');
+    // イベントが発火した要素の値を(半角or全角)空白で区切り、配列にする
+    array = e.target.value.split(/ |　/);
     // 値が入力されている時のみ
     if(e.target.value) {
       // プレビューする親要素に一つずつ追加

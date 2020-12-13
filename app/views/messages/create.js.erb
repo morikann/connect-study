@@ -1,4 +1,8 @@
-document.getElementById('messages-wrapper').innerHTML = ("<%= escape_javascript(render @messages) %>");
-document.getElementById('message-textarea').value = "";
-
+// room_channel.jsで定義した変数を使用
+messagesWrapper.insertAdjacentHTML('beforeend', "<%= escape_javascript(render @messages) %>");
+messageTextarea.value = "";
+// メッセージを送信した後にフォームを1行に戻す
+messageTextarea.style.height = '0px';
+// room_channel.jsで定義したメソッドを使用。メッセージ送信した後に最新のメッセージが表示されるように一番下まで移動
+scrollToBottom();
 
