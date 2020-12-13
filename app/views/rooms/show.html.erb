@@ -16,7 +16,7 @@
   <%= render @messages %>
 </div>
 
-<%= form_with model: @message, id: 'chat-form' do |f| %>
+<%= form_with model: @message, id: 'message-form' do |f| %>
   <div class="message-form-wrapper">
     <div class="input-field message-form-left">
       <i class="material-icons prefix">mode_edit</i>
@@ -25,7 +25,7 @@
       <%= f.hidden_field :room_id, value: @room.id %>  
     </div>
     <div class="message-form-right">
-      <%= button_tag type: 'submit', class: 'btn-floating btn-small teal profile-dm' do %>
+      <%= button_tag type: 'submit', class: 'btn-floating btn-small teal profile-dm', id: 'message-btn' do %>
         <i class="material-icons">send</i>
       <% end %>
     </div>
