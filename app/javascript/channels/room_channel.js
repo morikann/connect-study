@@ -75,7 +75,7 @@ document.addEventListener('turbolinks:load', () => {
     if (documentElement.scrollTop === 0 && showAdditionally) {
       showAdditionally = false;
       // 表示済みメッセージの中で最も古いものを取得
-      oldestMessageId = document.getElementsByClassName('message')[0].id
+      oldestMessageId = document.getElementsByClassName('message')[0]?.id
       $.ajax({
         type: 'GET',
         url: '/show_additionally',
