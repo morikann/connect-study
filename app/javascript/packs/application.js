@@ -8,12 +8,16 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('jquery')
-import 'materialize-css/dist/js/materialize'
+
 require("frame_work/materialize")
+
 require("component/tag")
 require('component/imagePreview')
 require('component/dropdownColor')
 require('component/flashMessage')
+require('component/drawer')
+
+import 'materialize-css/dist/js/materialize'
 import '@fortawesome/fontawesome-free/js/all';
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
