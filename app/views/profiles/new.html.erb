@@ -20,7 +20,7 @@
 
       <div class="input-field col s12">
         <i class="material-icons prefix"><span class="essential">*</span>account_circle</i>
-        <%= f.text_field :username, autocomplete: 'name', autofocus: true %>
+        <%= f.text_field :username, autocomplete: 'name' %>
         <%= f.label :username %>
       </div>
 
@@ -37,7 +37,7 @@
 
       <div class="input-field col s12">
         <i class="material-icons prefix">mode_edit</i>
-        <%= f.text_area :self_introduction, autofocues: true, class: "materialize-textarea", style: "height: 200px" %>
+        <%= f.text_area :self_introduction, class: "materialize-textarea", style: "height: 200px" %>
         <%= f.label :self_introduction, class: "active" %>
       </div>
 
