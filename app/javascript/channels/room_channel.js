@@ -76,16 +76,19 @@ document.addEventListener('turbolinks:load', () => {
       showAdditionally = false;
       // 表示済みメッセージの中で最も古いものを取得
       oldestMessageId = document.getElementsByClassName('message')[0]?.id
-      $.ajax({
-        type: 'GET',
-        url: '/show_additionally',
-        cache: false,
-        data: {
-          room_id: room_id,
-          oldest_message_id: oldestMessageId,
-          // remote: true
-        }
-      })
+      // 取得できるidがある時のみajaxを行う
+      if (oldestMessageId) {
+        $.ajax({
+          type: 'GET',
+          url: '/show_additionally',
+          cache: false,
+          data: {
+            room_id: room_id,
+            oldest_message_id: oldestMessageId,
+            // remote: true
+          }
+        })
+      }
     }
   }, { passive: true });
 })
