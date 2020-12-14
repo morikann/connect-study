@@ -14,7 +14,6 @@ document.addEventListener('turbolinks:load', () => {
   consumer.subscriptions.create({channel: "RoomChannel", room: room_id }, {
     connected() {
       // Called when the subscription is ready for use on the server
-      // console.log('test front');
     },
   
     disconnected() {

@@ -1,5 +1,5 @@
 // room_channel.jsで定義した変数を使用
-messagesWrapper.insertAdjacentHTML('beforeend', "<%= escape_javascript(render @messages) %>");
+messagesWrapper.insertAdjacentHTML('beforeend', "<%= escape_javascript(render partial: 'messages/message', locals: { message: @message }) %>");
 messageTextarea.value = "";
 // メッセージを送信した後にフォームを1行に戻す
 messageTextarea.style.height = '0px';
