@@ -20,6 +20,9 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
+  has_many :event_users
+  has_many :study_events, through: :event_users
+
   default_scope -> { order(created_at: :desc) }
 
   def self.search(search_word)
