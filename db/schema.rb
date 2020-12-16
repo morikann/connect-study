@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_124211) do
+ActiveRecord::Schema.define(version: 2020_12_16_084701) do
 
   create_table "entries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -19,6 +19,25 @@ ActiveRecord::Schema.define(version: 2020_11_30_124211) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "event_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "study_event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_event_id"], name: "index_event_users_on_study_event_id"
+    t.index ["user_id"], name: "index_event_users_on_user_id"
+  end
+
+  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "adress"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -34,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_124211) do
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.string "action", default: "", null: false
+    t.string "action", limit: 255, default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -44,12 +63,12 @@ ActiveRecord::Schema.define(version: 2020_11_30_124211) do
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "avatar"
+    t.string "avatar", limit: 255
     t.date "birth_date", null: false
     t.string "purpose", limit: 50, null: false
     t.text "self_introduction"
     t.string "username", limit: 30, null: false
-    t.string "prefecture_id", null: false
+    t.string "prefecture_id", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -70,6 +89,20 @@ ActiveRecord::Schema.define(version: 2020_11_30_124211) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "study_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "description", null: false
+    t.boolean "display_range", null: false
+    t.time "begin_time", null: false
+    t.time "finish_time", null: false
+    t.date "date", null: false
+    t.string "name", null: false
+    t.bigint "location_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_study_events_on_location_id"
+    t.index ["name"], name: "index_study_events_on_name"
+  end
+
   create_table "tag_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "profile_id"
     t.bigint "tag_id"
@@ -81,15 +114,15 @@ ActiveRecord::Schema.define(version: 2020_11_30_124211) do
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string "email", limit: 255, default: "", null: false
+    t.string "encrypted_password", limit: 255, default: "", null: false
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
@@ -100,9 +133,12 @@ ActiveRecord::Schema.define(version: 2020_11_30_124211) do
 
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
+  add_foreign_key "event_users", "study_events"
+  add_foreign_key "event_users", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "study_events", "locations"
   add_foreign_key "tag_relationships", "profiles"
   add_foreign_key "tag_relationships", "tags"
 end
