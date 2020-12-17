@@ -6,12 +6,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  # 新規登録が失敗した際のリロード先のページを新規登録ページにするため
-  devise_scope :user do
-    get '/users', to: 'users/registrations#new'
-  end
-
-  resources :users do
+  resources :users, only: :index do
     member do
       get :following, :followers
     end
@@ -23,4 +18,6 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :show, :create]
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
+  resources :study_events
+  resources :locations
 end
