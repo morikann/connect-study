@@ -27,6 +27,18 @@
 }
 
 //show
+.profile-card {
+  margin: 0 auto;
+  margin-top: 60px;
+  max-width: 600px;
+  margin-bottom: 60px;
+
+  @include mq(sm) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
 .profile-user-name {
   text-align: center;
   font-size: 32px;
