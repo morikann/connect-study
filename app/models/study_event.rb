@@ -6,7 +6,6 @@ class StudyEvent < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, presence: true
-  validates :display_range, presence: true
   validates :begin_time, presence: true
   validates :finish_time, presence: true
   validates :date, presence: true
