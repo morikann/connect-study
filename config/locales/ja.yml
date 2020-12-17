@@ -11,6 +11,7 @@ ja:
       user: ユーザー
       profile: プロフィール
       tag: タグ
+      study_event: 勉強イベント
     attributes:
       user:
         id: ID
@@ -34,7 +35,16 @@ ja:
         name: タグ名
         created_at: 登録日時
         updated_at: 更新日時
-        
+      study_event:
+        id: ID
+        name: 勉強会名
+        date: 日にち
+        description: 説明
+        created_at: 登録日時
+        updated_at: 更新日時
+        begin_time: 開始時刻
+        finish_time: 終了時刻
+        description: 詳細
   date:
     abbr_day_names:
     - 日

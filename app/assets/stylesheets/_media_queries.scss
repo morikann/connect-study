@@ -1,9 +1,10 @@
 //マップ型変数breakpointsを定義
 $breakpoints: (
 //キー  値
+  'mini': 'screen and (max-width: 330px)',
   'sm': 'screen and (max-width: 767px)', //767px以下（スマホ）用の表示
   'md': 'screen and (min-width: 768px)', //768px以上（タブレット・PC）用の表示
-  'lg': 'screen and (max-width: 1000px)'
+  'lg': 'screen and (max-width: 1050px)'
 ) !default;
 
 //メディアクエリ用のmixinを定義。デフォ値はmd

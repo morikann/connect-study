@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def index 
+    if params[:search].present?
+      @users = User.includes(profile: :tags).search(params[:search]).page(params[:page])
+    else
+      @users = User.includes(profile: :tags).page(params[:page])
+    end
+  end
+
   def following
     @title = 'フォロー中'
     @user = User.find(params[:id])

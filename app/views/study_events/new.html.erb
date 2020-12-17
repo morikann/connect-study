@@ -1,0 +1,63 @@
+<blockquote>
+  勉強会作成
+</blockquote>
+
+<div class="step-wrapper">  
+  <div class="stepbar-row">
+    <ol class="stepbar">
+      <li class="done"><span>1</span></li>
+      <li><span>2</span></li>
+      <li><span>3</span></li>
+      <li><span>4</span></li>
+    </ol>
+  </div>
+</div>
+
+<div class="card-panel profile-card">
+  <div class="row">
+    <%= form_with model: @study_event, local: true do |f| %>
+      <%= render 'shared/error_messages', instance: @study_event %> 
+      <div class="switch col s12 display-switch">
+        <label>
+          public
+          <%= f.check_box :display_range %>
+          <span class="lever"></span>
+          private(フォロワーのみ)
+        </label>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.text_field :name %>
+        <%= f.label :name %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.date_field :date %>
+        <%= f.label :date %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.time_field :begin_time %>
+        <%= f.label :begin_time %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.time_field :finish_time %>
+        <%= f.label :finish_time %>
+      </div>
+  
+      <div class="input-field col s12">
+        <%= f.text_area :description, class: 'materialize-textarea' %>
+        <%= f.label :description %>
+      </div>
+
+      <div class="center-align">
+        <button class="btn waves-effect waves-light">
+          <%= f.submit '次へ', class: 'submit-btn' %>
+          <i class="material-icons right">chevron_right</i>
+        </button>
+      </div>
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module StudyEventsHelper
+end

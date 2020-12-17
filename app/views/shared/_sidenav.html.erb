@@ -12,15 +12,21 @@
           <%= simple_format(h(current_user.profile.purpose), {}, sanitize: false) %>
         </div>
         <li class="nav-link">
-          <%= link_to root_path do %>
+          <%= link_to users_path do %>
             <i class="fas fa-home fa-fw"></i>
             <span>ホーム</span>
           <% end %>
         </li>
         <li class="nav-link">
-          <%= link_to profile_path(current_user.profile) do %>
-            <i class="fas fa-user fa-fw"></i>
-            <span>プロフィール</span>
+          <%= link_to study_events_path do %>
+            <i class="fas fa-pencil-alt fa-fw"></i>
+            <span>勉強会</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to users_path do %>
+            <i class="fas fa-users fa-fw"></i>
+            <span>勉強仲間</span>
           <% end %>
         </li>
         <li class="nav-link">
@@ -38,6 +44,12 @@
           <%= link_to rooms_path do %>
             <i class="far fa-comments fa-fw"></i>
             <span>メッセージ</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to profile_path(current_user.profile) do %>
+            <i class="fas fa-user fa-fw"></i>
+            <span>プロフィール</span>
           <% end %>
         </li>
       <% end %>

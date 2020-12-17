@@ -5,6 +5,7 @@
   </div>
 
   <%= form_with model: @user_profile, local: true do |f| %>
+    <%= render 'shared/error_messages', instance: @user_profile %>
     <div class="row">
       <div class="profile-avatar-wrapper">
         <%= image_tag @user_profile.avatar.url, class: "circle-img", id: 'file-preview' %>

@@ -1,0 +1,41 @@
+<%= form_with url: users_url, method: :get, class: 'home-search-wrapper', local: true do |f| %>
+  <div class="input-field home-search">
+    <%= f.text_field :search %>
+    <%= f.label :search, '勉強ジャンルでユーザーを検索' %>
+    <%= f.submit '検索', class: "btn waves-effect waves-light search-btn" %>
+  </div>
+<% end %>
+
+<div class="profile-title-wrapper top">
+  <h1 class="profile-title">勉強仲間</h1>
+</div>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <% unless current_user?(user) %>
+      <div class="col s12 m6 l4">
+        <%= link_to profile_path(user.profile) do %>
+          <div class="card card-pointer">
+            <div class="card-image">
+              <%= image_tag user.profile.avatar.url, class: 'circle-img' %>
+              <span class="card-title" style="padding: 10px; font-size: 12px; background: #262626; ">
+                <%= user.profile.username %>
+              </span>
+            </div>
+            <div class="card-content">
+              <p class="top-other-user-purpose"><%= user.profile.purpose %></p>
+            </div>
+            <div class="card-action center-align">
+              <% user.profile.tags.pluck(:name).each do |tag_name| %>
+                <div class="chip">
+                  <%= tag_name %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>  
+</div>
+<%= paginate @users %>
