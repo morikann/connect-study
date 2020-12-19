@@ -77,3 +77,7 @@ gem 'kaminari'
 gem 'fog-aws'
 # 環境変数を管理
 gem 'dotenv-rails'
+# googlemap apiで使用
+gem 'geocoder'
+# railsの変数をjsで用いる
+gem 'gon'
