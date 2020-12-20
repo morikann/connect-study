@@ -12,6 +12,7 @@ ja:
       profile: プロフィール
       tag: タグ
       study_event: 勉強イベント
+      location: 場所
     attributes:
       user:
         id: ID
@@ -45,6 +46,12 @@ ja:
         begin_time: 開始時刻
         finish_time: 終了時刻
         description: 詳細
+      location:
+        name: 開催場所
+        address: 住所
+        image: 参考画像
+        latitude: 緯度
+        longitude: 経度
   date:
     abbr_day_names:
     - 日
