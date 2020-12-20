@@ -1,0 +1,67 @@
+<%= render 'shared/title', title: '確認画面' %>
+
+<div class="step-wrapper">  
+  <div class="stepbar-row">
+    <ol class="stepbar">
+      <li class="done"><span>1</span></li>
+      <li class="done"><span>2</span></li>
+      <li class="done"><span>3</span></li>
+      <li class="done"><span>4</span></li>
+    </ol>
+  </div>
+</div>
+
+<div class="card-panel profile-card">
+  <%= form_with url: confirm_url, local: true do |f| %>
+    <table>
+      <tbody>
+        <tr>
+          <th>勉強会名</th>
+          <td><%= session[:study_event_name] %></td>
+        </tr>
+        <tr>
+          <th>公開範囲</th>
+          <% if session[:study_event_display_range].to_i == 1 %>
+            <td>フォロワーのみに公開</td>
+          <% else %>
+            <td>全体に公開</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>場所</th>
+          <td><%= session[:location_name] %></td>
+        </tr>
+        <tr>
+          <th>開催日</th>
+          <td><%= session[:study_event_date] %></td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td><%= session[:study_event_begin_time] %> ~ <%= session[:study_event_finish_time] %></td>
+        </tr>
+        <tr>
+          <th>参加者</th>
+          <td>
+            <% session[:event_user].reject(&:blank?).each do |profile_id| %>
+              <%= image_tag Profile.find_by(id: profile_id.to_i).avatar.url, class: 'circle-small-img' %>
+              <%= Profile.find_by(id: profile_id.to_i).username %>
+              <br>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>詳細</th>
+          <td><%= safe_join(session[:study_event_description].split("\n"), tag(:br)) %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="map"></div>
+  
+    <div class="center-align">
+      <button class="btn waves-effect waves-light">
+        <%= f.submit '勉強会をつくる', class: 'submit-btn' %>
+      </button>
+    </div>
+  <% end %>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" defer async></script>

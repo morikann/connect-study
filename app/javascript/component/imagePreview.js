@@ -16,4 +16,15 @@ document.addEventListener('turbolinks:load', () => {
     // 指定されたファイル（ファイルの一つ目）の読み込みをし、完了したらファイルのデータを[data:URL]の文字列でresultに格納する
     fileReader.readAsDataURL(e.target.files[0]);
   })
+
+  document.getElementById('study_event_image')?.addEventListener('change', (e) => {
+    
+    const fileReader = new FileReader;
+    fileReader.onload = (e) => {
+      const dataUri = e.target.result;
+      const img = document.getElementById('file-preview');
+      img.src = dataUri;
+    };
+    fileReader.readAsDataURL(e.target.files[0]);
+  })
 })

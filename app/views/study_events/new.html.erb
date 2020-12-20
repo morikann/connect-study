@@ -1,6 +1,4 @@
-<blockquote>
-  勉強会作成
-</blockquote>
+<%= render 'shared/title', title: '勉強会作成' %>
 
 <div class="step-wrapper">  
   <div class="stepbar-row">
@@ -30,6 +28,15 @@
         <%= f.text_field :name %>
         <%= f.label :name %>
       </div>
+
+      <div class="study-image-title">イメージ画像</div>
+      <%= image_tag 'study_default.png', id: 'file-preview' %>
+      <div class="avatar-file">
+        <%= f.label :image, class: 'avatar-upload' do |file| %>
+          画像を変更する
+          <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", style: "display: none" %>
+        <% end %>
+      </div> 
 
       <div class="input-field col s12">
         <%= f.date_field :date %>

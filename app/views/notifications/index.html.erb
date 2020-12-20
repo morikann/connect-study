@@ -1,6 +1,4 @@
-<blockquote>
-  通知
-</blockquote>
+<%= render 'shared/title', title: '通知' %>
 
 <% if @notifications.present? %>
   <%= render partial: 'notification', collection: @notifications %>

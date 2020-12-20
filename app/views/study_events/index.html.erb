@@ -1,6 +1,25 @@
-<blockquote>
-  募集中の勉強会
-</blockquote>
+<%= render 'shared/title', title: '勉強会一覧' %>
+          
+<div class="row">
+  <% @study_events.each do |study_event| %>
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <%= image_tag study_event.image.url %>
+          <span class="card-title study-event-title"><%= study_event.name %></span>
+        </div>
+        <div class="card-content">
+          <p>
+            <%= safe_join(study_event.description.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to new_study_event_path, class: 'btn-floating tooltipped btn-large waves-effect waves-light red btn-fixed', data: { position: 'top', tooltip: '勉強会を作る' } do %>
   <i class="material-icons">add</i></a>
