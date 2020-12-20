@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_084701) do
+ActiveRecord::Schema.define(version: 2020_12_20_082717) do
 
   create_table "entries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 2020_12_16_084701) do
 
   create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.string "adress"
+    t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -99,8 +98,11 @@ ActiveRecord::Schema.define(version: 2020_12_16_084701) do
     t.bigint "location_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.string "image"
     t.index ["location_id"], name: "index_study_events_on_location_id"
     t.index ["name"], name: "index_study_events_on_name"
+    t.index ["user_id"], name: "index_study_events_on_user_id"
   end
 
   create_table "tag_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
