@@ -16,6 +16,7 @@ require('component/imagePreview')
 require('component/dropdownColor')
 require('component/flashMessage')
 require('component/drawer')
+require('component/googleMap')
 
 import 'materialize-css/dist/js/materialize'
 import '@fortawesome/fontawesome-free/js/all';
