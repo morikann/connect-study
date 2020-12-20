@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :event_users
   has_many :study_events, through: :event_users
 
+  has_many :my_study_events, class_name: "StudyEvent"
+
   default_scope -> { order(created_at: :desc) }
 
   def self.search(search_word)
@@ -45,6 +47,14 @@ class User < ApplicationRecord
 
   def followed_by?(other_user)
     followers.include?(other_user)
+  end
+
+  def matchers
+    self.followers && self.following 
+  end
+
+  def matchers_profile
+    self.matchers.includes(:profile).map { |user| user.profile }
   end
 
   def create_notification_follow!(current_user)

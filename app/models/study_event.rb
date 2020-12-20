@@ -1,5 +1,7 @@
 class StudyEvent < ApplicationRecord
-  belongs_to :location
+  # belongs_to :location
+
+  belongs_to :user
 
   has_many :event_users
   has_many :users, through: :event_users
@@ -9,4 +11,6 @@ class StudyEvent < ApplicationRecord
   validates :begin_time, presence: true
   validates :finish_time, presence: true
   validates :date, presence: true
+
+  mount_uploader :image, ImageUploader
 end

@@ -5,28 +5,32 @@
     <ol class="stepbar">
       <li class="done"><span>1</span></li>
       <li class="done"><span>2</span></li>
-      <li><span>3</span></li>
+      <li class="done"><span>3</span></li>
       <li><span>4</span></li>
     </ol>
   </div>
 </div>
 
 <div class="card-panel profile-card">
-  
+  <div class="center-align"><span class="essential">※</span>必須項目ではありません</div>
   <div class="row">
-    <%= form_with model: @location, local: true do |f| %>
-      <%= render 'shared/error_messages', instance: @location %> 
-
+  
+    <%= form_with url: event_user_url, local: true do |f| %>
       <div class="input-field col s12">
-        <%= f.text_field :name %>
-        <%= f.label :name %>
+        <div>
+          <%= f.collection_check_boxes :user_id, current_user.matchers_profile, :id, :username do |builder| %>
+            <div>
+              <%= builder.label do %>
+                <%= builder.check_box %>
+                <span>
+                  <%= builder.text %>
+                </span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
 
-      <div class="input-field col s12">
-        <%= f.text_field :address %>
-        <%= f.label :address %>
-      </div>
-      
       <div class="center-align">
         <button class="btn waves-effect waves-light">
           <%= f.submit '次へ', class: 'submit-btn' %>
@@ -38,4 +42,3 @@
   </div>
 </div>
 
-<%= link_to '戻る', new_study_event_path %>
