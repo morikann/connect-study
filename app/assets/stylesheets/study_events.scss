@@ -97,6 +97,32 @@
   text-align: left;
 }
 
+.back-btn-color {
+  background: #fafafa;
+  color: #26a69a;
+  border: 1px solid #26a69a;
+  transition: .2s ease-out;
+  margin-right: 20px;
+   
+  &:hover {
+    color: #fafafa;
+
+    input {
+      color: #fafafa;
+    }
+  }
+
+  input {
+    color: #26a69a;
+  }
+}
+
+.event-preview-img {
+  max-height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
 // event_user
 
 .modal-btn {

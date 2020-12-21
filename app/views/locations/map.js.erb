@@ -5,6 +5,8 @@
    <%= @latlng[1] %>  //longitude
   );
 
+  var map = new google.maps.Map();
+  
   map.setCenter(pos)
   var marker = new google.maps.Marker({
     map: map,

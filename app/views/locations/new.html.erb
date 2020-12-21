@@ -12,30 +12,41 @@
 </div>
 
 <div class="card-panel profile-card">
+
+  <div class="location-search-wrapper">
+    <input placeholder="場所を検索してください" id="address"> 
+    <%= button_tag class: 'btn-floating btn-small waves-effect waves-light red', onclick: 'codeAddress()' do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  </div>
+  <div id="map"></div>
   
   <div class="row">
     <%= form_with model: @location, local: true do |f| %>
       <%= render 'shared/error_messages', instance: @location %> 
 
       <div class="input-field col s12">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, value: session[:location_name] %>
         <%= f.label :name %>
       </div>
 
       <div class="input-field col s12">
-        <%= f.text_field :address %>
+        <%= f.text_field :address, value: session[:location_address], id: 'study-event-address' %>
         <%= f.label :address %>
       </div>
       
       <div class="center-align">
-        <button class="btn waves-effect waves-light">
-          <%= f.submit '次へ', class: 'submit-btn' %>
+        <%= button_tag type: 'submit', name: :back, class: 'btn waves-effect waves-light back-btn-color' do %>
+          戻る
+          <i class="material-icons left">chevron_left</i>
+        <% end %>
+  
+        <%= button_tag type: 'submit', name: :next, class: 'btn waves-effect waves-light' do %>
+          次へ
           <i class="material-icons right">chevron_right</i>
-        </button>
+        <% end %>
       </div>
 
     <% end %>
   </div>
 </div>
-
-<%= link_to '戻る', new_study_event_path %>
