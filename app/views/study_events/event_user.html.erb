@@ -32,10 +32,15 @@
       </div>
 
       <div class="center-align">
-        <button class="btn waves-effect waves-light">
-          <%= f.submit '次へ', class: 'submit-btn' %>
+        <%= button_tag type: 'submit', name: :back, class: 'btn waves-effect waves-light back-btn-color' do %>
+          戻る
+          <i class="material-icons left">chevron_left</i>
+        <% end %>
+  
+        <%= button_tag type: 'submit', class: 'btn waves-effect waves-light' do %>
+          次へ
           <i class="material-icons right">chevron_right</i>
-        </button>
+        <% end %>
       </div>
 
     <% end %>

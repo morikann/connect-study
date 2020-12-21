@@ -20,8 +20,12 @@
           <td><%= session[:study_event_name] %></td>
         </tr>
         <tr>
+          <th>イメージ画像</th>
+          <td><%= image_tag session[:image_url] ? session[:image_url] : 'study_default.png' %></td>
+        </tr>
+        <tr>
           <th>公開範囲</th>
-          <% if session[:study_event_display_range].to_i == 1 %>
+          <% if session[:study_event]['display_range'].to_i == 1 %>
             <td>フォロワーのみに公開</td>
           <% else %>
             <td>全体に公開</td>
@@ -58,10 +62,14 @@
     <div id="map"></div>
   
     <div class="center-align">
-      <button class="btn waves-effect waves-light">
-        <%= f.submit '勉強会をつくる', class: 'submit-btn' %>
-      </button>
+      <%= button_tag type: 'submit', name: :back, class: 'btn waves-effect waves-light back-btn-color' do %>
+        戻る
+        <i class="material-icons left">chevron_left</i>
+      <% end %>
+
+      <%= button_tag type: 'submit', class: 'btn waves-effect waves-light' do %>
+        勉強会をつくる
+      <% end %>
     </div>
   <% end %>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" defer async></script>
