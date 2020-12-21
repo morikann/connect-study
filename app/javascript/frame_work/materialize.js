@@ -20,3 +20,8 @@ document.addEventListener('turbolinks:load', function() {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems, []);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tap-target');
+  var instances = M.TapTarget.init(elems, []);
+});
