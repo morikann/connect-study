@@ -13,7 +13,7 @@
 
 <div class="card-panel profile-card">
   <div class="row">
-    <%= form_with model: @study_event, local: true do |f| %>
+    <%= form_with model: @study_event, url: step1_url, local: true do |f| %>
       <%= render 'shared/error_messages', instance: @study_event %> 
       <div class="switch col s12 display-switch">
         <label>
@@ -25,12 +25,12 @@
       </div>
 
       <div class="input-field col s12">
-        <%= f.text_field :name, value: session[:study_event_name] %>
+        <%= f.text_field :name %>
         <%= f.label :name %>
       </div>
 
       <div class="study-image-title">イメージ画像</div>
-      <%= image_tag session[:image_url] ? session[:image_url] : 'study_default.png', id: 'file-preview', class: 'event-preview-img' %>
+      <%= image_tag session[:image_url] || 'study_default.png', id: 'file-preview', class: 'event-preview-img' %>
       <div class="avatar-file">
         <%= f.label :image, class: 'avatar-upload' do |file| %>
           画像を変更する
@@ -39,22 +39,22 @@
       </div> 
 
       <div class="input-field col s12">
-        <%= f.date_field :date, value: session[:study_event_date] %>
+        <%= f.date_field :date %>
         <%= f.label :date %>
       </div>
 
       <div class="input-field col s6">
-        <%= f.time_field :begin_time, value: session[:study_event_begin_time] %>
+        <%= f.time_field :begin_time %>
         <%= f.label :begin_time %>
       </div>
 
       <div class="input-field col s6">
-        <%= f.time_field :finish_time, value: session[:study_event_finish_time] %>
+        <%= f.time_field :finish_time %>
         <%= f.label :finish_time %>
       </div>
   
       <div class="input-field col s12">
-        <%= f.text_area :description, value: session[:study_event_description], class: 'materialize-textarea' %>
+        <%= f.text_area :description, class: 'materialize-textarea' %>
         <%= f.label :description %>
       </div>
 

@@ -4,7 +4,7 @@ class StudyEventsController < ApplicationController
   end
 
   def new 
-    @study_event = current_user.my_study_events.build
+    @study_event = current_user.my_study_events.build(session[:study_event] || {})
   end
 
   def edit 
@@ -13,15 +13,18 @@ class StudyEventsController < ApplicationController
   def create
     @study_event = current_user.my_study_events.build(study_event_params)
     if @study_event.valid?
-      session[:study_event] = study_event_params
-      session[:study_event_name] = study_event_params[:name]
-      session[:study_event_description] = study_event_params[:description]
-      session[:study_event_date] = study_event_params[:date]
-      session[:study_event_begin_time] = study_event_params[:begin_time]
-      session[:study_event_finish_time] = study_event_params[:finish_time]
-      session[:image_cache_name] = @study_event.image.cache_name
-      session[:image_url] = @study_event.image.url
-      redirect_to new_location_path
+      # フォームで渡された値のみ保存。ActionController::Parametersの仕様変更の可能性があるのでstudy_event_paramsをそのまま保存しない。
+      session[:study_event] = @study_event.attributes.slice(*study_event_params.keys)
+      # インスタンスの属性にはparamsと異なる形式の日付、時間が格納されているのでその形式を元に戻す
+      session[:study_event]['date'] = session[:study_event]['date'].strftime("%Y-%m-%d")
+      session[:study_event]['begin_time'] = session[:study_event]['begin_time'].strftime("%H:%M")
+      session[:study_event]['finish_time']= session[:study_event]['finish_time'].strftime("%H:%M")
+      # 画像の変更があった場合のみ
+      if @study_event.image.cache_name
+        session[:image_cache_name] = @study_event.image.cache_name
+        session[:image_url] = @study_event.image.url
+      end
+      redirect_to step2_path
     else
       render 'new'
     end
@@ -42,29 +45,29 @@ class StudyEventsController < ApplicationController
 
   def confirm_event_user
     if params[:back]
-      return redirect_to new_location_path
+      return redirect_to step2_path
     end
 
-    session[:event_user] = event_user_params
+    session[:event_user] = params[:user_id]
     redirect_to confirm_path
   end
 
   def confirm 
-    gon.latitude = session[:latitude]
-    gon.longitude = session[:longitude]
+    gon.latitude = session[:location]['latitude'] if session[:location]
+    gon.longitude = session[:location]['longitude'] if session[:location]
     render 'confirm'
   end
 
   def check_confirm
     if params[:back]
-      return redirect_to event_user_path
+      return redirect_to step3_path
     end
 
     location = Location.create(
-      name: session[:location_name],
-      address: session[:location_address],
-      latitude: session[:latitude],
-      longitude: session[:lontitude]
+      name: session[:location]['name'],
+      address: session[:location]['address'],
+      latitude: session[:location]['latitude'],
+      longitude: session[:location]['longitude']
     )
 
     study_event = current_user.my_study_events.build(session[:study_event])
@@ -82,17 +85,9 @@ class StudyEventsController < ApplicationController
     EventUser.create(user_id: current_user.id, study_event_id: study_event.id)
 
     session.delete(:study_event)
-    session.delete(:study_event_name)
-    session.delete(:study_event_description)
-    session.delete(:study_event_date)
-    session.delete(:study_event_begin_time)
-    session.delete(:study_event_finish_time)
+    session.delete(:location)
     session.delete(:image_cache_name)
     session.delete(:image_url)
-    session.delete(:location_name)
-    session.delete(:location_address)
-    session.delete(:latitude)
-    session.delete(:longitude)
     session.delete(:event_user)
 
     redirect_to study_events_path
@@ -102,9 +97,5 @@ class StudyEventsController < ApplicationController
 
   def study_event_params
     params.require(:study_event).permit(:name, :description, :date, :display_range, :begin_time, :finish_time, :image) 
-  end
-
-  def event_user_params
-    params.require(:user_id)
   end
 end

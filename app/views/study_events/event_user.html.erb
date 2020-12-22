@@ -15,7 +15,7 @@
   <div class="center-align"><span class="essential">※</span>必須項目ではありません</div>
   <div class="row">
   
-    <%= form_with url: event_user_url, local: true do |f| %>
+    <%= form_with url: step3_url, local: true do |f| %>
       <div class="input-field col s12">
         <div>
           <%= f.collection_check_boxes :user_id, current_user.matchers_profile, :id, :username do |builder| %>
