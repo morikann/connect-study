@@ -14,7 +14,7 @@
 <div class="card-panel profile-card">
 
   <div class="location-search-wrapper">
-    <input placeholder="場所を検索してください" id="address"> 
+    <input placeholder="住所を自動で補完します" id="address"> 
     <%= button_tag class: 'btn-floating btn-small waves-effect waves-light red', onclick: 'codeAddress()' do %>
       <i class="fas fa-search"></i>
     <% end %>
@@ -22,16 +22,16 @@
   <div id="map"></div>
   
   <div class="row">
-    <%= form_with model: @location, local: true do |f| %>
+    <%= form_with model: @location, url: step2_url, local: true do |f| %>
       <%= render 'shared/error_messages', instance: @location %> 
 
       <div class="input-field col s12">
-        <%= f.text_field :name, value: session[:location_name] %>
+        <%= f.text_field :name %>
         <%= f.label :name %>
       </div>
 
       <div class="input-field col s12">
-        <%= f.text_field :address, value: session[:location_address], id: 'study-event-address' %>
+        <%= f.text_field :address, id: 'study-event-address' %>
         <%= f.label :address %>
       </div>
       

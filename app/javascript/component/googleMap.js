@@ -47,6 +47,4 @@ document.addEventListener('turbolinks:load', () => {
       }
     })
   }
-
-
 })

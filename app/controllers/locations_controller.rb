@@ -1,25 +1,18 @@
 class LocationsController < ApplicationController
   def new
-    @location = Location.new
-  end
-
-  def map 
-    results = Geocoder.search(params[:address])
-    @latlng = results.first.coordinates
-    respond_to do |format|
-      format.js
-    end
+    @location = Location.new(session[:location] || {})
   end
 
   def create 
-    
     if params[:back]
-      return redirect_to new_study_event_path
+      return redirect_to step1_path
     end
 
     results = Geocoder.search(location_params[:address])
-    latitude = results.first.coordinates[0]
-    longitude = results.first.coordinates[1]
+    if results.first
+      latitude = results.first.coordinates[0]
+      longitude = results.first.coordinates[1]
+    end
     
     @location = Location.new(
       name: location_params[:name],
@@ -27,12 +20,10 @@ class LocationsController < ApplicationController
       latitude: latitude,
       longitude: longitude
     )
+
     if @location.valid?
-      session[:location_name] = location_params[:name]
-      session[:locaiton_address] = location_params[:address]
-      session[:latitude] = latitude
-      session[:longitude] = longitude
-      redirect_to event_user_path
+      session[:location] = @location.attributes.slice('name', 'address', 'latitude', 'longitude')
+      redirect_to step3_path
     else
       render 'new'
     end
@@ -41,6 +32,6 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:name, :address, :latitude, :longitude) 
+    params.require(:location).permit(:name, :address) 
   end
 end

@@ -18,11 +18,14 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :show, :create]
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
-  resources :study_events 
-  get '/event_user', to: 'study_events#event_user'
-  post '/event_user', to: 'study_events#confirm_event_user'
+  resources :study_events, only: [:index, :edit, :update, :destroy]
+  
+  get '/step1', to: 'study_events#new'
+  post '/step1', to: 'study_events#create'
+  get '/step2', to: 'locations#new'
+  post '/step2', to: 'locations#create'
+  get '/step3', to: 'study_events#event_user'
+  post '/step3', to: 'study_events#confirm_event_user'
   get '/confirm', to: 'study_events#confirm'
   post '/confirm', to: 'study_events#check_confirm'
-  resources :locations 
-  get '/map_request', to: 'locations#map'
 end
