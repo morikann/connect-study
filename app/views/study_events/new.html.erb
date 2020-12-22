@@ -30,7 +30,7 @@
       </div>
 
       <div class="study-image-title">イメージ画像</div>
-      <%= image_tag session[:image_url] || 'study_default.png', id: 'file-preview', class: 'event-preview-img' %>
+      <%= image_tag session[:image_url] || 'study_default.png', id: 'file-preview', class: 'study-event-img' %>
       <div class="avatar-file">
         <%= f.label :image, class: 'avatar-upload' do |file| %>
           画像を変更する
