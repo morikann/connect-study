@@ -117,8 +117,9 @@
   }
 }
 
-.event-preview-img {
+.study-event-img {
   max-height: 300px;
+  min-height: 300px;
   width: 100%;
   object-fit: cover;
 }
@@ -145,8 +146,78 @@ th {
 }
 
 // index
+.study-event-card {
+  cursor: pointer;
+
+  .card-content {
+    padding: 10px;
+    padding-top: 5px;
+    min-height: 90px;
+
+    @include mq(sm) {
+      padding-bottom: 20px;
+    }
+  }
+
+  .card-action {
+    padding: 16px 10px;
+  }
+}
+
+.study-event-card:hover .card-title a {
+  transition: all .3s;
+  color: #26a69a;
+  opacity: .8;
+}
+
 .study-event-title {
   background: #262626;
+}
+
+.card-content-top{
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+.study-event-prefecture {
+  color: #6A6E71;
+  border: 1px solid #6A6E71;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 10px;
+  padding: 0 12px;
+  padding-bottom: 5px;
+  font-size: 11px;
+}
+
+.study-event-tags .chip {
+  margin-bottom: 0px;
+}
+
+.card-title {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  
+  a {
+    width: 100%;
+    font-size: 22px;
+    font-weight: 600;
+    color: #262626;
+  }
+}
+
+.card-action ul {
+  display: flex;
+  align-items: center;
+}
+
+.event-owner-name {
+  margin-right: auto;
+  display: inline-block;
+  padding-left: 10px;
+  font-weight: 600;
 }
 
 // confirm

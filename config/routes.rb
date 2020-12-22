@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :show, :create]
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
-  resources :study_events, only: [:index, :edit, :update, :destroy]
+  resources :study_events, only: [:index, :show, :edit, :update, :destroy]
   
   get '/step1', to: 'study_events#new'
   post '/step1', to: 'study_events#create'
