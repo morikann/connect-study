@@ -30,6 +30,10 @@
         <%= f.label :name %>
       </div>
 
+      <div class="input-field col s12 prefecture-wrapper">
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "都道府県を選択してください" %>
+      </div>
+
       <div class="input-field col s12">
         <%= f.text_field :address, id: 'study-event-address' %>
         <%= f.label :address %>
@@ -41,7 +45,7 @@
           <i class="material-icons left">chevron_left</i>
         <% end %>
   
-        <%= button_tag type: 'submit', name: :next, class: 'btn waves-effect waves-light' do %>
+        <%= button_tag type: 'submit', class: 'btn waves-effect waves-light' do %>
           次へ
           <i class="material-icons right">chevron_right</i>
         <% end %>

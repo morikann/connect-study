@@ -17,13 +17,14 @@ class LocationsController < ApplicationController
     @location = Location.new(
       name: location_params[:name],
       address: location_params[:address],
+      prefecture_id: location_params[:prefecture_id],
       latitude: latitude,
       longitude: longitude
     )
 
     if @location.valid?
-      session[:location] = @location.attributes.slice('name', 'address', 'latitude', 'longitude')
-      redirect_to step3_path
+      session[:location] = @location.attributes.slice('name', 'address', 'latitude', 'longitude', 'prefecture_id')
+      redirect_to step3_url
     else
       render 'new'
     end
@@ -32,6 +33,6 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:name, :address) 
+    params.require(:location).permit(:name, :address, :prefecture_id) 
   end
 end

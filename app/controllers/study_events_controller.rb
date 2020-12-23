@@ -69,6 +69,7 @@ class StudyEventsController < ApplicationController
     location = Location.create(
       name: session[:location]['name'],
       address: session[:location]['address'],
+      prefecture_id: session[:location]['prefecture_id'],
       latitude: session[:location]['latitude'],
       longitude: session[:location]['longitude']
     )
@@ -78,6 +79,7 @@ class StudyEventsController < ApplicationController
     study_event.image.retrieve_from_cache!(session[:image_cache_name]) if session[:image_cache_name]
     study_event.save
 
+    EventUser.create(user_id: current_user.id, study_event_id: study_event.id)
     event_user_profile_id = session[:event_user].reject(&:blank?)
     event_user_profile_id.each do |id|
       EventUser.create(
@@ -85,7 +87,6 @@ class StudyEventsController < ApplicationController
         study_event_id: study_event.id
       )
     end
-    EventUser.create(user_id: current_user.id, study_event_id: study_event.id)
 
     session.delete(:study_event)
     session.delete(:location)
