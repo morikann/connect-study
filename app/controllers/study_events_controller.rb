@@ -34,6 +34,9 @@ class StudyEventsController < ApplicationController
   end
 
   def show
+    @study_event = StudyEvent.find(params[:id])
+    gon.latitude = @study_event.location.latitude 
+    gon.longitude = @study_event.location.longitude
   end
 
   def destroy

@@ -1,0 +1,56 @@
+<%= render 'shared/title', title: '勉強会詳細' %>
+
+<div class="study-event-show-wrapper">
+  <div class="card-content-top event-content-card">
+    <div class="study-event-prefecture event-show-prefecture">岐阜県</div>
+    <div class="study-event-tags">
+      <div class="chip">プログラミング</div>
+      <div class="chip">Rails</div>
+    </div>
+  </div>
+  <div class="event-show-title">
+    <%= @study_event.name %>
+  </div>
+  <div class="event-show-owner">
+    <%= link_to profile_path(@study_event.user.profile) do %>
+      <ul>
+        <li><%= image_tag @study_event.user.profile.avatar.url, class: 'circle-small-img' %></li>
+        <li class="event-owner-name"><%= @study_event.user.profile.username %></li>
+      </ul>
+    <% end %>
+  </div>
+  <div>
+    <%= image_tag @study_event.image.url, class: 'event-show-img' %>
+  </div>
+  <div class="event-date-label">開催日時</div>
+  <div class="event-show-day">
+    <ul>
+      <li><i class="far fa-clock fa-fw"></i></li>
+      <li class="event-date"><%= @study_event.date %></li>
+      <li>
+        <%= @study_event.begin_time.strftime("%H:%M") %> ~ <%= @study_event.finish_time.strftime("%H:%M") %>
+      </li>
+    </ul>
+  </div>
+  <div class="event-show-label">現在の参加メンバー</div>
+  <div class="event-show-members">
+    <% @study_event.users.each do |user| %>
+      <%= link_to profile_path(user.profile) do %>
+        <ul>
+          <li><%= image_tag user.profile.avatar.url, class: 'circle-small-img' %></li>
+          <li><%= user.profile.username %></li>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="event-show-label">勉強会の詳細</div>
+  <div class="event-show-description">
+    <%= safe_join(@study_event.description.split("\n"), tag(:br)) %>
+  </div>
+  <div class="event-show-label">開催場所</div>
+  <div class="event-show-location">
+    <div class="event-show-location-name"><%= @study_event.location.name %></div>
+    <div><i class="fas fa-map-marker-alt fa-fw"></i><%= @study_event.location.address %></div>
+  </div>
+  <div id="map"></div>
+</div>

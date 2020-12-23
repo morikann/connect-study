@@ -226,3 +226,111 @@ th {
   font-size: 16px;
   font-weight: 600;
 }
+
+// show
+.study-event-show-wrapper {
+  margin: 0 auto;
+  margin-top: 30px;
+  max-width: 800px;
+  margin-bottom: 60px;
+
+  @include mq(sm) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.event-show-title {
+  font-size: 32px;
+  font-weight: 700
+} 
+
+.event-show-owner {
+  margin: 12px 0;
+  transition: all .2s;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.event-show-owner ul {
+  display: flex;
+  align-items: center;
+  color: rgba(0,0,0,0.56);
+}
+
+.event-show-day ul {
+  display: flex;
+  align-items: center;
+}
+
+.event-show-img {
+  min-height: 400px;
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.event-date-label {
+  font-size: 24px;
+  font-weight: 700;
+  color: #242424;
+  margin-top: 20px;
+}
+
+.event-show-day {
+  margin: 10px 0;
+  color: rgba(0,0,0,0.56);
+
+  .event-date {
+    margin-right: 10px;
+  }
+}
+
+.event-show-day ul li:first-child{
+  margin-right: 10px;
+  padding: 0;
+}
+
+.event-show-label {
+  font-size: 24px;
+  font-weight: 700;
+  color: #242424;
+  margin-top: 50px;
+}
+
+.event-show-members {
+  display: flex;
+  margin: 10px 0;
+
+  ul {
+    margin-right: 15px;
+    color: #224422;
+    transition: all .2s;
+    text-align: center;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
+
+.event-show-description, .event-show-location {
+  margin: 10px 0;
+}
+
+.event-show-location-name {
+  display: inline-block;
+  color: #fafafa;
+  background: #242424;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 0 5px;
+  margin-bottom: 5px;
+}
+
+.event-content-card {
+  padding-left: 0;
+}
