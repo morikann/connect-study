@@ -9,7 +9,7 @@
             <%= image_tag study_event.image.url, class: 'study-event-img' %>
           </div>
           <div class="card-content-top">
-            <div class="study-event-prefecture">岐阜県</div>
+            <div class="study-event-prefecture"><%= study_event.location.prefecture.name %></div>
             <div class="study-event-tags">
               <div class="chip">プログラミング</div>
               <div class="chip">Rails</div>
