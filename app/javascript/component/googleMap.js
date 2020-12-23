@@ -2,20 +2,27 @@ document.addEventListener('turbolinks:load', () => {
 
   let map;
   let geocoder;
+  let div;
   
   window.initMap = function() {
     geocoder = new google.maps.Geocoder()
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    div = document.getElementById('map');
+
+    if (div === null) {
+      return
+    }
+
+    map = new google.maps.Map(div, {
       center: { lat: 35.6586, lng: 139.745 },
       zoom: 16
     });
 
-    if(gon.latitude && gon.longitude) {
-      
+    if (typeof gon != "undefined"){
+
       var latlng = new google.maps.LatLng(gon.latitude, gon.longitude);
 
-      map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(div, {
         center: { lat: gon.latitude, lng: gon.longitude },
         zoom: 16
       })
