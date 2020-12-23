@@ -4,7 +4,11 @@ class Location < ApplicationRecord
 
   validates :name, presence: true
   validates :address, presence: true
+  validates :prefecture_id, presence: true
   validate :valid_address
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
 
   private
   # 無効な住所で緯度経度が取得できない時にエラーを発生させる
