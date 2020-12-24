@@ -12,7 +12,7 @@
 
       <% if current_user.followed_by?(@user) && @user.followed_by?(current_user) %>
         <% if @isRoom == true %>
-          <%= link_to room_path(@room_id) do %>
+          <%= link_to room_path(@room_id), "data-turbolinks": false do %>
             <div class="btn-floating btn-small red profile-dm">
               <i class="large material-icons">mail_outline</i>
             </div>
