@@ -2,7 +2,7 @@
           
 <div class="row">
   <% @study_events.each do |study_event| %>
-    <div class="col s12 m6">
+    <div class="col s12 l8 offset-l2" style="margin-bottom: 40px;">
       <%= link_to study_event_path(study_event), "data-turbolinks": false do %>
         <div class="card study-event-card">
           <div class="card-image">
@@ -11,8 +11,9 @@
           <div class="card-content-top">
             <div class="study-event-prefecture"><%= study_event.location.prefecture.name %></div>
             <div class="study-event-tags">
-              <div class="chip">プログラミング</div>
-              <div class="chip">Rails</div>
+              <% study_event.tags.each do |tag| %>
+                <div class="chip"><%= tag.name %></div>
+              <% end %>
             </div>
           </div>
           <div class="card-title">

@@ -52,6 +52,12 @@
         <%= f.time_field :finish_time %>
         <%= f.label :finish_time %>
       </div>
+
+      <div class="input-field col s12">
+        <%= f.text_field :tag, placeholder: "プログラミング 英語", id: 'tag-input' %>
+        <%= f.label :tag, '関連する勉強タグ' %>
+        <div id="tag-wrap" style="margin-left: 0;"></div>
+      </div>
   
       <div class="input-field col s12">
         <%= f.text_area :description, class: 'materialize-textarea' %>

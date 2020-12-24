@@ -39,6 +39,10 @@
             <td><%= session[:location]['name'] %></td>
           </tr>
           <tr>
+            <th>都道府県</th>
+            <td><%= @prefecture %></td>
+          </tr>
+          <tr>
             <th>開催日</th>
             <td><%= session[:study_event]['date'] %></td>
           </tr>
@@ -53,6 +57,14 @@
                 <%= image_tag Profile.find_by(id: profile_id.to_i).avatar.url, class: 'circle-small-img' %>
                 <%= Profile.find_by(id: profile_id.to_i).username %>
                 <br>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>関連タグ</th>
+            <td>
+              <% @tag_list.each do |tag| %>
+                <div class="chip"><%= tag %></div>
               <% end %>
             </td>
           </tr>

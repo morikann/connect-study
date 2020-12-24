@@ -20,10 +20,10 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
-  has_many :event_users
+  has_many :event_users, dependent: :destroy
   has_many :study_events, through: :event_users
 
-  has_many :my_study_events, class_name: "StudyEvent"
+  has_many :my_study_events, class_name: "StudyEvent", dependent: :destroy
 
   default_scope -> { order(created_at: :desc) }
 

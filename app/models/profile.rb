@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  attr_accessor :tag
+
   belongs_to :user
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
@@ -8,6 +10,7 @@ class Profile < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :purpose, presence: true, length: { maximum: 30 }
   validates :birth_date, presence: true
+  validates :tag, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
