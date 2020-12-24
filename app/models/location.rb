@@ -11,7 +11,7 @@ class Location < ApplicationRecord
   belongs_to_active_hash :prefecture
 
   private
-  # 無効な住所で緯度経度が取得できない時にエラーを発生させる
+  # 無効な住所で緯度経度が取得できない時にエラーメッセージを表示する
   def valid_address
     if address.present? && latitude.blank? && longitude.blank?
       errors[:base] << "正しい住所を入力してください"

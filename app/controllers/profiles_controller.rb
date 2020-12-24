@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
 
   def create
     @user_profile = current_user.build_profile(profile_params)
-    tag_list = params[:profile][:tag].split(/ |　/)
+    tag_list = profile_params[:tag].split(/ |　/)
     if @user_profile.save
       @user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの設定が完了しました"
@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
   def update
     @user = Profile.find(params[:id]).user
     @user_profile = @user.profile
-    tag_list = params[:profile][:tag].split(/ |　/)
+    tag_list = profile_params[:tag].split(/ |　/)
     if @user_profile.update(profile_params)
       @user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの変更が完了しました"
@@ -61,7 +61,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:avatar, :birth_date, :purpose, :self_introduction, :username, :prefecture_id)
+    params.require(:profile).permit(:avatar, :birth_date, :purpose, :self_introduction, :username, :prefecture_id, :tag)
   end
 
   def prohibit_duplicate_profile
