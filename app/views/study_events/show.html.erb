@@ -4,8 +4,9 @@
   <div class="card-content-top event-content-card">
     <div class="study-event-prefecture event-show-prefecture"><%= @study_event.location.prefecture.name %></div>
     <div class="study-event-tags">
-      <div class="chip">プログラミング</div>
-      <div class="chip">Rails</div>
+      <% @study_event.tags.each do |tag| %>
+        <div class="chip"><%= tag.name %></div>
+      <% end %>
     </div>
   </div>
   <div class="event-show-title">

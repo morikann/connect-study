@@ -19,6 +19,8 @@ class StudyEventsController < ApplicationController
       session[:study_event]['date'] = session[:study_event]['date'].strftime("%Y-%m-%d")
       session[:study_event]['begin_time'] = session[:study_event]['begin_time'].strftime("%H:%M")
       session[:study_event]['finish_time']= session[:study_event]['finish_time'].strftime("%H:%M")
+      session[:study_event]['tag'] = study_event_params[:tag]
+      
       # 画像の変更があった場合のみ
       if @study_event.image.cache_name
         session[:image_cache_name] = @study_event.image.cache_name
@@ -58,6 +60,8 @@ class StudyEventsController < ApplicationController
   def confirm 
     gon.latitude = session[:location]['latitude'] if session[:location]
     gon.longitude = session[:location]['longitude'] if session[:location]
+    @tag_list = session[:study_event]['tag'].split(/ |　/) if session[:study_event]
+    @prefecture = Prefecture.find(session[:location]['prefecture_id'].to_i).name if session[:location]
     render 'confirm'
   end
 
@@ -66,26 +70,19 @@ class StudyEventsController < ApplicationController
       return redirect_to step3_path
     end
 
-    location = Location.create(
-      name: session[:location]['name'],
-      address: session[:location]['address'],
-      prefecture_id: session[:location]['prefecture_id'],
-      latitude: session[:location]['latitude'],
-      longitude: session[:location]['longitude']
-    )
+    location = Location.create(session[:location])
 
-    study_event = current_user.my_study_events.build(session[:study_event])
-    study_event.location_id = location.id
-    study_event.image.retrieve_from_cache!(session[:image_cache_name]) if session[:image_cache_name]
-    study_event.save
-
-    EventUser.create(user_id: current_user.id, study_event_id: study_event.id)
+    @study_event = current_user.my_study_events.build(session[:study_event])
+    @study_event.location_id = location.id
+    @study_event.image.retrieve_from_cache!(session[:image_cache_name]) if session[:image_cache_name]
+    @study_event.save
+    tag_list = session[:study_event]['tag'].split(/ |　/)
+    @study_event.save_tags(tag_list)
+    
+    @study_event.event_users.create(user_id: current_user.id)
     event_user_profile_id = session[:event_user].reject(&:blank?)
     event_user_profile_id.each do |id|
-      EventUser.create(
-        user_id: id.to_i,
-        study_event_id: study_event.id
-      )
+      @study_event.event_users.create(user_id: id.to_i)
     end
 
     session.delete(:study_event)
@@ -100,6 +97,6 @@ class StudyEventsController < ApplicationController
   private
 
   def study_event_params
-    params.require(:study_event).permit(:name, :description, :date, :display_range, :begin_time, :finish_time, :image) 
+    params.require(:study_event).permit(:name, :description, :date, :display_range, :begin_time, :finish_time, :tag, :image) 
   end
 end
