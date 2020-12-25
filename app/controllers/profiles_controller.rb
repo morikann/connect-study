@@ -8,8 +8,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @user = Profile.find(params[:id]).user
-    @user_profile = @user.profile
+    @user_profile = Profile.find(params[:id])
     @tag_list = @user_profile.tags.pluck(:name).join(' ')
   end
 
@@ -26,8 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user = Profile.find(params[:id]).user
-    @user_profile = @user.profile
+    @user_profile = Profile.find(params[:id])
     tag_list = profile_params[:tag].split(/ |　/)
     if @user_profile.update(profile_params)
       @user_profile.save_tags(tag_list)
