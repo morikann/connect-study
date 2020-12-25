@@ -36,4 +36,21 @@ class StudyEvent < ApplicationRecord
       self.tags << add_tag
     end
   end
+
+  # simple_calendar gem の設定
+  def start_time
+    self.date 
+  end
+
+  # def end_time
+  #   self.date 
+  # end
+
+  def correct_begin_time 
+    self.begin_time.strftime("%H:%M")
+  end
+
+  def correct_finish_time
+    self.finish_time.strftime("%H:%M")
+  end
 end

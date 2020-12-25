@@ -81,3 +81,5 @@ gem 'dotenv-rails'
 gem 'geocoder'
 # railsの変数をjsで用いる
 gem 'gon'
+# カレンダー
+gem 'simple_calendar', '~> 2.0'
