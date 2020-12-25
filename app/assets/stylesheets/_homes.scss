@@ -128,3 +128,48 @@ input[type="submit"] {
 .search-btn input {
   padding: 0px;
 }
+
+// calendar
+.calendar-img {
+  max-height: 70px;
+  width: 100%;
+  max-width: 100px;
+}
+
+.event-calendar-img {
+  text-align: center;
+}
+
+.event-calendar-name {
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.event-calendar-time {
+  font-size: 12px;
+  text-align: center;
+  color: #242424;
+  margin-bottom: 10px;
+}
+
+.calendar-heading {
+  text-align: center;
+}
+
+.calendar-table {
+  display: block;
+  overflow-x: scroll;
+  // white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.simple-calendar .day {
+  @include mq(sm) {
+    max-width: 100px;
+  }
+}
+
+.calendar-title {
+  font-size: 18px;
+}
