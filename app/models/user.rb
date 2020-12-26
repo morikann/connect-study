@@ -22,8 +22,11 @@ class User < ApplicationRecord
 
   has_many :event_users, dependent: :destroy
   has_many :study_events, through: :event_users
-
+ 
   has_many :my_study_events, class_name: "StudyEvent", dependent: :destroy
+
+  has_many :bookmarks, dependent: :destroy 
+  has_many :bookmark_events, through: :bookmarks, source: :study_event
 
   default_scope -> { order(created_at: :desc) }
 
@@ -66,6 +69,18 @@ class User < ApplicationRecord
       )
       notification.save if notification.valid?
     end
+  end
+
+  def bookmark?(study_event)
+    bookmark_events.include?(study_event)
+  end
+
+  def bookmark(study_event)
+    bookmark_events << study_event 
+  end
+
+  def delete_bookmark(study_event)
+    bookmarks.find_by(study_event_id: study_event.id).destroy 
   end
 
 end

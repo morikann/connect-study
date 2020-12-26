@@ -333,4 +333,10 @@ th {
 
 .event-content-card {
   padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+#bookmark-form {
+  margin-left: auto;
 }

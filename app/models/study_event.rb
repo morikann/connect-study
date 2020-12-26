@@ -11,6 +11,9 @@ class StudyEvent < ApplicationRecord
   has_many :event_tags, dependent: :destroy 
   has_many :tags, through: :event_tags
 
+  has_many :bookmarks, dependent: :destroy 
+  has_many :bookmark_users, through: :bookmarks, source: :user
+
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, presence: true
   validates :begin_time, presence: true
@@ -53,4 +56,5 @@ class StudyEvent < ApplicationRecord
   def correct_finish_time
     self.finish_time.strftime("%H:%M")
   end
+
 end
