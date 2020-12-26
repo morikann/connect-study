@@ -198,3 +198,12 @@
   font-size: 0.8rem;
   margin-bottom: 11.6px;
 }
+
+.tabs .indicator {
+  background-color: #26a69a;
+}
+
+.tabs .tab a:focus, .tabs .tab a.active:focus {
+  background-color: rgba(109, 197, 171, 0.2);
+  outline: none;
+}

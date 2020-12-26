@@ -1,88 +1,12 @@
-<div class="card-panel profile-card">
-
-  <% unless current_user?(@user) %>
-    <div class="current-user-option-wrapper">
-      <div id="follow-form">
-        <% if current_user.following?(@user) %>
-          <%= render 'users/unfollow' %>
-        <% else %>
-          <%= render 'users/follow' %>
-        <% end %>
-      </div>
-
-      <% if @isRoom == true %>
-        <%= link_to room_path(@room_id), "data-turbolinks": false do %>
-          <div class="btn-floating btn-small red profile-dm">
-            <i class="large material-icons">mail_outline</i>
-          </div>
-        <% end %>
-      <% else %>
-        <%= form_with model: @room, local: true do |f| %>
-          <%= fields_for @entry do |e| %>
-            <%= e.hidden_field :user_id, value: @user.id %>
-          <% end %>
-          <%= button_tag type: 'submit', class: 'btn-floating btn-small red profile-dm' do %>
-            <i class="large material-icons">mail_outline</i>
-          <% end %>
-        <% end %>
-      <% end %>
-      
-    </div>
-  <% end %>
-
-  <div class="profile-main-wrapper">
-    <div class="profile-main-left">
-      <%= image_tag @user.profile.avatar.url, class: 'circle-img' %>
-    </div>
-
-    <div class="profile-main-right">
-      <div class="profile-user-name">
-        <%= @user.profile.username %>
-      </div>
-
-      <div class="profile-prefecture">
-        <%= @user.profile.prefecture.name %><span class="profile-age"><%= user_age(@user.profile.birth_date) %>歳</span>
-      </div>
-    </div>
+ <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+    <li class="tab"><a class="active" href="#test1" style="color: #26a69a;">プロフィール</a></li>
+    <li class="tab"><a href="#test2" style="color: #26a69a;">ブックマーク</a></li>
+  </ul>
+  <div id="test1" class="col s12">
+    <%= render 'profile' %>
+  </div>
+  <div id="test2" class="col s12">
+  
   </div>
 
-  <div class="stats">
-    <%= link_to following_user_path(@user) do %>
-      <div id="follow">
-        フォロー<span><%= @user.following.count %></span>人
-      </div>
-    <% end %>
-    <div class="profile-vertical-line"></div>
-    <%= link_to followers_user_path(@user) do %>
-      <div id="follower">
-        フォロワー<span><%= @user.followers.count %></span>人
-      </div>
-    <% end %>
-  </div>
-
-  <div class="profile-label">目標</div>
-  <div class="profile-user-purpose">
-    <%= @user.profile.purpose %>
-  </div>
-
-  <div class="profile-label">自己紹介</div>
-  <div class="profile-user-introduction">
-    <%= simple_format(h(@user.profile.self_introduction), {}, sanitize: false, wrapper_tag: "div") %>
-  </div>
-
-  <p class="genre-label">勉強ジャンル</p>
-  <% @user.profile.tags.map do |tag| %>
-    <div class="chip">
-      <%= tag.name %>
-    </div>
-  <% end %>
-
-  <% if @user == current_user %>
-    <div class="profile-edit-link">
-      <%= link_to "プロフィールを編集する", edit_profile_path(@user.profile), class: "profile-edit_link" %>
-    </div>
-  <% end %>
-
-</div>
-
-
+    
