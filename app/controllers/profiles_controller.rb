@@ -54,7 +54,7 @@ class ProfilesController < ApplicationController
         @entry = Entry.new
       end
     end
-    @my_study_events = current_user.my_study_events
+    @my_study_events = @user.my_study_events
   end
 
   private
