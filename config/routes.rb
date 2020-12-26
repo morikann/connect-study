@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :messages, only: :create
   resources :study_events, only: %i(index show edit update destroy)
 
-  resources :bookmarks, only: %i(create destroy)
+  resources :bookmarks, only: %i(index create destroy)
   
   get '/step1', to: 'study_events#new'
   post '/step1', to: 'study_events#create'
