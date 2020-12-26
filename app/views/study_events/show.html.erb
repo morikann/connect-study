@@ -1,14 +1,21 @@
 <%= render 'shared/title', title: '勉強会詳細' %>
 
 <div class="study-event-show-wrapper">
-  <div class="card-content-top event-content-card">
-    <div class="study-event-prefecture event-show-prefecture"><%= @study_event.location.prefecture.name %></div>
-    <div class="study-event-tags">
+  <ul class="card-content-top event-content-card">
+    <li class="study-event-prefecture event-show-prefecture"><%= @study_event.location.prefecture.name %></li>
+    <li class="study-event-tags">
       <% @study_event.tags.each do |tag| %>
         <div class="chip"><%= tag.name %></div>
       <% end %>
-    </div>
-  </div>
+    </li>
+    <li id="bookmark-form">
+      <% if current_user.bookmark?(@study_event) %>
+        <%= render partial: 'study_events/delete_bookmark', locals: { study_event: @study_event } %>
+      <% else %>
+        <%= render partial: 'study_events/bookmark', locals: { study_event: @study_event } %>
+      <% end %>
+    </li>
+  </ul>
   <div class="event-show-title">
     <%= @study_event.name %>
   </div>
