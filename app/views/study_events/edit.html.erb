@@ -1,0 +1,65 @@
+<%= render 'shared/title', title: '編集' %>
+
+<div class="card-panel profile-card">
+  <div class="row">
+    <%= form_with model: @study_event, local: true do |f| %>
+      <%= render 'shared/error_messages', instance: @study_event %> 
+      <div class="switch col s12 display-switch">
+        <label>
+          public
+          <%= f.check_box :display_range %>
+          <span class="lever"></span>
+          private(フォロワーのみ)
+        </label>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.text_field :name %>
+        <%= f.label :name %>
+      </div>
+
+      <div class="study-image-title">イメージ画像</div>
+      <%= image_tag @study_event.image.url, id: 'file-preview', class: 'study-event-img' %>
+
+      <div class="avatar-file">
+        <%= f.label :image, class: 'avatar-upload' do |file| %>
+          画像を変更する
+          <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", style: "display: none" %>
+        <% end %>
+      </div> 
+
+      <div class="input-field col s12">
+        <%= f.date_field :date %>
+        <%= f.label :date %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.time_field :begin_time %>
+        <%= f.label :begin_time %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.time_field :finish_time %>
+        <%= f.label :finish_time %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.text_field :tag, value: @tag_list, placeholder: "プログラミング 英語", id: 'tag-input' %>
+        <%= f.label :tag, '関連する勉強タグ' %>
+        <div id="tag-wrap" style="margin-left: 0;"></div>
+      </div>
+  
+      <div class="input-field col s12">
+        <%= f.text_area :description, class: 'materialize-textarea' %>
+        <%= f.label :description %>
+      </div>
+
+      <div class="center-align">
+        <%= button_tag type: 'submit', class: 'btn waves-effect waves-light' do %>
+          更新
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

@@ -29,3 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).on('turbolinks:load', function(){
   $('.tabs').tabs();
 });
+
+document.addEventListener('turbolinks:load', function() {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'left',
+    hoverEnabled: false
+  });
+});
+
+$('.dropdown-trigger').dropdown();
+    
