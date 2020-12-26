@@ -40,7 +40,6 @@ class ProfilesController < ApplicationController
     @user = Profile.find(params[:id]).user
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
-    @study_events = current_user.bookmark_events
     unless current_user.id == @user.id 
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
@@ -55,6 +54,7 @@ class ProfilesController < ApplicationController
         @entry = Entry.new
       end
     end
+    @my_study_events = current_user.my_study_events
   end
 
   private

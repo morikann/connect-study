@@ -53,8 +53,13 @@ ul {
   transition: all .2s;
   
   &:hover {
-    background: #f5f4f4;
+    // background: #f5f4f4;
+    background-color: rgba(109, 197, 171, 0.2);
   }
+}
+
+.link-color {
+  color:rgb(15, 20, 25);
 }
 
 .top {

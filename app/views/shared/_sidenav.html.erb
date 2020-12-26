@@ -6,31 +6,31 @@
 
   <div>
     <ul>
-      <li class="logo"><%= link_to 'Connect', root_path %></li>    
+      <li class="logo"><%= link_to 'Connect', root_path, class: 'link-color' %></li>    
       <% if !current_user.profile.id.nil? %>
         <div class="top-user-purpose">
           <%= simple_format(h(current_user.profile.purpose), {}, sanitize: false) %>
         </div>
         <li class="nav-link">
-          <%= link_to root_path do %>
+          <%= link_to root_path, class: 'link-color' do %>
             <i class="fas fa-home fa-fw"></i>
             <span>ホーム</span>
           <% end %>
         </li>
         <li class="nav-link">
-          <%= link_to study_events_path do %>
+          <%= link_to study_events_path , class: 'link-color' do %>
             <i class="fas fa-pencil-alt fa-fw"></i>
             <span>勉強会</span>
           <% end %>
         </li>
         <li class="nav-link">
-          <%= link_to users_path do %>
+          <%= link_to users_path, class: 'link-color' do %>
             <i class="fas fa-users fa-fw"></i>
             <span>勉強仲間</span>
           <% end %>
         </li>
         <li class="nav-link">
-          <%= link_to notifications_path do %>
+          <%= link_to notifications_path, class: 'link-color' do %>
             <% if unchecked_notifications.any? %>
               <i class="fas fa-bell fa-fw" style="color: #ffc400;"></i>
               <span>通知</span>
@@ -41,20 +41,26 @@
           <% end %>
         </li>
         <li class="nav-link">
-          <%= link_to rooms_path do %>
+          <%= link_to rooms_path, class: 'link-color' do %>
             <i class="far fa-comments fa-fw"></i>
             <span>メッセージ</span>
           <% end %>
         </li>
         <li class="nav-link">
-          <%= link_to profile_path(current_user.profile) do %>
+          <%= link_to bookmarks_path, class: 'link-color' do %>
+            <i class="far fa-bookmark fa-fw"></i>
+            <span>ブックマーク</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to profile_path(current_user.profile), class: 'link-color' do %>
             <i class="fas fa-user fa-fw"></i>
             <span>プロフィール</span>
           <% end %>
         </li>
       <% end %>
       <li class="nav-link">
-        <%= link_to  destroy_user_session_path, method: :delete, data: { confirm: "ログアウトします。よろしいですか？" } do %>
+        <%= link_to  destroy_user_session_path, class: 'link-color', method: :delete, data: { confirm: "ログアウトします。よろしいですか？" } do %>
           <i class="fas fa-sign-out-alt fa-fw"></i>
           <span>ログアウト</span>
         <% end %>
