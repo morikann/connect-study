@@ -26,15 +26,13 @@
             <ul>
               <li><%= image_tag study_event.user.profile.avatar.url, class: 'circle-small-img' %></li>
               <li class="event-owner-name"><%= study_event.user.profile.username %></li>
-              <li id="bookmark-form">
-                <% if current_user.bookmark?(study_event) %>
-                  <%= link_to study_event_path(study_event), class: 'btn-floating btn-small waves-effect waves-light', "data-turbolinks": false do %>
-                    <i class="fas fa-bookmark"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to study_event_path(study_event), class: 'btn-floating btn-small waves-effect waves-light', "data-turbolinks": false do %>
-                    <i class="far fa-bookmark"></i>
-                  <% end %>
+              <li>
+                <%= link_to edit_study_event_path(study_event), class: 'tooltipped btn-floating btn-small waves-effect waves-light', "data-turbolinks": false, data: { position: 'top', tooltip: '編集' } do %>
+                  <i class="far fa-edit"></i>
+                <% end %>
+
+                <%= link_to study_event_path(study_event), method: :delete, class: 'tooltipped btn-floating btn-small waves-effect waves-light red', "data-turbolinks": false, data: { position: 'top', tooltip: '削除', confirm: "勉強会を削除します。よろしいですか？" } do %>
+                  <i class="far fa-trash-alt"></i>
                 <% end %>
               </li>
             </ul>

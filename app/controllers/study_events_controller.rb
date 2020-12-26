@@ -7,7 +7,9 @@ class StudyEventsController < ApplicationController
     @study_event = current_user.my_study_events.build(session[:study_event] || {})
   end
 
-  def edit 
+  def edit
+    @study_event = StudyEvent.find(params[:id])
+    @tag_list = @study_event.tags.pluck(:name).join(' ')
   end
 
   def create
@@ -33,6 +35,15 @@ class StudyEventsController < ApplicationController
   end
 
   def update
+    study_event = StudyEvent.find(params[:id])
+    tag_list = study_event_params[:tag].split(/ |　/)
+    if study_event.update(study_event_params)
+      study_event.save_tags(tag_list)
+      flash[:notice] = '勉強会の更新が完了しました'
+      redirect_to profile_path(current_user)
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -42,6 +53,9 @@ class StudyEventsController < ApplicationController
   end
 
   def destroy
+    study_event = StudyEvent.find(params[:id])
+    study_event.destroy 
+    redirect_to profile_path(current_user), notice: '勉強会を削除しました'
   end
 
   def event_user
