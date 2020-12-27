@@ -1,10 +1,4 @@
-<%= form_with url: users_url, method: :get, class: 'home-search-wrapper', local: true do |f| %>
-  <div class="input-field home-search">
-    <%= f.text_field :search %>
-    <%= f.label :search, '勉強ジャンルでユーザーを検索' %>
-    <%= f.submit '検索', class: "btn waves-effect waves-light search-btn" %>
-  </div>
-<% end %>
+<%= render 'shared/search', something_url: users_url %>
 
 <div class="profile-title-wrapper top">
   <h1 class="profile-title">勉強仲間</h1>
