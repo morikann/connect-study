@@ -340,3 +340,29 @@ th {
 #bookmark-form {
   margin-left: auto;
 }
+
+// search
+.search-form-wrapper {
+  display: flex;
+  align-items: center;
+
+  .first-search-list {
+    width: 50%;
+  }
+
+  .second-search-list {
+    width: 40%;
+    margin-right: 10px;
+  }
+
+  .last-search-list {
+    width: 10%;
+  }
+}
+
+.search-border {
+  background: #9e9e9e;
+  width: 1px;
+  height: 40px;
+  margin: 0 10px;
+}

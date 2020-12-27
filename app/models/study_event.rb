@@ -57,4 +57,16 @@ class StudyEvent < ApplicationRecord
     self.finish_time.strftime("%H:%M")
   end
 
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])
+  end
+  scope :tag_like, -> (tag) do
+    self.joins(:tags).where('tags.name LIKE ?', "%#{tag}%") if tag.present?
+  end
+  scope :prefecture_id_is, -> (prefecture_id) do
+    self.joins(:location).where(locations: { prefecture_id: prefecture_id }) if prefecture_id.present?
+  end
+
 end

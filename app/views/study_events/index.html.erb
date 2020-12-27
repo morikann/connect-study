@@ -1,3 +1,22 @@
+<%= form_with scope: :search, url: study_events_url, method: :get, class: 'col s12', local: true do |f| %>
+  <ul class="search-form-wrapper">
+    <li class="input-field first-search-list">
+      <%= f.text_field :tag %>
+      <%= f.label :tag, '勉強タグ' %>
+    </li>
+    <li class="search-border"></li>
+    <li class="input-field second-search-list">
+      <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '都道県' %>
+    </li>
+    <li class="last-search-list">
+      <%= button_tag type: 'submit', class: 'btn-floating btn-small' do %>
+        <i class="large material-icons">search</i>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+
 <%= render 'shared/title', title: '勉強会一覧' %>
           
 <div class="row">

@@ -1,6 +1,6 @@
 class StudyEventsController < ApplicationController
   def index
-    @study_events = StudyEvent.all 
+    @study_events = StudyEvent.includes(:location, :tags, user: :profile).search(search_params)
   end
 
   def new 
@@ -112,5 +112,9 @@ class StudyEventsController < ApplicationController
 
   def study_event_params
     params.require(:study_event).permit(:name, :description, :date, :display_range, :begin_time, :finish_time, :tag, :image) 
+  end
+
+  def search_params
+    params.fetch(:search, {}).permit(:tag, :prefecture_id)
   end
 end
