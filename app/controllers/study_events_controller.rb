@@ -66,8 +66,7 @@ class StudyEventsController < ApplicationController
     if params[:back]
       return redirect_to step2_path
     end
-
-    session[:event_user] = params[:user_id]
+    session[:event_users] = params[:user_ids].reject(&:blank?)
     redirect_to confirm_path
   end
 
@@ -94,16 +93,13 @@ class StudyEventsController < ApplicationController
     @study_event.save_tags(tag_list)
     
     @study_event.event_users.create(user_id: current_user.id)
-    event_user_profile_id = session[:event_user].reject(&:blank?)
-    event_user_profile_id.each do |id|
-      @study_event.event_users.create(user_id: id.to_i)
-    end
+    session[:event_users].each { |user_id| @study_event.event_users.create(user_id: user_id) }
 
     session.delete(:study_event)
     session.delete(:location)
     session.delete(:image_cache_name)
     session.delete(:image_url)
-    session.delete(:event_user)
+    session.delete(:event_users)
 
     redirect_to study_events_path
   end

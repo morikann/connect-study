@@ -145,6 +145,22 @@ th {
   margin-bottom: 10px;
 }
 
+.checkbox-wrapper {
+  margin-bottom: 25px;
+}
+
+[type="checkbox"] + span:not(.lever):before {
+  top: 15px;
+}
+
+[type="checkbox"]:checked + span:not(.lever):before {
+  top: 10px;
+}
+
+.checkbox-username {
+  font-size: 16px;
+  color: #262626;
+}
 // index
 .study-event-card {
   cursor: pointer;

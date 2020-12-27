@@ -18,12 +18,14 @@
     <%= form_with url: step3_url, local: true do |f| %>
       <div class="input-field col s12">
         <div>
-          <%= f.collection_check_boxes :user_id, current_user.matchers_profile, :id, :username do |builder| %>
-            <div>
-              <%= builder.label do %>
-                <%= builder.check_box %>
+          <%= f.collection_check_boxes :user_ids, current_user.matchers, :id, :email do |user| %>
+            <div class="checkbox-wrapper">
+              <%= user.label do %>
+                <%= user.check_box %>
                 <span>
-                  <%= builder.text %>
+                  <%= image_tag user.object.profile.avatar.url, class: 'circle-small-img' %>
+                <span class="checkbox-username">
+                  <%= user.object.profile.username %>
                 </span>
               <% end %>
             </div>

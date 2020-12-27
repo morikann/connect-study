@@ -53,9 +53,9 @@
           <tr>
             <th>参加者</th>
             <td>
-              <% session[:event_user].reject(&:blank?).each do |profile_id| %>
-                <%= image_tag Profile.find_by(id: profile_id.to_i).avatar.url, class: 'circle-small-img' %>
-                <%= Profile.find_by(id: profile_id.to_i).username %>
+              <% session[:event_users].each do |user_id| %>
+                <%= image_tag User.find(user_id).profile.avatar.url, class: 'circle-small-img' %>
+                <%= User.find(user_id).profile.username %>
                 <br>
               <% end %>
             </td>
