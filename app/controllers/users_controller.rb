@@ -2,11 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index 
-    if params[:search].present?
-      @users = User.includes(profile: :tags).search(params[:search]).page(params[:page])
-    else
-      @users = User.includes(profile: :tags).page(params[:page])
-    end
+    @users = User.includes(profile: :tags).search(search_params).page(params[:page])
   end
 
   def following
@@ -21,6 +17,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.includes(profile: :tags).page(params[:page])
     render 'show_follow'
+  end
+
+  private 
+
+  def search_params 
+    params.fetch(:search, {}).permit(:tag, :prefecture_id)
   end
 
 end

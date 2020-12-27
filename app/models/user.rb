@@ -36,6 +36,18 @@ class User < ApplicationRecord
     # joins(profile: :tags).where('name LIKE ?', "%#{search_word}%")
   end
 
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])
+  end
+  scope :tag_like, -> (tag) do
+    self.joins(profile: :tags).where('tags.name LIKE ?', "%#{tag}%") if tag.present?
+  end
+  scope :prefecture_id_is, -> (prefecture_id) do
+    self.joins(:profile).where(profiles: { prefecture_id: prefecture_id }) if prefecture_id.present?
+  end
+
   def follow(other_user)
     following << other_user
   end
