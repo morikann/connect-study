@@ -64,12 +64,9 @@ class User < ApplicationRecord
     followers.include?(other_user)
   end
 
+  # 相互フォロワー(積集合)
   def matchers
-    self.followers && self.following 
-  end
-
-  def matchers_profile
-    self.matchers.includes(:profile).map { |user| user.profile }
+    self.followers.includes(:profile) & self.following.includes(:profile)
   end
 
   def create_notification_follow!(current_user)
@@ -78,6 +75,17 @@ class User < ApplicationRecord
       notification = current_user.active_notifications.build(
         visited_id: self.id,
         action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
+  def create_notification_message_room!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, self.id, 'DM'])
+    if temp.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'DM'
       )
       notification.save if notification.valid?
     end

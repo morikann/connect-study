@@ -34,6 +34,8 @@ class RoomsController < ApplicationController
     @room = Room.create 
     @currentUserEntry = Entry.create(user_id: current_user.id, room_id: @room.id)
     @userEntry = Entry.create(room_params)
+    @user = User.find(room_params[:user_id])
+    @user.create_notification_message_room!(current_user)
     redirect_to @room
   end
 
