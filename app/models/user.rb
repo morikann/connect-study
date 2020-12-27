@@ -64,12 +64,9 @@ class User < ApplicationRecord
     followers.include?(other_user)
   end
 
+  # 相互フォロワー(積集合)
   def matchers
-    self.followers && self.following 
-  end
-
-  def matchers_profile
-    self.matchers.includes(:profile).map { |user| user.profile }
+    self.followers.includes(:profile) & self.following.includes(:profile)
   end
 
   def create_notification_follow!(current_user)
