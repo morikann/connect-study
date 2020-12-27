@@ -8,6 +8,8 @@
   <% case notification.action %>
   <% when 'follow' then %>
     <span class="notification-message">あなたをフォローしました</span>
+  <% when 'DM' then %>
+    <span class="notification-message">あなたとのメッセージルームを作りました</span>
   <% end %>
   <div class="right-align"><%= time_ago_in_words(notification.created_at) %>前</div>
 </div>
