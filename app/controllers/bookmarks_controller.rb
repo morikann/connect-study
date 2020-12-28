@@ -6,6 +6,7 @@ class BookmarksController < ApplicationController
   def create
     @study_event = StudyEvent.find(params[:study_event])
     current_user.bookmark(@study_event)
+    @study_event.create_notification_bookmark!(current_user)
   end
 
   def destroy

@@ -14,6 +14,8 @@ class StudyEvent < ApplicationRecord
   has_many :bookmarks, dependent: :destroy 
   has_many :bookmark_users, through: :bookmarks, source: :user
 
+  has_many :notifications, dependent: :destroy
+
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, presence: true
   validates :begin_time, presence: true
@@ -62,11 +64,33 @@ class StudyEvent < ApplicationRecord
 
     tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])
   end
+
   scope :tag_like, -> (tag) do
     self.joins(:tags).where('tags.name LIKE ?', "%#{tag}%") if tag.present?
   end
+
   scope :prefecture_id_is, -> (prefecture_id) do
     self.joins(:location).where(locations: { prefecture_id: prefecture_id }) if prefecture_id.present?
   end
+
+  def create_notification_bookmark!(current_user)
+    # すでにブックマークされているか検索
+    temp = Notification.where(
+      "visitor_id = ? and visited_id = ? and study_event_id = ? and action = ?", current_user.id, user_id, id, 'bookmark'
+    )
+    # ブックマークされていない場合のみ通知を作成
+    if temp.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: user_id,
+        study_event_id: id,
+        action: 'bookmark'
+      )
+      # 自分の勉強会に対するブックマークは通知を作成しない
+      unless notification.visited_id == notification.visitor_id
+        notification.save if notification.valid?
+      end
+    end
+  end
+
 
 end

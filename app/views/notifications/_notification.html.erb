@@ -10,6 +10,8 @@
     <span class="notification-message">あなたをフォローしました</span>
   <% when 'DM' then %>
     <span class="notification-message">あなたとのメッセージルームを作りました</span>
+  <% when 'bookmark' then %>
+    <span class="notification-message"><%= link_to 'あなたの勉強会', study_event_path(notification.study_event_id) %>をブックマークしました</span>
   <% end %>
   <div class="right-align"><%= time_ago_in_words(notification.created_at) %>前</div>
 </div>
