@@ -39,4 +39,8 @@ document.addEventListener('turbolinks:load', function() {
 });
 
 $('.dropdown-trigger').dropdown();
+
+// $(document).on('turbolinks:load', function(){
+//   $('.modal').modal();
+// });
     
