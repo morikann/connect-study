@@ -1,0 +1,73 @@
+<div class="card-panel profile-card modal-card">
+
+  <div class="modal-main-wrapper">
+    <div class="profile-main-left">
+      <%= image_tag @user.profile.avatar.url, class: 'circle-img' %>
+    </div>
+
+    <div class="profile-main-right">
+      <div class="profile-user-name">
+        <%= @user.profile.username %>
+      </div>
+
+      <div class="profile-prefecture">
+        <%= @user.profile.prefecture.name %><span class="profile-age"><%= user_age(@user.profile.birth_date) %>歳</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider modal-divide"></div>
+
+  <div class="lead-profile">
+    <%= link_to '全プロフィールを表示する', profile_path(@user) %>
+  </div>
+
+  <div class="stats">
+    <%= link_to following_user_path(@user) do %>
+      <div id="follow">
+        フォロー<span><%= @user.following.count %></span>人
+      </div>
+    <% end %>
+    <div class="profile-vertical-line"></div>
+    <%= link_to followers_user_path(@user) do %>
+      <div id="follower">
+        フォロワー<span><%= @user.followers.count %></span>人
+      </div>
+    <% end %>
+  </div>
+
+  <div class="profile-label">目標</div>
+  <div class="profile-user-purpose">
+    <%= @user.profile.purpose %>
+  </div>
+
+  <% unless current_user?(@user) %>
+
+    <div class="modal-connect-wrapper">
+
+      <% if @isRoom == true %>
+        <%= link_to 'メッセージ', room_path(@room_id), "data-turbolinks": false, class: 'waves-effect waves-light btn' %>
+      <% else %>
+        <%= form_with model: @room, local: true do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+          <%= f.submit 'メッセージ', class: 'waves-effect waves-light btn' %>
+        <% end %>
+      <% end %>    
+
+      <div id="follow-form">
+        <% if current_user.following?(@user) %>
+          <%= render 'users/unfollow' %>
+        <% else %>
+          <%= render 'users/follow' %>
+        <% end %>
+      </div>
+       
+    </div>
+
+  <% end %>
+
+  <a class="btn-floating btn-small waves-effect waves-light red" id="close-btn"><i class="material-icons">close</i></a>
+
+</div>
