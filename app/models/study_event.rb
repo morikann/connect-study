@@ -92,5 +92,20 @@ class StudyEvent < ApplicationRecord
     end
   end
 
+  def create_notification_invite_user!(current_user, invite_user_ids)
+    # 招待したユーザー全員に通知を送る
+    invite_user_ids.each do |invite_user_id|
+      save_notification_invite_user!(current_user, invite_user_id)
+    end
+  end
+
+  def save_notification_invite_user!(current_user, invite_user_id)
+    notification = current_user.active_notifications.build(
+      study_event_id: id,
+      visited_id: invite_user_id,
+      action: 'invite'
+    )
+    notification.save if notification.valid?
+  end
 
 end

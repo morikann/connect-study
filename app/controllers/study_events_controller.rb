@@ -95,6 +95,9 @@ class StudyEventsController < ApplicationController
     @study_event.event_users.create(user_id: current_user.id)
     session[:event_users].each { |user_id| @study_event.event_users.create(user_id: user_id) }
 
+    # 招待したユーザーに通知を送る
+    @study_event.create_notification_invite_user!(current_user, session[:event_users]) if session[:event_users]
+
     session.delete(:study_event)
     session.delete(:location)
     session.delete(:image_cache_name)
