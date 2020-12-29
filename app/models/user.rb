@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :current_password
+
+  # geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

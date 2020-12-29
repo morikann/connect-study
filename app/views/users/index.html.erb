@@ -4,39 +4,40 @@
   <h1 class="profile-title">勉強仲間</h1>
 </div>
 
-<div class="row">
-  <% @users.each do |user| %>
-    <% unless current_user?(user) %>
-      <div class="col s12">
-        <%= link_to profile_path(user.profile), class: 'user-list-link', remote: true do %>
-          <div class="card user-list-wrapper">
-            <div class="user-list-img">
-              <%= image_tag user.profile.avatar.url, class: 'circle-img user-list-img' %>
-            </div>
-            <div class="user-list-info">
-              <div class="user-list-name"><%= user.profile.username %></div>
-              <div class="user-list-detail">
-                <%= user.profile.prefecture.name %>
-                <%= user_age(user.profile.birth_date) %>歳
-              </div>
-              <div class="user-list-tags">
-                <% user.profile.tags.pluck(:name).each do |tag_name| %>
-                  <div class="chip">
-                    <%= tag_name %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-            <div class="user-list-icon">
-               <i class="material-icons">keyboard_arrow_right</i>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>  
+<div class="near-user-search-btn-wrapper">
+  <button class="btn waves-effect waves-light tooltipped" onclick="getLocation()" data-position="bottom" data-tooltip="自分も近くのユーザーに見つけてもらえるようになります">
+    現在地から5km以内のユーザーを検索
+    <i class="material-icons left" style="margin-right: 3px;">place</i>
+  </button>
 </div>
+
+<div class="row" id="search-users">
+  <%= render @users %>
+</div>
+
 <%= paginate @users %>
 
 <div id="profile-modal">
 </div>
+        
+<script>
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = 'このブラウザーはGeolocationをサポートしていません';
+  }
+}
+
+function showPosition(position) {
+  $.ajax({
+    type: 'POST',
+    url: '/users/search_user',
+    data: {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    }
+  })
+}
+</script>
