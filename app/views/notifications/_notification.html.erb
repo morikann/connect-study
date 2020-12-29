@@ -11,7 +11,9 @@
   <% when 'DM' then %>
     <span class="notification-message">あなたとのメッセージルームを作りました</span>
   <% when 'bookmark' then %>
-    <span class="notification-message"><%= link_to 'あなたの勉強会', study_event_path(notification.study_event_id) %>をブックマークしました</span>
+    <span class="notification-message"><%= link_to 'あなたの勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>をブックマークしました</span>
+  <% when 'invite' then %>
+    <span class="notification-message">あなたを<%= link_to '勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>に招待しました</span>
   <% end %>
   <div class="right-align"><%= time_ago_in_words(notification.created_at) %>前</div>
 </div>
