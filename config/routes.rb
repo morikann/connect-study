@@ -10,12 +10,16 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+
+    collection do 
+      post '/search_user', to: 'users#search_user'
+    end
   end
 
   resources :profiles   
   resources :relationships, only: %i(create destroy)
   resources :notifications, only: :index
-  resources :rooms, only: %i(index show create)
+  resources :rooms, only: %i(index show create) 
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
   resources :study_events, only: %i(index show edit update destroy)

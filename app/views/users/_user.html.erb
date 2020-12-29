@@ -1,0 +1,28 @@
+<% unless current_user?(user) %>
+  <div class="col s12">
+    <%= link_to profile_path(user.profile), class: 'user-list-link', remote: true do %>
+      <div class="card user-list-wrapper">
+        <div class="user-list-img">
+          <%= image_tag user.profile.avatar.url, class: 'circle-img user-list-img' %>
+        </div>
+        <div class="user-list-info">
+          <div class="user-list-name"><%= user.profile.username %></div>
+          <div class="user-list-detail">
+            <%= user.profile.prefecture.name %>
+            <%= user_age(user.profile.birth_date) %>歳
+          </div>
+          <div class="user-list-tags">
+            <% user.profile.tags.pluck(:name).each do |tag_name| %>
+              <div class="chip">
+                <%= tag_name %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="user-list-icon">
+          <i class="material-icons">keyboard_arrow_right</i>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
