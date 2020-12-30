@@ -30,7 +30,17 @@
   <div>
     <%= image_tag @study_event.image.url, class: 'event-show-img' %>
   </div>
-  <div class="event-date-label">開催日時</div>
+  <ul class="event-show-attend-button">
+    <li class="event-date-label">開催日時</li>
+    <li>
+      <%= form_with model: @notification, local: true, data: { confirm: '勉強会の主催者に参加希望の申し込みをします。よろしいですか？'} do |f| %>
+        <%= f.hidden_field :study_event_id, value: @study_event.id %>
+        <%= f.hidden_field :visited_id, value: @study_event.user.id %>
+        <%= f.hidden_field :action, value: 'attend_request' %>
+        <%= f.submit '参加を希望する', class: 'waves-effect waves-light btn-small' %>
+      <% end %>
+    </li>
+  </ul>
   <div class="event-show-day">
     <ul>
       <li><i class="far fa-clock fa-fw"></i></li>
