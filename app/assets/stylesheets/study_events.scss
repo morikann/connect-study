@@ -297,7 +297,7 @@ th {
   font-size: 24px;
   font-weight: 700;
   color: #242424;
-  margin-top: 20px;
+  margin-right: auto;
 }
 
 .event-show-day {
@@ -360,6 +360,12 @@ th {
 
 #bookmark-form {
   margin-left: auto;
+}
+
+.event-show-attend-button {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 // search

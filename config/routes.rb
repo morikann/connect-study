@@ -18,11 +18,16 @@ Rails.application.routes.draw do
 
   resources :profiles   
   resources :relationships, only: %i(create destroy)
-  resources :notifications, only: :index
+  resources :notifications, only: %i(index create)
   resources :rooms, only: %i(index show create) 
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
-  resources :study_events, only: %i(index show edit update destroy)
+  resources :study_events, only: %i(index show edit update destroy) do
+    collection do
+      post '/add_event_user', to: 'study_events#add_event_user'
+    end
+  end
+  resource :event_users, only: :create
 
   resources :bookmarks, only: %i(index create destroy)
   
