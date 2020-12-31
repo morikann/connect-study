@@ -11,11 +11,11 @@
   <% when 'DM' then %>
     <span class="notification-message">あなたとのメッセージルームを作りました</span>
   <% when 'bookmark' then %>
-    <span class="notification-message"><%= link_to 'あなたの勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>をブックマークしました</span>
+    <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>をブックマークしました</span>
   <% when 'invite' then %>
-    <span class="notification-message">あなたを<%= link_to '勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>に招待しました</span>
+    <span class="notification-message">あなたを勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>に招待しました</span>
   <% when 'attend_request' %>
-    <span class="notification-message"><%= link_to 'あなたの勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>に参加の申し込みをしました
+    <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>に参加の申し込みをしました
     <div class="request-judge-wrapper">
       <%= form_with model: EventUser.new, local: true, data: { confirm: 'ボタンを押した後、この通知は削除されます。その選択でよろしいですか？'} do |f| %>
         <%= f.hidden_field :user_id, value: notification.visitor.id %>
@@ -27,9 +27,9 @@
     </div>
     </span>
   <% when 'reject_request' then %>
-    <span class="notification-message">あなたの<%= link_to '勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>への参加を拒否しました</span>
+    <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>への参加を拒否しました</span>
   <% when 'approve_request' then %>
-    <span class="notification-message">あなたの<%= link_to '勉強会', study_event_path(notification.study_event_id), "data-turbolinks": false %>への参加を承認しました</span>
+    <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>への参加を承認しました</span>
   <% end %>
   <div class="right-align"><%= time_ago_in_words(notification.created_at) %>前</div>
 </div>
