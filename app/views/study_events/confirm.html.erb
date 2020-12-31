@@ -13,14 +13,14 @@
 
 <div class="card-panel profile-card">
   <!-- 直接[/confirm]を打ち込まれた際の場合わけ -->
-  <% if session[:study_event] && session[:location] %>
+  <% if @study_event && session[:location] %>
 
     <%= form_with url: confirm_url, local: true do |f| %>
       <table>
         <tbody>
           <tr>
             <th>勉強会名</th>
-            <td><%= session[:study_event]['name'] %></td>
+            <td><%= @study_event.name %></td>
           </tr>
           <tr>
             <th>イメージ画像</th>
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <th>公開範囲</th>
-            <% if session[:study_event]['display_range'] == true %>
+            <% if @study_event.display_range == true %>
               <td>フォロワーのみに公開</td>
             <% else %>
               <td>全体に公開</td>
@@ -44,14 +44,14 @@
           </tr>
           <tr>
             <th>開催日</th>
-            <td><%= session[:study_event]['date'] %></td>
+            <td><%= @study_event.date %></td>
           </tr>
           <tr>
             <th>時間</th>
-            <td><%= session[:study_event]['begin_time'] %> ~ <%= session[:study_event]['finish_time'] %></td>
+            <td><%= @study_event.begin_time.strftime("%H:%M") %> ~ <%= @study_event.finish_time.strftime("%H:%M") %></td>
           </tr>
           <tr>
-            <th>参加者</th>
+            <th>招待したユーザー</th>
             <td>
               <% session[:event_users].each do |user_id| %>
                 <%= image_tag User.find(user_id).profile.avatar.url, class: 'circle-small-img' %>
@@ -70,11 +70,22 @@
           </tr>
           <tr>
             <th>詳細</th>
-            <td><%= safe_join(session[:study_event]['description'].split("\n"), tag(:br)) %></td>
+            <td><%= safe_join(@study_event.description.split("\n"), tag(:br)) %></td>
           </tr>
         </tbody>
       </table>
       <div id="map"></div>
+
+      <%= fields_for @study_event do |e| %>
+        <%= e.hidden_field :name %>
+        <%= e.hidden_field :description %>
+        <%= e.hidden_field :date %>
+        <%= e.hidden_field :display_range %>
+        <%= e.hidden_field :begin_time %>
+        <%= e.hidden_field :finish_time %>
+        <%= e.hidden_field :tag %>
+        <%= e.hidden_field :image %>
+      <% end %>
     
       <div class="center-align">
         <%= button_tag type: 'submit', name: :back, class: 'btn waves-effect waves-light back-btn-color' do %>

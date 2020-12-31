@@ -38,6 +38,17 @@
         <%= f.text_field :address, id: 'study-event-address' %>
         <%= f.label :address %>
       </div>
+
+      <%= fields_for @study_event do |e| %>
+        <%= e.hidden_field :name %>
+        <%= e.hidden_field :description %>
+        <%= e.hidden_field :date %>
+        <%= e.hidden_field :display_range %>
+        <%= e.hidden_field :begin_time %>
+        <%= e.hidden_field :finish_time %>
+        <%= e.hidden_field :tag %>
+        <%= e.hidden_field :image %>
+      <% end %>
       
       <div class="center-align">
         <%= button_tag type: 'submit', name: :back, class: 'btn waves-effect waves-light back-btn-color' do %>
