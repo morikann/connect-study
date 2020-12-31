@@ -1,11 +1,14 @@
 class LocationsController < ApplicationController
-  def new
+  def new  #step2
     @location = Location.new(session[:location] || {})
+    # step2のurlを直接打ち込まれた際にエラーが生じないようにする
+    @study_event = StudyEvent.new(study_event_params) if params[:study_event]
   end
 
   def create 
     if params[:back]
-      return redirect_to step1_path
+      # get '/step1', to: 'study_events#new'
+      return redirect_to step1_path(study_event: study_event_params)
     end
 
     results = Geocoder.search(location_params[:address])
@@ -24,7 +27,8 @@ class LocationsController < ApplicationController
 
     if @location.valid?
       session[:location] = @location.attributes.slice('name', 'address', 'latitude', 'longitude', 'prefecture_id')
-      redirect_to step3_url
+      # get '/step3', to: study_events#event_user
+      redirect_to step3_url(study_event: study_event_params)
     else
       render 'new'
     end
@@ -34,5 +38,9 @@ class LocationsController < ApplicationController
 
   def location_params
     params.require(:location).permit(:name, :address, :prefecture_id) 
+  end
+
+  def study_event_params
+    params.require(:study_event).permit(:name, :description, :date, :display_range, :begin_time, :finish_time, :tag, :image) 
   end
 end

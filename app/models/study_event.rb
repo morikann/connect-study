@@ -1,6 +1,8 @@
 class StudyEvent < ApplicationRecord
   attr_accessor :tag
 
+  default_scope -> { order(created_at: :desc) }
+
   belongs_to :location, optional: true
 
   belongs_to :user
