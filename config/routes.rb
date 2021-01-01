@@ -7,29 +7,25 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: :index do
-    member do
-      get :following, :followers
-    end
-
-    collection do 
-      post '/search_user', to: 'users#search_user'
-    end
+    get :following, :followers, on: :member
+    post :search_user, on: :collection
   end
 
   resources :profiles   
   resources :relationships, only: %i(create destroy)
-  resources :notifications, only: %i(index create)
+
+  resources :notifications, only: :index do
+    post 'attend_request', on: :collection
+  end
+
   resources :rooms, only: %i(index show create) 
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
-  resources :study_events, only: %i(index show edit update destroy) do
-    collection do
-      post '/add_event_user', to: 'study_events#add_event_user'
-    end
-  end
+  resources :study_events, only: %i(index show edit update destroy)
   resource :event_users, only: :create
 
   resources :bookmarks, only: %i(index create destroy)
+  resources :reports, only: %i(index create show)
   
   get '/step1', to: 'study_events#new'
   post '/step1', to: 'study_events#create'

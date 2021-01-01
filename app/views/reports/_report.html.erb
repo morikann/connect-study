@@ -1,0 +1,18 @@
+<div class="section">
+  <%= link_to(profile_path(report.reporter_user.profile)) do %>
+    <%= image_tag report.reporter_user.profile.avatar.url, class: 'circle-small-img' %>
+    <strong><%= report.reporter_user.profile.username %></strong>
+    <span class="notification-message">さんから</span>
+  <% end %>
+
+  <%= link_to(profile_path(report.reported_user.profile)) do %>
+    <%= image_tag report.reported_user.profile.avatar.url, class: 'circle-small-img' %>
+    <strong><%= report.reported_user.profile.username %></strong>
+    <span class="notification-message">さんの通報を受けました</span>
+  <% end %>
+</div>
+<div  class="center-align">
+  <%= link_to '詳細を見る', report_path(report) %>
+</div>
+<div class="right-align"><%= time_ago_in_words(report.created_at) %>前</div>
+<div class="divider"></div>

@@ -55,6 +55,7 @@ class ProfilesController < ApplicationController
       end
     end
     @my_study_events = @user.my_study_events
+    @report = current_user.active_reports.build
   end
 
   private
