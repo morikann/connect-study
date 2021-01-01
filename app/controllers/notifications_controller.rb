@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def create 
+  def attend_request
     duplicate_notification = Notification.where(
       visitor_id: current_user.id,
       study_event_id: notification_params[:study_event_id], 
@@ -34,6 +34,10 @@ class NotificationsController < ApplicationController
       redirect_to study_event_path(notification_params[:study_event_id])
     end
   end
+
+  def report_user
+  end
+
 
   private
 
