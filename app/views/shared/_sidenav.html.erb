@@ -59,6 +59,14 @@
           <% end %>
         </li>
       <% end %>
+      <% if current_user.admin? %>
+        <li class="nav-link">
+          <%= link_to reports_path, class: 'link-color' do %>
+            <i class="far fa-id-badge fa-fw"></i>
+            <span>通報リスト</span>
+          <% end %>
+        </li>
+      <% end %>
       <li class="nav-link">
         <%= link_to  destroy_user_session_path, class: 'link-color', method: :delete, data: { confirm: "ログアウトします。よろしいですか？" } do %>
           <i class="fas fa-sign-out-alt fa-fw"></i>
