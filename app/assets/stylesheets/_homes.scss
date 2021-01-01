@@ -163,10 +163,12 @@ input[type="submit"] {
 }
 
 .calendar-table {
-  display: block;
-  overflow-x: scroll;
-  // white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
+  @include mq(sm) {
+    display: block;
+    overflow-x: scroll;
+    // white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .simple-calendar .day {
