@@ -1,8 +1,6 @@
 <%= render 'shared/search', something_url: users_url %>
 
-<div class="profile-title-wrapper top">
-  <h1 class="profile-title">勉強仲間</h1>
-</div>
+<%= render 'shared/title', title: '勉強仲間' %>
 
 <div class="near-user-search-btn-wrapper">
   <button class="btn waves-effect waves-light tooltipped" onclick="getLocation()" data-position="bottom" data-tooltip="自分も近くのユーザーに見つけてもらえるようになります">

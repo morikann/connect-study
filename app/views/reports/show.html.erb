@@ -1,0 +1,24 @@
+<ul class="report-user-wrapper">
+  <li>
+    <%= link_to profile_path(@report.reporter_user.profile) do %>
+      <%= image_tag @report.reporter_user.profile.avatar.url, class: 'circle-small-img' %>
+      <%= @report.reporter_user.profile.username %>
+    <% end %>
+  </li>
+
+  <li class="report-arrow">
+    <i class="material-icons">arrow_forward</i>
+  </li>
+
+  <li>
+    <%= link_to profile_path(@report.reported_user.profile) do %>
+      <%= image_tag @report.reported_user.profile.avatar.url, class: 'circle-small-img' %>
+      <%= @report.reported_user.profile.username %>
+    <% end %>
+  </li>
+</ul>
+<div class="divider"></div>
+
+<div class="report-description">
+  <%= @report.description %>
+</div>

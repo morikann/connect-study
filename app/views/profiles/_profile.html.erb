@@ -25,6 +25,33 @@
           <% end %>
         <% end %>
       <% end %>
+
+      <div class="dropdown-wrapper">
+        <a class='dropdown-trigger' data-target='dropdown1'>
+          <i class="fas fa-fw fa-ellipsis-v"></i>
+        </a>
+      </div>
+
+      <ul id='dropdown1' class='dropdown-content'>
+        <li>
+          <a class="modal-trigger" data-target="modal1">通報する</a>
+        </li>
+      </ul>
+
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <div class="modal-title">通報内容を記入してください</div>
+          <div class="divider"></div>
+          <%= form_with model: @report, local: true do |f| %>
+            <%= render 'shared/error_messages', instance: @report %>
+            <%= f.text_area :description, class: 'materialize-textarea', id: 'textarea2', data: { length: '200' } %>
+            <%= f.hidden_field :reported_user_id, value: @user.id %>
+            <div class="center-align">
+              <%= f.submit '通報する', class: 'waves-effect waves-light btn' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
       
     </div>
   <% end %>

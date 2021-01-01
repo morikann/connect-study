@@ -31,6 +31,9 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy 
   has_many :bookmark_events, through: :bookmarks, source: :study_event
 
+  has_many :active_reports, class_name: "Report", foreign_key: :reporter_user_id, dependent: :destroy 
+  has_many :passive_reports, class_name: "Report", foreign_key: :reported_user_id, dependent: :destroy
+
   default_scope -> { order(created_at: :desc) }
 
   scope :search, -> (search_params) do
