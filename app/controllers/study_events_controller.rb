@@ -10,20 +10,13 @@ class StudyEventsController < ApplicationController
 
   def edit
     @study_event = StudyEvent.find(params[:id])
-    @tag_list = @study_event.tags.pluck(:name).join(' ')
+    gon.tag_list = @study_event.tags
+    # @tag_list = @study_event.tags.pluck(:name).join(' ')
   end
 
   def create
     @study_event = current_user.my_study_events.build(study_event_params)
     if @study_event.valid?
-      # フォームで渡された値のみ保存。ActionController::Parametersの仕様変更の可能性があるのでstudy_event_paramsをそのまま保存しない。
-      # session[:study_event] = @study_event.attributes.slice(*study_event_params.keys)
-      # # インスタンスの属性にはparamsと異なる形式の日付、時間が格納されているのでその形式を元に戻す
-      # session[:study_event]['date'] = session[:study_event]['date'].strftime("%Y-%m-%d")
-      # session[:study_event]['begin_time'] = session[:study_event]['begin_time'].strftime("%H:%M")
-      # session[:study_event]['finish_time']= session[:study_event]['finish_time'].strftime("%H:%M")
-      # session[:study_event]['tag'] = study_event_params[:tag]
-      
       # # 画像の変更があった場合のみ
       if @study_event.image.cache_name
         session[:image_cache_name] = @study_event.image.cache_name
@@ -38,7 +31,7 @@ class StudyEventsController < ApplicationController
 
   def update
     study_event = StudyEvent.find(params[:id])
-    tag_list = study_event_params[:tag].split(/ |　/)
+    tag_list = study_event_params[:tag].split(',')
     if study_event.update(study_event_params)
       study_event.save_tags(tag_list)
       flash[:notice] = '勉強会の更新が完了しました'
@@ -80,7 +73,7 @@ class StudyEventsController < ApplicationController
     # confirmのurlを直接打ち込まれた際にエラーが生じないようにする
     if params[:study_event]
     @study_event = StudyEvent.new(study_event_params)
-    @tag_list = study_event_params[:tag].split(/ |　/)
+    @tag_list = study_event_params[:tag].split(',')
     end
 
     gon.latitude = session[:location]['latitude'] if session[:location]
@@ -101,7 +94,7 @@ class StudyEventsController < ApplicationController
     @study_event.location_id = location.id
     @study_event.image.retrieve_from_cache!(session[:image_cache_name]) if session[:image_cache_name]
     @study_event.save if @study_event.valid?
-    tag_list = study_event_params[:tag].split(/ |　/)
+    tag_list = study_event_params[:tag].split(',')
     @study_event.save_tags(tag_list)
     
     @study_event.event_users.create(user_id: current_user.id)

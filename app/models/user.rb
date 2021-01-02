@@ -41,9 +41,11 @@ class User < ApplicationRecord
 
     tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])
   end
+
   scope :tag_like, -> (tag) do
     self.joins(profile: :tags).where('tags.name LIKE ?', "%#{tag}%") if tag.present?
   end
+
   scope :prefecture_id_is, -> (prefecture_id) do
     self.joins(:profile).where(profiles: { prefecture_id: prefecture_id }) if prefecture_id.present?
   end
