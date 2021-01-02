@@ -1,4 +1,4 @@
-<% unless current_user?(user) %>
+<% unless user.admin? || current_user?(user) %>
   <div class="col s12">
     <%= link_to profile_path(user.profile), class: 'user-list-link', remote: true do %>
       <div class="card user-list-wrapper">
