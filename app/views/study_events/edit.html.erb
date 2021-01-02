@@ -2,7 +2,7 @@
 
 <div class="card-panel profile-card">
   <div class="row">
-    <%= form_with model: @study_event, local: true do |f| %>
+    <%= form_with model: @study_event, id: 'form-include-tag', local: true do |f| %>
       <%= render 'shared/error_messages', instance: @study_event %> 
       <div class="switch col s12 display-switch">
         <label>
@@ -43,10 +43,11 @@
         <%= f.label :finish_time %>
       </div>
 
+      <div class="event-label">関連する勉強タグ</div>
       <div class="input-field col s12">
-        <%= f.text_field :tag, value: @tag_list, placeholder: "プログラミング 英語", id: 'tag-input' %>
-        <%= f.label :tag, '関連する勉強タグ' %>
-        <div id="tag-wrap" style="margin-left: 0;"></div>
+        <div class="chips chips-initial" id="tags-wrapper" style="margin-top: 0px;">
+          <%= f.text_field :tag, style: "border-bottom: none;", id: 'tag-field' %>
+        </div>
       </div>
   
       <div class="input-field col s12">

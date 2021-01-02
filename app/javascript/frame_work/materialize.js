@@ -45,3 +45,8 @@ $(document).on('turbolinks:load', function(){
 $(document).on('turbolinks:load', function() {
   $('input#input_text, textarea#textarea2').characterCounter();
 });
+
+document.addEventListener('turbolinks:load', function() {
+  var elems = document.querySelectorAll('.chips');
+  var instances = M.Chips.init(elems, []);
+});

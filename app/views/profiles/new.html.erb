@@ -4,7 +4,7 @@
     <h1 class="profile-title">プロフィール</h1>
   </div>
 
-  <%= form_with model: @user_profile, local: true do |f| %>
+  <%= form_with model: @user_profile, id: 'form-include-tag', local: true do |f| %>
     <%= render 'shared/error_messages', instance: @user_profile %>
     <div class="row">
       <div class="profile-avatar-wrapper">
@@ -41,11 +41,12 @@
         <%= f.label :self_introduction, class: "active" %>
       </div>
 
+      <div class="tag-label">勉強ジャンルタグ</div>
       <div class="input-field col s12">
         <i class="material-icons prefix"><span class="essential">*</span>local_offer</i>
-        <%= f.text_field :tag, placeholder: "プログラミング 英語", id: 'tag-input' %>
-        <%= f.label :tag, '勉強ジャンル' %>
-        <div id="tag-wrap"></div>
+        <div class="chips chips-initial" id="tags-wrapper" style="margin-top: 0px;">
+          <%= f.text_field :tag, style: "border-bottom: none;", id: 'tag-field' %>
+        </div>
       </div>
 
       <div class="input-field col s12">

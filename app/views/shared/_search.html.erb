@@ -1,9 +1,11 @@
-<%= form_with scope: :search, url: something_url, method: :get, class: 'col s12', local: true do |f| %>
+<%= form_with scope: :search, url: something_url, id: 'form-include-tag', method: :get, class: 'col s12', local: true do |f| %>
   <ul class="search-form-wrapper">
     <li class="input-field first-search-list">
-      <%= f.text_field :tag %>
-      <%= f.label :tag, '勉強タグ' %>
+      <div class="chips chips-initial" id="tags-wrapper" style="margin-top: 7px;">
+        <%= f.text_field :tag, style: "border-bottom: none; margin-bottom: 0px;", id: 'tag-field', placeholder: '勉強タグ' %>
+      </div>
     </li>
+
     <li class="search-border"></li>
     <li class="input-field second-search-list">
       <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '都道県' %>
