@@ -28,7 +28,7 @@ document.addEventListener("turbolinks:load", () => {
     const tags = [] = tagsWrapper.getElementsByClassName('chip');
     for(let tag of tags) {
       // タグの値のみ配列に格納していく
-      values.push(tag.innerText.replace(/\r?\nclose/, ''));
+      values.push(tag.innerHTML.replace('<i class="material-icons close">close</i>', ''));
     }
 
     tagField.value = values;
