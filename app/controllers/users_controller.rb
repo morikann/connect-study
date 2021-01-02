@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     results = Geocoder.search([latitude, longitude])
     address = results.first.address
     if user.update(address: address, latitude: latitude, longitude: longitude)
-      @users = User.near([latitude, longitude], 5, units: :km).page(params[:page])
+      @users = User.near([latitude, longitude], params[:range], units: :km).page(params[:page])
     else
       flash[:alert] = '検索に失敗しました'
       render 'index'
