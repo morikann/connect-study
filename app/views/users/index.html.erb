@@ -1,10 +1,13 @@
 <%= render 'shared/search', something_url: users_url %>
 
 <%= render 'shared/title', title: '勉強仲間' %>
-
+<div>
+  <input type="range" min="5" max="100" value="5" id="range"/>
+</div>
+        
 <div class="near-user-search-btn-wrapper">
-  <button class="btn waves-effect waves-light tooltipped" onclick="getLocation()" data-position="bottom" data-tooltip="自分も近くのユーザーに見つけてもらえるようになります">
-    現在地から5km以内のユーザーを検索
+  <button class="btn waves-effect waves-light tooltipped" onclick="getLocation()" data-position="bottom" data-tooltip="あなたも近くのユーザーに見つけてもらえるようになります">
+    現在地から<output id="output">5</output>km以内のユーザーを検索
     <i class="material-icons left" style="margin-right: 3px;">place</i>
   </button>
 </div>
@@ -20,6 +23,10 @@
         
 <script>
 
+document.getElementById('range').addEventListener('input', (e) => {
+  document.getElementById('output').value = e.target.value;
+})
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -29,12 +36,14 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  const rangeValue = document.getElementById('output').value;
   $.ajax({
     type: 'POST',
     url: '/users/search_user',
     data: {
       latitude: position.coords.latitude,
-      longitude: position.coords.longitude
+      longitude: position.coords.longitude,
+      range: rangeValue
     }
   })
 }
