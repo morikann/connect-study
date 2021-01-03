@@ -17,6 +17,11 @@ class EventUsersController < ApplicationController
     if @event_user.save
       # 勉強会への参加を承認したことを通知する
       @event_user.create_notification_approve!(current_user, event_user_params[:user_id], event_user_params[:study_event_id], event_user_params[:request_notification_id])
+      # 勉強会のグループに追加する
+      study_event = StudyEvent.find(event_user_params[:study_event_id])
+      room = study_event.room
+      Entry.create(user_id: event_user_params[:user_id], room_id: room.id)
+
       flash[:notice] = "#{user.profile.username}さんの勉強会への参加を承認しました"
       redirect_to notifications_path
     else
