@@ -12,7 +12,9 @@
 </div>
 
 <div class="card-panel profile-card">
-  <div class="center-align">招待するユーザーを選択してください</div>
+  <div class="center-align">
+    招待するユーザーを選択してください<br>(相互フォロワーのみ可)<span class="essential">*</span>
+  </div>
   <div class="row">
   
     <%= form_with url: step3_url, local: true do |f| %>

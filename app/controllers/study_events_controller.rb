@@ -97,8 +97,18 @@ class StudyEventsController < ApplicationController
     tag_list = study_event_params[:tag].split(',')
     @study_event.save_tags(tag_list)
     
+    room = @study_event.create_room
+    Entry.create(user_id: current_user.id, room_id: room.id)
+
     @study_event.event_users.create(user_id: current_user.id)
-    session[:event_users].each { |user_id| @study_event.event_users.create(user_id: user_id) }
+
+    # 招待したユーザーを勉強会とそのチャットグループに参加させる
+    if session[:event_users]
+      session[:event_users].each do |user_id| 
+        @study_event.event_users.create(user_id: user_id) 
+        Entry.create(user_id: user_id, room_id: room.id)
+      end
+    end
 
     # 招待したユーザーに通知を送る
     @study_event.create_notification_invite_user!(current_user, session[:event_users]) if session[:event_users]
