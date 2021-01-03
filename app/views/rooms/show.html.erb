@@ -1,13 +1,17 @@
 <div class="message-top-wrapper">
   <div class="section center-align">
-    <% @entries.each do |e| %>
-      <% unless e.user == current_user %>
-        <%= link_to(profile_path(e.user.profile)) do %>
-          <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
-          <strong><%= e.user.profile.username %></strong>
+    <% if @room.study_event %>
+      <strong><%= link_to @room.study_event.name, study_event_path(@room.study_event) %></strong>
+    <% else %>
+      <% @entries.each do |e| %>
+        <% unless e.user == current_user %>
+          <%= link_to(profile_path(e.user.profile)) do %>
+            <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
+            <strong><%= e.user.profile.username %></strong>
+          <% end %>
         <% end %>
-      <% end %>
-    <% end %> 
+      <% end %> 
+    <% end %>
   </div>
   <div class="divider"></div>
 </div>

@@ -18,6 +18,8 @@ class StudyEvent < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  has_one :room, dependent: :destroy
+
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, presence: true
   validates :begin_time, presence: true

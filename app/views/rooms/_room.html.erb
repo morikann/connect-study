@@ -1,0 +1,21 @@
+<% if room.study_event %>
+  <%= link_to room_path(room), class: 'collection-item', "data-turbolinks": false do %>
+    <div class="group-chat">
+      <strong><%= room.study_event.name %></strong>
+    </div>
+    <div class="center-align">
+      <% room.users.each do |user| %>
+        <%= image_tag user.profile.avatar.url, class: 'circle-small-img' %>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <% room.users.each do |user| %>
+    <% unless user.id == current_user.id %>
+      <%= link_to room_path(room), class: 'collection-item', "data-turbolinks": false do %>
+        <%= image_tag user.profile.avatar.url, class: 'circle-small-img' %>
+        <strong class="room-username"><%= user.profile.username %></strong>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
