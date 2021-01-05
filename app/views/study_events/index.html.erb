@@ -3,54 +3,7 @@
 <%= render 'shared/search', something_url: study_events_url %>
           
 <div class="row">
-  <% @study_events.each do |study_event| %>
-    <div class="col s12 l8 offset-l2" style="margin-bottom: 40px;">
-      <%= link_to study_event_path(study_event), "data-turbolinks": false do %>
-        <div class="card study-event-card">
-          <div class="card-image">
-            <%= image_tag study_event.image.url, class: 'study-event-img' %>
-          </div>
-          <div class="card-content-top">
-            <div class="study-event-prefecture"><%= study_event.location.prefecture.name %></div>
-            <div class="study-event-tags">
-              <% study_event.tags.each do |tag| %>
-                <div class="chip"><%= tag.name %></div>
-              <% end %>
-            </div>
-          </div>
-          <div class="card-title">
-            <a>
-              <%= study_event.name %>    
-            </a>        
-          </div>
-          <div class="card-content">
-              <%= truncate(study_event.description, length: 100) %>
-          </div>
-          <div class="card-action">
-            <ul>
-              <li>
-                <%= link_to profile_path(study_event.user.profile), "data-turbolinks": false do %>
-                  <%= image_tag study_event.user.profile.avatar.url, class: 'circle-small-img' %>
-                  <span style="color: #262626; text-transform: none;"><%= study_event.user.profile.username.downcase %></span>
-                <% end %>  
-              </li>
-              <li id="bookmark-form">
-                <% if current_user.bookmark?(study_event) %>
-                  <%= link_to study_event_path(study_event), class: 'btn-floating btn-small waves-effect waves-light', "data-turbolinks": false do %>
-                    <i class="fas fa-bookmark"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to study_event_path(study_event), class: 'btn-floating btn-small waves-effect waves-light', "data-turbolinks": false do %>
-                    <i class="far fa-bookmark"></i>
-                  <% end %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render @study_events %>
 </div>
 
 <%= link_to step1_path, class: 'btn-floating tooltipped btn-large waves-effect waves-light red btn-fixed', data: { position: 'top', tooltip: '勉強会を作る' } do %>
