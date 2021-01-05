@@ -23,20 +23,27 @@
   
   <div class="row">
     <%= form_with model: @location, url: step2_url, local: true do |f| %>
-      <%= render 'shared/error_messages', instance: @location %> 
+      <%= render 'shared/error_messages', instance: @location %>
 
       <div class="input-field col s12">
         <%= f.text_field :name %>
-        <%= f.label :name %>
+        <%= f.label :name do %>
+          <span class="essential">*</span>
+          開催場所
+        <% end %>
       </div>
 
       <div class="input-field col s12 prefecture-wrapper">
+        <span class="essential">*</span>
         <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "都道府県を選択してください" %>
       </div>
 
       <div class="input-field col s12">
         <%= f.text_field :address, id: 'study-event-address' %>
-        <%= f.label :address %>
+        <%= f.label :address do %>
+          <span class="essential">*</span>
+          住所
+        <% end %>
       </div>
 
       <%= fields_for @study_event do |e| %>

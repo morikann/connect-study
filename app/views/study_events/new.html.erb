@@ -14,7 +14,7 @@
 <div class="card-panel profile-card">
   <div class="row">
     <%= form_with model: @study_event, id: 'form-include-tag', url: step1_url, local: true do |f| %>
-      <%= render 'shared/error_messages', instance: @study_event %> 
+      <%= render 'shared/error_messages' %> 
       <div class="switch col s12 display-switch">
         <label>
           public
@@ -26,7 +26,10 @@
 
       <div class="input-field col s12">
         <%= f.text_field :name %>
-        <%= f.label :name %>
+        <%= f.label :name do %>
+          <span class="essential">*</span>
+          勉強会名
+        <% end %>
       </div>
 
       <div class="study-image-title">イメージ画像</div>
@@ -40,20 +43,29 @@
 
       <div class="input-field col s12">
         <%= f.date_field :date %>
-        <%= f.label :date %>
+        <%= f.label :date do %>
+          <span class="essential">*</span>
+          日にち
+        <% end %>
       </div>
 
       <div class="input-field col s6">
         <%= f.time_field :begin_time %>
-        <%= f.label :begin_time %>
+        <%= f.label :begin_time do %>
+          <span class="essential">*</span>
+          開始時刻
+        <% end %>
       </div>
 
       <div class="input-field col s6">
         <%= f.time_field :finish_time %>
-        <%= f.label :finish_time %>
+        <%= f.label :finish_time do %>
+          <span class="essential">*</span>
+          終了時刻
+        <% end %>
       </div>
 
-      <div class="event-label">関連する勉強タグ</div>
+      <div class="event-label"><span class="essential" style="margin-right: 3px">*</span>関連する勉強タグ</div>
       <div class="input-field col s12">
         <div class="chips" id="tags-wrapper" style="margin-top: 0px;">
           <%= f.text_field :tag, style: "border-bottom: none;", id: 'tag-field' %>
@@ -62,7 +74,10 @@
   
       <div class="input-field col s12">
         <%= f.text_area :description, class: 'materialize-textarea' %>
-        <%= f.label :description %>
+        <%= f.label :description do %>
+          <span class="essential">*</span>
+          詳細
+        <% end %>
       </div>
 
       <div class="center-align">
