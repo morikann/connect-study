@@ -1,8 +1,8 @@
 <%= render 'shared/title', title: '通知' %>
 <div class="divider"></div>
 
-<% if @notifications.present? %>
+<% if @notifications.exists? %>
   <%= render partial: 'notification', collection: @notifications %>
 <% else %>
-  <p class="no-notification-message">過去の通知はありません</p>
+  <p class="no-message">過去の通知はありません</p>
 <% end %>

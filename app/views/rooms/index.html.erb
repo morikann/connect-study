@@ -1,5 +1,10 @@
 <%= render 'shared/title', title: 'メッセージ' %>
 
-<ul class="collection">
-  <%= render @rooms %>
-</ul>
+<% if @rooms.exists? %>
+  <ul class="collection">
+    <%= render @rooms %>
+  </ul>
+<% else %>
+  <div class="divider"></div>
+  <p class="no-message">メッセージルームはありません</p>
+<% end %>
