@@ -5,10 +5,14 @@
     <% else %>
       <% @entries.each do |e| %>
         <% unless e.user == current_user %>
-          <%= link_to(profile_path(e.user.profile)) do %>
-            <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
-            <strong><%= e.user.profile.username %></strong>
-          <% end %>
+          <ul class="message-top">
+            <li>
+              <%= link_to(profile_path(e.user.profile)) do %>
+                <%= image_tag e.user.profile.avatar.url, class: 'circle-small-img' %>
+                <strong><%= e.user.profile.username %></strong>
+              <% end %>
+            </li>
+          </ul>
         <% end %>
       <% end %> 
     <% end %>

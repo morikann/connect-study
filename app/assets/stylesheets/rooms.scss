@@ -1,3 +1,5 @@
+@import 'media_queries';
+
 blockquote {
   font-weight: 800;
   font-size: 28px;
@@ -12,4 +14,10 @@ blockquote {
 .group-chat {
   margin-bottom: 10px;
   text-align: center;
+}
+
+.message-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
