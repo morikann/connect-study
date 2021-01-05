@@ -1,6 +1,6 @@
 class StudyEventsController < ApplicationController
   def index
-    @study_events = StudyEvent.includes(:location, :tags, user: :profile).search(search_params)
+    @study_events = StudyEvent.includes(:location, :tags, user: :profile).search(search_params).page(params[:page])
   end
 
   def new  #step1

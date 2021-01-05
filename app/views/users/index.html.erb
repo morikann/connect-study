@@ -1,13 +1,15 @@
+<%= render 'shared/title', title: 'ユーザーを探す' %>
+
 <%= render 'shared/search', something_url: users_url %>
 
-<%= render 'shared/title', title: '勉強仲間' %>
+<%= render partial: 'tag', collection: @tags %> 
 
-<div>
+<div class="range-wrapper">
   <input type="range" min="5" max="100" value="5" id="range"/>
 </div>
         
 <div class="near-user-search-btn-wrapper">
-  <button class="btn waves-effect waves-light tooltipped" onclick="getLocation()" data-position="bottom" data-tooltip="あなたも近くのユーザーに見つけてもらえるようになります">
+  <button class="btn waves-effect waves-light tooltipped" id="getLocation" data-position="bottom" data-tooltip="あなたも近くのユーザーに見つけてもらえるようになります">
     現在地から<output id="output">5</output>km以内のユーザーを検索
     <i class="material-icons left" style="margin-right: 3px;">place</i>
   </button>
@@ -15,37 +17,10 @@
 
 <div class="row" id="search-users">
   <%= render @users %>
+  <%= paginate @users %>
 </div>
-
-<%= paginate @users %>
 
 <div id="profile-modal">
 </div>
         
-<script>
-
-document.getElementById('range').addEventListener('input', (e) => {
-  document.getElementById('output').value = e.target.value;
-})
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = 'このブラウザーはGeolocationをサポートしていません';
-  }
-}
-
-function showPosition(position) {
-  const rangeValue = document.getElementById('output').value;
-  $.ajax({
-    type: 'POST',
-    url: '/users/search_user',
-    data: {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-      range: rangeValue
-    }
-  })
-}
-</script>
+<%= javascript_pack_tag 'searchUser', 'data-turbolinks-track': 'reload' %>
