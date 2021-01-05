@@ -71,6 +71,10 @@ class User < ApplicationRecord
     self.followers.includes(:profile) & self.following.includes(:profile)
   end
 
+  def matcher?(other_user)
+    followers.include?(other_user) & following.include?(other_user)
+  end
+
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, self.id, 'follow'])
     if temp.blank?
