@@ -36,6 +36,11 @@
         <li>
           <a class="modal-trigger" data-target="modal1">通報する</a>
         </li>
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to 'ユーザーを削除', user_path(@user), method: :delete, data: { position: 'top', tooltip: '削除', confirm: "#{@user.profile.username}を削除します。よろしいですか？" } %>
+          </li>
+        <% end %>
       </ul>
 
       <div id="modal1" class="modal">
