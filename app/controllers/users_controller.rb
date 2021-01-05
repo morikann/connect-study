@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
-  def index 
+  def index
     @users = User.includes(profile: :tags).search(search_params).page(params[:page])
+    @tags = Tag.includes(:profiles)
   end
 
   def following
@@ -20,16 +22,21 @@ class UsersController < ApplicationController
   end
 
   def search_user
-    user = User.find(current_user.id)
     latitude, longitude = params[:latitude], params[:longitude]
     results = Geocoder.search([latitude, longitude])
     address = results.first.address
-    if user.update(address: address, latitude: latitude, longitude: longitude)
+    if current_user.update(address: address, latitude: latitude, longitude: longitude)
       @users = User.near([latitude, longitude], params[:range], units: :km).page(params[:page])
     else
       flash[:alert] = '検索に失敗しました'
       render 'index'
     end
+  end
+
+  def search_user_from_tag 
+    tag_name = params[:tag_name]
+    @users = User.includes(profile: :tags).where(tags: { name: tag_name })
+    render :search_user
   end
 
   private 

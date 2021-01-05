@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :users, only: :index do
     get :following, :followers, on: :member
-    post :search_user, on: :collection
+
+    collection do
+      post :search_user
+      get :search_user_from_tag
+    end
   end
 
   resources :profiles   

@@ -390,12 +390,30 @@ th {
 
   .last-search-list {
     width: 10%;
+    margin-left: 20px;
+    margin-bottom: 5px;
+
+    @include mq(sm) {
+      margin-left: 10px;
+    }
   }
 }
 
-.search-border {
-  background: #9e9e9e;
-  width: 1px;
-  height: 40px;
-  margin: 0 10px;
+.search-form-wrapper {
+  .chips, .select-wrapper input.select-dropdown {
+    border: 1px solid #9e9e9e;
+  }
+
+  .chips {
+    min-height: 0px;
+    padding-left: 10px;
+  }
+
+  .chips.focus {
+    box-shadow: none;
+  }
+
+  .select-wrapper input.select-dropdown {
+    padding-left: 10px;
+  }
 }

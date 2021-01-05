@@ -217,3 +217,30 @@
   text-align: center;
   margin-bottom: 30px;
 }
+
+.range-wrapper {
+  margin-top: 20px;
+}
+
+// search_user from tag
+
+.profile-count {
+  color: #fafafa;
+  background: #242424;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-left: 5px;
+  pointer-events: none;
+}
+
+.count-chip {
+  border: 1px solid #242424;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.count-chip:hover {
+  background: #26a69a;
+  color: #fafafa;
+  cursor: pointer;
+}
