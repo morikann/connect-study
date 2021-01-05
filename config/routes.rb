@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, only: :index do
+  resources :users, only: %i(index destroy) do
     get :following, :followers, on: :member
 
     collection do

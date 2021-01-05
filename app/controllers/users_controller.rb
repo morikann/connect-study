@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
+  before_action :require_admin, only: :destroy
 
   def index
     @users = User.includes(profile: :tags).search(search_params).page(params[:page])
     @tags = Tag.includes(:profiles)
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to users_url, notice: "#{user.profile.username}を削除しました。"
   end
 
   def following
@@ -43,6 +50,10 @@ class UsersController < ApplicationController
 
   def search_params 
     params.fetch(:search, {}).permit(:tag, :prefecture_id)
+  end
+
+  def require_admin
+    redirect_to root_url unless current_user.admin?
   end
 
 end
