@@ -30,7 +30,8 @@ class LocationsController < ApplicationController
       # get '/step3', to: study_events#event_user
       redirect_to step3_url(study_event: study_event_params)
     else
-      render 'new'
+      flash[:alert] = @location.errors.full_messages
+      redirect_to step2_path(study_event: study_event_params)
     end
   end
 
