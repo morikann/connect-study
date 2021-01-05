@@ -53,6 +53,7 @@ ja:
         image: 参考画像
         latitude: 緯度
         longitude: 経度
+        prefecture_id: 都道府県
   date:
     abbr_day_names:
     - 日
