@@ -26,8 +26,8 @@
         <% end %>
       <% end %>
 
-      <div class="dropdown-wrapper">
-        <a class='dropdown-trigger' data-target='dropdown1'>
+      <div class="dropdown-wrapper" style="cursor: pointer">
+        <a class='dropdown-button' data-activates='dropdown1'>
           <i class="fas fa-fw fa-ellipsis-v"></i>
         </a>
       </div>
@@ -37,6 +37,7 @@
           <a class="modal-trigger" data-target="modal1">通報する</a>
         </li>
         <% if current_user.admin? %>
+          <li class="divider"></li>
           <li>
             <%= link_to 'ユーザーを削除', user_path(@user), method: :delete, data: { position: 'top', tooltip: '削除', confirm: "#{@user.profile.username}を削除します。よろしいですか？" } %>
           </li>
