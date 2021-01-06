@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
     if @user_profile.update(profile_params)
       @user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの変更が完了しました"
-      redirect_to root_url
+      redirect_to profile_url(@user_profile)
     else
       render 'edit'
     end
