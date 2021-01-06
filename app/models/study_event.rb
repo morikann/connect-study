@@ -3,7 +3,7 @@ class StudyEvent < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  belongs_to :location, optional: true
+  has_one :location, dependent: :destroy
 
   belongs_to :user
 

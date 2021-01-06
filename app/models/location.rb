@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
   geocoded_by :address
-  has_many :study_events
+  belongs_to :study_event, optional: true
 
   validates :name, presence: true
   validates :address, presence: true
