@@ -23,7 +23,7 @@
   
   <div class="row">
     <%= form_with model: @location, url: step2_url, local: true do |f| %>
-      <%= render 'shared/error_messages', instance: @location %>
+      <%= render 'shared/after_redirect_message' %>
 
       <div class="input-field col s12">
         <%= f.text_field :name %>
