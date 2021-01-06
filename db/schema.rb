@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_013724) do
+ActiveRecord::Schema.define(version: 2021_01_06_054845) do
 
   create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_01_03_013724) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "prefecture_id"
+    t.bigint "study_event_id"
+    t.index ["study_event_id"], name: "index_locations_on_study_event_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -125,12 +127,10 @@ ActiveRecord::Schema.define(version: 2021_01_03_013724) do
     t.time "finish_time", null: false
     t.date "date", null: false
     t.string "name", null: false
-    t.bigint "location_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.string "image"
-    t.index ["location_id"], name: "index_study_events_on_location_id"
     t.index ["name"], name: "index_study_events_on_name"
     t.index ["user_id"], name: "index_study_events_on_user_id"
   end
@@ -175,10 +175,10 @@ ActiveRecord::Schema.define(version: 2021_01_03_013724) do
   add_foreign_key "event_tags", "tags"
   add_foreign_key "event_users", "study_events"
   add_foreign_key "event_users", "users"
+  add_foreign_key "locations", "study_events"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
-  add_foreign_key "study_events", "locations"
   add_foreign_key "tag_relationships", "profiles"
   add_foreign_key "tag_relationships", "tags"
 end

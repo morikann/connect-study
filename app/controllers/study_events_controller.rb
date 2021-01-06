@@ -11,7 +11,6 @@ class StudyEventsController < ApplicationController
   def edit
     @study_event = StudyEvent.find(params[:id])
     gon.tag_list = @study_event.tags
-    # @tag_list = @study_event.tags.pluck(:name).join(' ')
   end
 
   def create
@@ -72,14 +71,16 @@ class StudyEventsController < ApplicationController
   def confirm 
     # confirmのurlを直接打ち込まれた際にエラーが生じないようにする
     if params[:study_event]
-    @study_event = StudyEvent.new(study_event_params)
-    @tag_list = study_event_params[:tag].split(',')
+      @study_event = StudyEvent.new(study_event_params)
+      @tag_list = study_event_params[:tag].split(',')
     end
 
-    gon.latitude = session[:location]['latitude'] if session[:location]
-    gon.longitude = session[:location]['longitude'] if session[:location]
+    if session[:location]
+      gon.latitude = session[:location]['latitude']
+      gon.longitude = session[:location]['longitude']
+      @prefecture = Prefecture.find(session[:location]['prefecture_id'].to_i).name
+    end
 
-    @prefecture = Prefecture.find(session[:location]['prefecture_id'].to_i).name if session[:location]
     render 'confirm'
   end
 
@@ -88,37 +89,41 @@ class StudyEventsController < ApplicationController
       return redirect_to step3_path(study_event: study_event_params)
     end
 
-    location = Location.create(session[:location])
+    study_event = current_user.my_study_events.build(study_event_params)
+    # @study_event.location_id = location.id
+    study_event.image.retrieve_from_cache!(session[:image_cache_name]) if session[:image_cache_name]
 
-    @study_event = current_user.my_study_events.build(study_event_params)
-    @study_event.location_id = location.id
-    @study_event.image.retrieve_from_cache!(session[:image_cache_name]) if session[:image_cache_name]
-    @study_event.save if @study_event.valid?
-    tag_list = study_event_params[:tag].split(',')
-    @study_event.save_tags(tag_list)
-    
-    room = @study_event.create_room
-    Entry.create(user_id: current_user.id, room_id: room.id)
+    if study_event.save
+      tag_list = study_event_params[:tag].split(',')
+      study_event.save_tags(tag_list)
 
-    @study_event.event_users.create(user_id: current_user.id)
+      study_event.create_location(session[:location])
+      
+      room = study_event.create_room
+      Entry.create(user_id: current_user.id, room_id: room.id)
 
-    # 招待したユーザーを勉強会とそのチャットグループに参加させる
-    if session[:event_users]
-      session[:event_users].each do |user_id| 
-        @study_event.event_users.create(user_id: user_id) 
-        Entry.create(user_id: user_id, room_id: room.id)
+      study_event.event_users.create(user_id: current_user.id)
+
+      # 招待したユーザーを勉強会とそのチャットグループに参加させる
+      if session[:event_users]
+        session[:event_users].each do |user_id| 
+          study_event.event_users.create(user_id: user_id) 
+          Entry.create(user_id: user_id, room_id: room.id)
+        end
       end
+
+      # 招待したユーザーに通知を送る
+      study_event.create_notification_invite_user!(current_user, session[:event_users]) if session[:event_users]
+
+      session.delete(:location)
+      session.delete(:image_cache_name)
+      session.delete(:image_url)
+      session.delete(:event_users)
+
+      redirect_to study_events_path, notice: "勉強会「#{study_event.name}」を作成しました"
+    else
+      redirect_to confirm_path(study_event: study_event_params), alert: "入力に誤りがあります"
     end
-
-    # 招待したユーザーに通知を送る
-    @study_event.create_notification_invite_user!(current_user, session[:event_users]) if session[:event_users]
-
-    session.delete(:location)
-    session.delete(:image_cache_name)
-    session.delete(:image_url)
-    session.delete(:event_users)
-
-    redirect_to study_events_path, notice: "勉強会「#{@study_event.name}」を作成しました"
   end
 
   private
