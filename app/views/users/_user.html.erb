@@ -1,4 +1,5 @@
-<% unless user.admin? || current_user?(user) %>
+<!-- 管理ユーザー、自分、プロフィールが作成されていないユーザーは表示しない -->
+<% unless user.admin? || current_user?(user) || user.profile.blank? %>
   <div class="col s12">
     <%= link_to profile_path(user.profile), class: 'user-list-link', remote: true do %>
       <div class="card user-list-wrapper">
