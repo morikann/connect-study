@@ -109,4 +109,23 @@ class User < ApplicationRecord
     bookmarks.find_by(study_event_id: study_event.id).destroy 
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
+  def create_guest_profile
+    create_profile!(
+      username: 'ゲストユーザー',
+      purpose: 'ポートフォリオの閲覧',
+      prefecture_id: 10,
+      self_introduction: '審査',
+      "birth_date(1i)"=>"2000",
+      "birth_date(2i)"=>"8",
+      "birth_date(3i)"=>"8",
+      tag: 'プログラミング'
+    )
+  end
+
 end

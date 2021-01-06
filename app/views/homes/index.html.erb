@@ -27,7 +27,7 @@
       <%= link_to 'ログイン', new_user_session_path, class: 'btn brown darken-1' %>
     </div>
     <div class="center-align col m12 s12 easy-login-btn-wrapper">
-      <%= link_to 'かんたんログイン', '#', class: 'btn orange lighten-1' %>
+      <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class: 'btn orange lighten-1' %>
     </div>
   </div>
 <% end %>

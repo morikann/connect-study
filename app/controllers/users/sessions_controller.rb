@@ -1,8 +1,13 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
   skip_before_action :registration_profile, only: :destroy
   # before_action :configure_sign_in_params, only: [:create]
+
+  def new_guest
+    user = User.guest
+    user.create_guest_profile if user.profile.blank?
+    sign_in user
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
+  end
 
   # GET /resource/sign_in
   # def new
