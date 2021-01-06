@@ -1,0 +1,15 @@
+ <!-- redirect先でエラーを表示させる -->
+<% flash.each do |message_type, messages| %>
+  <% messages.each do |message| %>
+    <% if message_type == 'alert' %>
+      <div class="card-panel red lighten-4 flash_message">
+        <%= message %>
+      </div>
+    <% end %>
+    <% if message_type == 'notice' %>
+      <div class="card-panel teal lighten-4 flash_message">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %> 

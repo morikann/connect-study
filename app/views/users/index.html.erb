@@ -16,8 +16,14 @@
 </div>
 
 <div class="row" id="search-users">
-  <%= render @users %>
-  <%= paginate @users %>
+  <% if @users.exists? %>
+    <%= render @users %>
+  <% else %>
+    <p class="no-message">ユーザーは見つかりませんでした</p>
+  <% end %>
+  <div class="pagination-wrapper">
+    <%= paginate @users %>
+  </div>
 </div>
 
 <div id="profile-modal">

@@ -46,7 +46,7 @@
     <% end %>
   </div>
 <% else %>
-  <% if current_user.following?(study_event.user) %>
+  <% if current_user.following?(study_event.user) || current_user?(study_event.user) %>
     <div class="col s12 l8 offset-l2" style="margin-bottom: 40px;">
       <%= link_to study_event_path(study_event), "data-turbolinks": false do %>
         <div class="card study-event-card follower-range-event">
