@@ -30,8 +30,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      render 'new', location: new_user_registration_path
-      # respond_with resource
+      # render 'new', location: new_user_registration_path
+      respond_with resource
     end
   end
 
