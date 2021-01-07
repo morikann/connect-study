@@ -18,7 +18,7 @@
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div class="col s12">
+        <div class="col s12 login-remember">
           <%= f.label :remember_me do %>
             <%= f.check_box :remember_me %>
             <span class="login-checkbox">次回から自動でログイン</span>
@@ -27,7 +27,7 @@
       <% end %>
 
       <div class="center-align">
-        <button class="btn waves-effect waves-light login-btn">
+        <button class="btn waves-effect waves-light account-btn">
           <%= f.submit 'ログイン', class: 'submit-btn' %>
           <i class="material-icons right">send</i>
         </button>
@@ -35,5 +35,7 @@
     <% end %>
   </div>
 
-  <%= render "users/shared/links" %>
+  <div class="right-align">
+    <%= render "users/shared/links" %>
+  </div>
 </div>
