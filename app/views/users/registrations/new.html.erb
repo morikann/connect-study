@@ -27,7 +27,7 @@
         <%= f.label :password_confirmation %>    
       </div>
 
-      <div class="center-align">
+      <div class="center-align account-btn">
         <button class="btn waves-effect waves-light">
           <%= f.submit 'アカウント登録', class: 'submit-btn' %>
           <i class="material-icons right">send</i>
@@ -36,5 +36,7 @@
     <% end %>
   </div>
 
-  <%= render "users/shared/links" %>
+  <div class="right-align">
+    <%= render "users/shared/links" %>
+  </div>
 </div>
