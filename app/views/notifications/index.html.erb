@@ -1,5 +1,4 @@
 <%= render 'shared/title', title: '通知' %>
-<div class="divider"></div>
 
 <% if @notifications.exists? %>
   <%= render partial: 'notification', collection: @notifications %>
