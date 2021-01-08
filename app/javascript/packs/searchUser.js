@@ -5,10 +5,29 @@ document.getElementById('range').addEventListener('input', (e) => {
 document.getElementById('getLocation').addEventListener('click', () => {
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(
+      showPosition,
+      function(error) {
+        switch(error.code) {
+          case 1:
+            alert("位置情報の利用が許可されていません");
+            break;
+          case 2:
+            alert("現在位置が取得できませんでした");
+            break;
+          case 3:
+            alert("タイムアウトになりました");
+            break;
+          default:
+            alert("その他のエラー(エラーコード:"+error.code+")");
+            break;
+        }
+      },
+      { timeout:10000 }
+    );
   } else {
-    x.innerHTML = 'このブラウザーはGeolocationをサポートしていません';
-  }
+    alert('このブラウザーはGeolocationをサポートしていません');
+  };
 
   function showPosition(position) {
     const rangeValue = document.getElementById('output').value;
@@ -22,7 +41,7 @@ document.getElementById('getLocation').addEventListener('click', () => {
       }
     })
   }
-})
+});
 
 const countProfile = document.querySelectorAll('.count-chip');
 countProfile.forEach((tag) => {
@@ -38,3 +57,4 @@ countProfile.forEach((tag) => {
     })
   })
 })
+
