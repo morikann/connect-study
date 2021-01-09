@@ -6,7 +6,7 @@
 
   <div>
     <ul>
-      <li class="logo"><%= link_to 'Connect', root_path, class: 'link-color' %></li>    
+      <li class="logo"><%= link_to 'Connect Study', root_path, class: 'link-color' %></li>    
       <% if !current_user.profile.id.nil? %>
         <div class="top-user-purpose">
           <%= simple_format(h(current_user.profile.purpose), {}, sanitize: false) %>
