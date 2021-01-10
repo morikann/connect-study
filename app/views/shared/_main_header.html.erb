@@ -1,0 +1,43 @@
+<% if controller.controller_name == 'registrations' && controller.action_name == 'new' || controller.controller_name == 'sessions' %>
+  <nav>
+    <div class="nav-wrapper">
+      <%= link_to 'Connect Study', root_path, class: 'brand-logo' %>
+    </div>
+  </nav>
+<% elsif controller.controller_name == 'homes' && !current_user %>
+  <nav class="main-nav">
+    <div class="nav-wrapper">
+      <%= link_to 'Connect Study', root_path, class: 'brand-logo' %>
+    </div>
+  </nav>
+  <div class="main-view">
+    <div class="main-container">
+      <div class="catch">
+        <h1>
+          同じ勉強をしている仲間と<br>
+          オフラインで出会い<br>
+          共に成長していこう
+        </h1>
+        <p>
+          オフラインでの勉強仲間をつくることによって<br>
+          勉強に対する熱意を継続的に維持できるようになる。<br>
+          Connect Studyを使って、あなたが切磋琢磨できる勉強仲間を見つけよう！
+        </p>
+        <div class="main-btn-wrapper">
+          <div>
+            <%= link_to '新規登録', new_user_registration_path, class: 'main-btn' %>
+          </div>
+          <div>
+            <%= link_to 'ログイン', new_user_session_path, class: 'main-btn' %>
+          </div>
+        </div>
+        <div class="guest-login-wrapper">
+          <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class: 'guest-btn' %>
+        </div>
+      </div>
+      <div class="main-img">
+        <%= image_tag 'main_img' %>
+      </div>
+    </div>
+  </div>
+<% end %>

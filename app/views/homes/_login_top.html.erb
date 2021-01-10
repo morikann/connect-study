@@ -1,0 +1,17 @@
+<%= render 'shared/title', title: 'ホーム' %>
+
+<%= month_calendar(events: @study_events) do |date, study_events| %>
+  <%= date.day %>
+
+  <% study_events.each do |study_event| %>
+    <div class="event-calendar-name">
+      <%= link_to study_event.name, study_event_path(study_event), "data-turbolinks": false %>
+    </div>
+    <div class="event-calendar-img">
+      <%= image_tag study_event.image.url, class: 'calendar-img' %>
+    </div>
+    <div class="event-calendar-time">
+      <%= study_event.correct_begin_time %> ~ <%= study_event.correct_finish_time %>
+    </div>
+  <% end %>
+<% end %>

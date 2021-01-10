@@ -1,0 +1,43 @@
+<h2 class="sub-title">Connect Study とは</h2>
+<p class="about-description">同じジャンルの勉強をしている仲間、勉強会を見つけることができるサービスです</p>
+<div class="about">
+  <div class="about-left">
+    <h3>
+      ユーザーとマッチング
+    </h3>
+    <div class="about-img-wrapper">
+      <%= image_tag 'chat', class: 'about-img' %>
+    </div>
+    <p>
+      勉強ジャンル、都道府県、現在地情報を使ってユーザーを探すことができます。気になるユーザーを見つけたらメッセージを送ってみましょう。
+    </p>
+  </div>
+  <div class="about-right">
+    <h3>
+      勉強会に参加
+    </h3>
+    <div class="about-img-wrapper">
+      <%= image_tag 'study_event', class: 'about-img' %>
+    </div>
+    <p>
+      勉強会を作成、見つけることができます。勉強会をきっかけに同じ目標を持った人たちとのコミュニティが形成され、あなたの目標達成までの後押しになります。
+    </p>
+  </div>
+</div>
+
+<h2 class="sub-title">サービスに込めた思い</h2>
+<p class="service-background">
+  副業や転職が当たり前になり始めた現代において、それらを成功させるためには<span class="important">勉強を継続して行うこと</span>は必須です。<br>
+  多くのサービスによって同じ目標を持った人たちとオンラインで繋がり、勉強仲間を見つけることは簡単になりました。<br>
+  しかし、勉強を継続し、目標を達成するためには、切磋琢磨し、教え合い、情報共有ができる勉強仲間を<span class="important">オフラインでつくること</span>が重要だと考えました。<br>
+  そこで、身近に同じ勉強をしている仲間を見つけられるようなサービスがあればいいのに。。。という思いから「Connect Study」は誕生しました。<br>
+  <span class="important-line">このサービスを使うことで多くの人が素晴らしい勉強仲間を見つけ、目標を達成させることを祈っています。</span>
+</p>
+
+<h2 class="sub-title">さあ！あなたも勉強仲間を見つけよう！</h2>
+<div class="start-lead-wrapper">
+  <div class="lead-text">＼ 新規登録はこちら！ ／</div>
+  <div>
+    <%= link_to 'いますぐはじめる', new_user_registration_path, class: 'main-btn' %>
+  </div>
+</div>
