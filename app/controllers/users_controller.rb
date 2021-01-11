@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = 'フォロー中'
+    @title = 'フォロー'
     @user = User.find(params[:id])
     @users = @user.following.includes(profile: :tags).page(params[:page])
     render 'show_follow'
