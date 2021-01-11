@@ -39,6 +39,11 @@ class RoomsController < ApplicationController
     redirect_to @room
   end
 
+  def event_users
+    room = Room.find(params[:id])
+    @entries = room.entries.includes(user: :profile)
+  end
+
   private
 
   def room_params

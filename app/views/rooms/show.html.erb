@@ -1,7 +1,24 @@
 <div class="message-top-wrapper">
-  <div class="section center-align">
+  <div class="section room-head">
     <% if @room.study_event %>
       <strong><%= link_to @room.study_event.name, study_event_path(@room.study_event) %></strong>
+      <a class='dropdown-button btn btn-floating btn-small room-dropdown' data-beloworigin="true" href='#' data-activates='exit-the-event'>
+        <i class="material-icons">menu</i>
+      </a>
+
+      <ul id='exit-the-event' class='dropdown-content'>
+        <li>
+          <%= form_with scope: :exit_the_event, url: exit_the_event_study_event_url, local: true, data: { confirm: "勉強会「#{@room.study_event.name}」を退会します。よろしいですか？"} do |f| %>
+            <%= f.hidden_field :study_event_owner_id, value: @room.study_event.user.id %>
+            <%= f.hidden_field :study_event_id, value: @room.study_event.id %>
+            <%= f.submit '退会する', class: 'exit-btn', style: 'color: #26a69a;' %>
+          <% end %>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to 'メンバー', event_users_room_path %>
+        </li>
+      </ul>
     <% else %>
       <% @entries.each do |e| %>
         <% unless e.user == current_user %>

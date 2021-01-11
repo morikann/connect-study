@@ -30,6 +30,8 @@
     <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>への参加を拒否しました</span>
   <% when 'approve_request' then %>
     <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event_id), "data-turbolinks": false %>への参加を承認しました</span>
+  <% when 'exit_the_event' then %>
+    <span class="notification-message">あなたの勉強会<%= link_to "「#{notification.study_event.name}」", study_event_path(notification.study_event.id), "data-turbolinks": false %>から退出しました</span>
   <% end %>
   <div class="right-align"><%= time_ago_in_words(notification.created_at) %>前</div>
 </div>

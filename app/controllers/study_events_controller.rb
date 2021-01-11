@@ -126,6 +126,27 @@ class StudyEventsController < ApplicationController
     end
   end
 
+  def exit_the_event
+    if current_user.id == event_exit_params[:study_event_owner_id].to_i
+      redirect_to room_path(event_exit_params[:room_id]), alert: "主催者は勉強会を退会することはできません。"
+    else
+      study_event = StudyEvent.find(event_exit_params[:study_event_id])
+      event_user = EventUser.find_by(user_id: current_user.id, study_event_id: event_exit_params[:study_event_id])
+      entry = Entry.find_by(user_id: current_user.id, room_id: event_exit_params[:room_id])
+      if event_user.destroy
+        if entry.destroy
+          # 勉強会の主催者に抜けたことを通知
+          study_event.create_notification_exit_user!(current_user, event_exit_params[:study_event_owner_id])
+          redirect_to rooms_path, notice: "勉強会「#{study_event.name}」を退会しました。"
+        else
+          redirect_to root_path, alert: "勉強会のチャットルームからの退出に失敗しました。"
+        end
+      else
+        redirect_to root_path, alert: "勉強会の退会に失敗しました。"
+      end
+    end
+  end
+
   private
 
   def study_event_params
@@ -134,5 +155,9 @@ class StudyEventsController < ApplicationController
 
   def search_params
     params.fetch(:search, {}).permit(:tag, :prefecture_id)
+  end
+
+  def event_exit_params
+    params.require(:exit_the_event).permit(:study_event_owner_id, :study_event_id).merge(room_id: params[:id])
   end
 end

@@ -112,4 +112,13 @@ class StudyEvent < ApplicationRecord
     notification.save if notification.valid?
   end
 
+  def create_notification_exit_user!(current_user, study_event_owner_id)
+    notification = current_user.active_notifications.build(
+      study_event_id: id,
+      visited_id: study_event_owner_id,
+      action: 'exit_the_event'
+    )
+    notification.save if notification.valid?
+  end
+
 end
