@@ -1,6 +1,4 @@
-<blockquote>
-  <%= @title %>
-</blockquote>
+<%= render 'shared/title', title: @title %>
 
 <% @users.each do |user| %>
   <div class="section show-follow-wrapper">

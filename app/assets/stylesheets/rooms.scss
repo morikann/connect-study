@@ -21,3 +21,34 @@ blockquote {
   align-items: center;
   justify-content: center;
 }
+
+.exit-btn {
+  font-size: 16px;
+  display: block;
+  line-height: 22px;
+  padding: 14px 16px;
+  background: white;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.room-head {
+  text-align: center;
+  position: relative;
+}
+
+.room-dropdown {
+  position: absolute;
+  right: 5px;
+}
+
+.member-count {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+  margin: 20px 0;
+}

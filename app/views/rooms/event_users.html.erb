@@ -1,0 +1,15 @@
+<%= render 'shared/title', title: 'メンバー' %>
+
+<div class="member-count">
+  メンバー<%= @entries.count %>
+</div>
+
+<% @entries.each do |entry| %>
+  <div class="section show-follow-wrapper">
+    <%= link_to(profile_path(entry.user.profile)) do %>
+      <%= image_tag entry.user.profile.avatar.url, class: 'circle-small-img' %>
+      <strong><%= entry.user.profile.username %></strong>
+    <% end %>
+  </div>
+  <div class="divider"></div>
+<% end %>

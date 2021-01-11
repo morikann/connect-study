@@ -24,13 +24,20 @@ Rails.application.routes.draw do
   resources :relationships, only: %i(create destroy)
 
   resources :notifications, only: :index do
-    post 'attend_request', on: :collection
+    post :attend_request, on: :collection
   end
 
-  resources :rooms, only: %i(index show create) 
+  resources :rooms, only: %i(index show create) do
+    get :event_users, on: :member
+  end
+
   get '/show_additionally', to: 'rooms#show_additionally'
   resources :messages, only: :create
-  resources :study_events, only: %i(index show edit update destroy)
+
+  resources :study_events, only: %i(index show edit update destroy) do
+    post :exit_the_event, on: :member
+  end
+  
   resource :event_users, only: :create
 
   resources :bookmarks, only: %i(index create destroy)
