@@ -63,7 +63,7 @@ ul {
 
 .nav-link {
   padding: 0 30px;
-  line-height: 40px;
+  line-height: 45px;
   transition: all .2s;
   
   &:hover {
@@ -73,6 +73,10 @@ ul {
 
 .link-color {
   color:#242424;
+
+  span {
+    font-size: 16px;
+  }
 }
 
 .nav-link a {

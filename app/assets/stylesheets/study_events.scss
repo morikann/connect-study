@@ -176,7 +176,9 @@ th {
   font-size: 16px;
   color: #262626;
 }
+
 // index
+
 .study-event-card {
   cursor: pointer;
 
@@ -221,10 +223,7 @@ th {
   padding-bottom: 5px;
   font-size: 11px;
   min-width: 60px;
-}
-
-.study-event-tags .chip {
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 
 .card-title {
@@ -273,8 +272,12 @@ th {
 }
 
 .event-show-title {
-  font-size: 32px;
-  font-weight: 700
+  font-size: 28px;
+  font-weight: 700;
+
+  @include mq(sm) {
+    font-size: 24px;
+  }
 } 
 
 .event-show-owner {
@@ -309,6 +312,10 @@ th {
   font-weight: 700;
   color: #242424;
   margin-right: auto;
+
+  @include mq(sm) {
+    font-size: 20px;
+  }
 }
 
 .event-show-day {
@@ -330,6 +337,10 @@ th {
   font-weight: 700;
   color: #242424;
   margin-top: 50px;
+
+  @include mq(sm) {
+    font-size: 20px;
+  }
 }
 
 .event-show-members {
