@@ -43,7 +43,8 @@ class ProfilesController < ApplicationController
     unless current_user.id == @user.id 
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
-          if cu.room_id == u.room_id
+          # 同じトークルームかつそのトークルームが個人メッセージルームの時のみ(勉強会のグループは含まない)
+          if cu.room_id == u.room_id && cu.room.study_event_id == nil
             @isRoom = true
             @room_id = cu.room_id 
           end
