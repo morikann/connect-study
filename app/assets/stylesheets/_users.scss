@@ -225,7 +225,11 @@
 }
 
 .range-wrapper {
-  margin-top: 20px;
+  margin: 20px auto;
+
+  @include mq(sm) {
+    max-width: 90%;
+  }
 }
 
 // search_user from tag
