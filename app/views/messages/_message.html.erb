@@ -9,7 +9,9 @@
 <% else %>
   <div class="friend-message-flex">
     <div class="friend-message-img">
-      <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
+      <%= link_to profile_path(message.user.profile) do %>
+        <%= image_tag message.user.profile.avatar.url, class: 'circle-small-img' %>
+      <% end %>
     </div>
     <div class="friend-message-wrapper">
       <div class="friend-message message" id="<%= message.id %>">
