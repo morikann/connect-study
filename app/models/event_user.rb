@@ -1,5 +1,6 @@
 class EventUser < ApplicationRecord
   belongs_to :user
+  belongs_to :study_event
 
   # 勉強会への参加を拒否したことを通知する
   def create_notification_reject!(current_user, visited_id, study_event_id, request_notification_id)
