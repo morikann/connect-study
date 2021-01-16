@@ -127,34 +127,37 @@ RSpec.describe User, type: :model do
     end
   end
 
-  let(:user) { FactoryBot.build(:user) }
+  describe "of validation test" do
+    let(:user) { FactoryBot.build(:user) }
 
-  # メール、パスワードがあれば有効な状態であること
-  it "is valid with email, and password" do
-    expect(user).to be_valid
-  end
+    # メール、パスワードがあれば有効な状態であること
+    it "is valid with email, and password" do
+      expect(user).to be_valid
+    end
 
-  # メールアドレスがなければ無効な状態であること
-  it "is invalid without an email address" do
-    user.email = nil
-    user.valid?
-    expect(user.errors[:email]).to include("を入力してください")
-  end
+    # メールアドレスがなければ無効な状態であること
+    it "is invalid without an email address" do
+      user.email = nil
+      user.valid?
+      expect(user.errors[:email]).to include("を入力してください")
+    end
 
-  # 重複したメールアドレスなら無効な状態であること
-  it "is invalid with a duplicate email address" do
-    FactoryBot.create(:user, email: 'example@example.com')
-    user.email = 'example@example.com'
-    user.valid?
-    expect(user.errors[:email]).to include("はすでに存在します")
-  end
+    # 重複したメールアドレスなら無効な状態であること
+    it "is invalid with a duplicate email address" do
+      FactoryBot.create(:user, email: 'example@example.com')
+      user.email = 'example@example.com'
+      user.valid?
+      expect(user.errors[:email]).to include("はすでに存在します")
+    end
 
-  # パスワードがなければ無効な状態であること
-  it "is invalid without a password" do
-    user.password = nil
-    user.valid?
-    expect(user.errors[:password]).to include("を入力してください")
-  end
+    # パスワードがなければ無効な状態であること
+    it "is invalid without a password" do
+      user.password = nil
+      user.valid?
+      expect(user.errors[:password]).to include("を入力してください")
+    end
+  end 
+  
   
   # 検索文字列に一致するタグを登録しているユーザーを検索する
   describe "search user for a term" do
