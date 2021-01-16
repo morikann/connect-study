@@ -37,24 +37,26 @@ RSpec.describe Tag, type: :model do
     end
   end
 
-  let(:tag) { FactoryBot.build(:tag) }
+  describe "of validation test" do
+    let(:tag) { FactoryBot.build(:tag) }
 
-  # タグ名があれば有効な状態であること
-  it "is valid with a name" do
-    expect(tag).to be_valid
-  end
+    # タグ名があれば有効な状態であること
+    it "is valid with a name" do
+      expect(tag).to be_valid
+    end
 
-  # タグ名がなければ無効な状態であること
-  it "is invalid without a name" do
-    tag.name = nil
-    tag.valid?
-    expect(tag.errors[:name]).to include("を入力してください")
-  end
+    # タグ名がなければ無効な状態であること
+    it "is invalid without a name" do
+      tag.name = nil
+      tag.valid?
+      expect(tag.errors[:name]).to include("を入力してください")
+    end
 
-  # 重複したタグ名は許可しないこと
-  it "dose not allow duplicate tag names" do
-    Tag.create(name: 'タグ名')
-    tag.valid?
-    expect(tag.errors[:name]).to include("はすでに存在します")
+    # 重複したタグ名は許可しないこと
+    it "dose not allow duplicate tag names" do
+      Tag.create(name: 'タグ名')
+      tag.valid?
+      expect(tag.errors[:name]).to include("はすでに存在します")
+    end
   end
 end

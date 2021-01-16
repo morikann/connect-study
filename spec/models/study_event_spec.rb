@@ -79,61 +79,64 @@ RSpec.describe StudyEvent, type: :model do
     end
   end
 
-  let(:study_event) { FactoryBot.build(:study_event) }
-  # 勉強会名、説明、開始時間、終了時間、日付、タグ、関連されたユーザーがあれば有効な状態であること
-  it "is valid with name, description, begin_time, finish_time, date, tag, and user_id" do
-    expect(study_event).to be_valid
-  end
+  describe "of validation test" do
+    let(:study_event) { FactoryBot.build(:study_event) }
+    
+    # 勉強会名、説明、開始時間、終了時間、日付、タグ、関連されたユーザーがあれば有効な状態であること
+    it "is valid with name, description, begin_time, finish_time, date, tag, and user_id" do
+      expect(study_event).to be_valid
+    end
 
-  # 勉強会名がなければ無効な状態であること
-  it "is invalid without a name" do
-    study_event.name = nil
-    study_event.valid?
-    expect(study_event.errors[:name]).to include("を入力してください")
-  end
+    # 勉強会名がなければ無効な状態であること
+    it "is invalid without a name" do
+      study_event.name = nil
+      study_event.valid?
+      expect(study_event.errors[:name]).to include("を入力してください")
+    end
 
-  # 説明がなければ無効な状態であること
-  it "is invalid without a name" do
-    study_event.description = nil
-    study_event.valid?
-    expect(study_event.errors[:description]).to include("を入力してください")
-  end
+    # 説明がなければ無効な状態であること
+    it "is invalid without a name" do
+      study_event.description = nil
+      study_event.valid?
+      expect(study_event.errors[:description]).to include("を入力してください")
+    end
 
-  # 開始時刻がなければ無効な状態であること
-  it "is invalid without a name" do
-    study_event.begin_time = nil
-    study_event.valid?
-    expect(study_event.errors[:begin_time]).to include("を入力してください")
-  end
+    # 開始時刻がなければ無効な状態であること
+    it "is invalid without a name" do
+      study_event.begin_time = nil
+      study_event.valid?
+      expect(study_event.errors[:begin_time]).to include("を入力してください")
+    end
 
-  # 終了時刻がなければ無効な状態であること
-  it "is invalid without a name" do
-    study_event.finish_time = nil
-    study_event.valid?
-    expect(study_event.errors[:finish_time]).to include("を入力してください")
-  end
+    # 終了時刻がなければ無効な状態であること
+    it "is invalid without a name" do
+      study_event.finish_time = nil
+      study_event.valid?
+      expect(study_event.errors[:finish_time]).to include("を入力してください")
+    end
 
-  # 日付がなければ無効な状態であること
-  it "is invalid without a name" do
-    study_event.date = nil
-    study_event.valid?
-    expect(study_event.errors[:date]).to include("を入力してください")
-  end
+    # 日付がなければ無効な状態であること
+    it "is invalid without a name" do
+      study_event.date = nil
+      study_event.valid?
+      expect(study_event.errors[:date]).to include("を入力してください")
+    end
 
-  # タグがなければ無効な状態であること
-  it "is invalid without a name" do
-    study_event.tag = nil
-    study_event.valid?
-    expect(study_event.errors[:tag]).to include("を入力してください")
-  end
+    # タグがなければ無効な状態であること
+    it "is invalid without a name" do
+      study_event.tag = nil
+      study_event.valid?
+      expect(study_event.errors[:tag]).to include("を入力してください")
+    end
 
-  # 勉強会名が30文字より多い場合
-  context "when description is longer_than 30 characters" do
-    # 無効な状態であること
-    it "is invalid" do
-      @study_event = FactoryBot.build(:study_event, name: "a" * 31)
-      @study_event.valid?
-      expect(@study_event.errors[:name]).to include("は30文字以内で入力してください")
+    # 勉強会名が30文字より多い場合
+    context "when description is longer_than 30 characters" do
+      # 無効な状態であること
+      it "is invalid" do
+        @study_event = FactoryBot.build(:study_event, name: "a" * 31)
+        @study_event.valid?
+        expect(@study_event.errors[:name]).to include("は30文字以内で入力してください")
+      end
     end
   end
 end

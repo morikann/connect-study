@@ -23,21 +23,23 @@ RSpec.describe Entry, type: :model do
     end
   end
 
-  let(:user) { FactoryBot.create(:user) }
-  let(:room) { Room.create }
-  let(:params) { { user_id: user.id, room_id: room.id } }
+  describe "of validation test" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:room) { Room.create }
+    let(:params) { { user_id: user.id, room_id: room.id } }
 
-  # user_idとroom_idがあれば有効な状態であること
-  it "is valid with user_id and room_id" do
-    entry = Entry.create(params)
-    expect(entry).to be_valid
-  end
+    # user_idとroom_idがあれば有効な状態であること
+    it "is valid with user_id and room_id" do
+      entry = Entry.create(params)
+      expect(entry).to be_valid
+    end
 
-  # user_idに対して重複したroom_idなら無効な状態であること
-  it "is invalid with duplicate room_id for user_id" do
-    Entry.create(params)
-    duplicate_entry = Entry.new(params)
-    duplicate_entry.valid?
-    expect(duplicate_entry.errors[:room_id]).to include("はすでに存在します")
+    # user_idに対して重複したroom_idなら無効な状態であること
+    it "is invalid with duplicate room_id for user_id" do
+      Entry.create(params)
+      duplicate_entry = Entry.new(params)
+      duplicate_entry.valid?
+      expect(duplicate_entry.errors[:room_id]).to include("はすでに存在します")
+    end
   end
 end

@@ -23,17 +23,19 @@ RSpec.describe Message, type: :model do
     end
   end
 
-  let(:user) { FactoryBot.create(:user) }
-  let(:message) { FactoryBot.build(:message, user: user) }
+  describe "of validation test" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:message) { FactoryBot.build(:message, user: user) }
 
-  # メッセージがあれば有効な状態であること
-  it "is valid with message" do
-    expect(message).to be_valid
-  end
+    # メッセージがあれば有効な状態であること
+    it "is valid with message" do
+      expect(message).to be_valid
+    end
 
-  # メッセージがなければ無効な状態であること
-  it "is invalid without message" do
-    message.message = nil
-    expect(message).to be_invalid
+    # メッセージがなければ無効な状態であること
+    it "is invalid without message" do
+      message.message = nil
+      expect(message).to be_invalid
+    end
   end
 end
