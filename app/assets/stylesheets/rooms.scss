@@ -7,10 +7,6 @@ blockquote {
   border-left: 5px solid #26a69a;
 }
 
-.room-username {
-  margin-left: 10px;
-}
-
 .group-chat {
   margin-bottom: 10px;
   text-align: center;
@@ -51,4 +47,26 @@ blockquote {
   font-size: 16px;
   text-align: left;
   margin: 20px 0;
+}
+
+.room-matcher-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.room-matcher-text {
+  margin-left: 20px;
+}
+
+.room-matcher-username {
+  font-weight: 700;
+}
+
+.room-matcher-message {
+  color: #787c7b;
+}
+
+.room-messages-created-at {
+  text-align: right;
+  color: #787c7b;
 }
