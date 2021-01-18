@@ -19,10 +19,14 @@
           </div>
           <div class="room-matcher-text">
             <strong class="room-matcher-username"><%= user.profile.username %></strong>
-            <div class="room-matcher-message"><%= truncate(room.messages.last.message, length: 15) %></div>
+            <% if room.messages.last %>
+              <div class="room-matcher-message"><%= truncate(room.messages.last.message, length: 15) %></div>
+            <% end %>
           </div>
         </div>
-        <div class="room-messages-created-at"><%= l(room.messages.last.created_at, format: :long) %></div>
+        <% if room.messages.last %>
+          <div class="room-messages-created-at"><%= l(room.messages.last.created_at, format: :long) %></div>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
