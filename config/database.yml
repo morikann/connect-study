@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: connect_study_production
-  username: connect_study
-  password: <%= ENV['CONNECT_STUDY_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= Rails.application.credentials.db[:password] %>
+  host: <%= Rails.application.credentials.db[:hostname] %>
