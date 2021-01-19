@@ -7,5 +7,6 @@ if Rails.env.production?
       region: "ap-northeast-1"
     }
     config.fog_directory = "connect-study-backet"
+    config.asset_host = "https://static.connect-study.xyz"
   end
 end
