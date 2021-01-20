@@ -2,9 +2,9 @@ document.addEventListener("turbolinks:load", () => {
 
   if (typeof gon != "undefined") {
 
-    const tagList = [] = gon.tag_list;
+    const tagList = gon.tag_list;
     const tags = [];
-
+    
     if (tagList) {
       for (let item of tagList) {
         tags.push({tag: item.name});
