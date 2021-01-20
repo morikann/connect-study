@@ -50,7 +50,6 @@ countProfile.forEach((tag) => {
     $.ajax({
       type: 'GET',
       url: '/users/search_user_from_tag',
-      // dataType: 'json',
       data: {
         tag_name: elm
       }

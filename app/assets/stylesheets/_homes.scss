@@ -4,13 +4,6 @@
 @import "media_queries";
 @import "profiles";
 
-@font-face {
-  font-family: "brand-name";
-  src: font-url('NaishoMoji-Regular.otf') format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 nav {
   background: #26a69a;
 }
@@ -22,24 +15,6 @@ nav .brand-logo {
   @include mq (sm) {
     padding-left: 0px;
   }
-}
-
-.brand-name {
-  font-family: "brand-name";
-  font-size: 110px;
-  margin-top: 0px;
-
-  @include mq(sm) {
-    font-size: 80px;
-  }
-}
-
-.top-button-wrapper {
-  margin-top: 100px;
-}
-
-.easy-login-btn-wrapper {
-  margin-top: 20px;
 }
 
 ul {
