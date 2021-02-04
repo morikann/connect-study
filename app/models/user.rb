@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  scope :search, -> (search_params) do
+  scope :search_user, -> (search_params) do
     return if search_params.blank?
 
     tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])

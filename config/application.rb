@@ -26,5 +26,8 @@ module ConnectStudy
     config.action_view.embed_authenticity_token_in_remote_forms = true
     # 日本時間にする
     config.time_zone = 'Asia/Tokyo'
+
+    config.assets.paths << config.root.join("vendor/assets/javascripts")
+    config.assets.paths << config.root.join("vendor/assets/stylesheets")
   end
 end
