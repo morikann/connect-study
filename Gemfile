@@ -56,8 +56,6 @@ group :test do
   gem 'webdrivers'
   gem 'launchy', '~> 2.4.3'
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
