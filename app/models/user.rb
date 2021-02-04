@@ -50,6 +50,10 @@ class User < ApplicationRecord
     self.joins(:profile).where(profiles: { prefecture_id: prefecture_id }) if prefecture_id.present?
   end
 
+  def remember_me
+    true
+  end
+
   def follow(other_user)
     following << other_user
   end
