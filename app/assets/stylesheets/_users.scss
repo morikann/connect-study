@@ -153,6 +153,10 @@
   text-transform: none;
 }
 
+.input-search-user::placeholder {
+  color: #9e9e9e;
+}
+
 // modal
 
 #profile-modal {
@@ -272,4 +276,12 @@
 .account-divider {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+// password-reset
+
+.password-reset-message {
+  color: #848484;
+  font-size: 14px;
+  text-align: center;
 }

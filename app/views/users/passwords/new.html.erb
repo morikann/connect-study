@@ -1,16 +1,32 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="card-panel profile-card">
+  <div class="account-title-wrapper">
+    <h1 class="account-title" style="margin-bottom: 5px">パスワードを忘れた場合</h1>
+  </div>
+  
+  <div class="password-reset-message">
+    Connect Studyに登録したメールアドレスをご入力ください
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
-<%= render "users/shared/links" %>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mail</i>
+        <%= f.email_field :email, autocomplete: 'email' %>
+        <%= f.label :email %>
+      </div>
+
+      <div class="center-align account-btn">
+        <button class="btn waves-effect waves-light">
+          <%= f.submit '送信', class: 'submit-btn' %>
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="right-align">
+    <%= render "users/shared/links" %>
+  </div>
+</div>
