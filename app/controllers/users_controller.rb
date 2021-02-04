@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :require_admin, only: :destroy
 
   def index
-    @users = User.includes(profile: :tags).search(search_params).page(params[:page])
+    @users = User.includes(profile: :tags).search_user(search_params).page(params[:page])
     @tags = Tag.includes(:profiles)
   end
 

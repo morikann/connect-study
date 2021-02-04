@@ -63,7 +63,7 @@ class StudyEvent < ApplicationRecord
     self.finish_time.strftime("%H:%M")
   end
 
-  scope :search, -> (search_params) do
+  scope :search_event, -> (search_params) do
     return if search_params.blank?
 
     tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])

@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  scope :search, -> (search_params) do
+  scope :search_user, -> (search_params) do
     return if search_params.blank?
 
     tag_like(search_params[:tag]).prefecture_id_is(search_params[:prefecture_id])
@@ -48,10 +48,6 @@ class User < ApplicationRecord
 
   scope :prefecture_id_is, -> (prefecture_id) do
     self.joins(:profile).where(profiles: { prefecture_id: prefecture_id }) if prefecture_id.present?
-  end
-
-  def remember_me
-    true
   end
 
   def follow(other_user)

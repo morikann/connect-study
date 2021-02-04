@@ -91,3 +91,5 @@ gem 'geocoder'
 gem 'gon'
 # カレンダー
 gem 'simple_calendar', '~> 2.0'
+# 管理画面
+gem 'activeadmin'
