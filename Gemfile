@@ -26,45 +26,45 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.4.2', :require => false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
+  gem 'byebug', :platforms => %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.10.0'
+  gem 'rspec-rails'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 3.3.0'
   # n+1問題の対処
   gem 'bullet'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring-commands-rspec'
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano', '~> 3.10', :require => false
+  gem 'capistrano3-puma', '< 5'
+  gem 'capistrano-rails', '~> 1.6', :require => false
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-rbenv-vars', '~> 0.1'
-  gem 'capistrano3-puma', '< 5'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
-  gem 'webdrivers'
   gem 'launchy', '~> 2.4.3'
   gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', :platforms => %i[mingw mswin x64_mingw jruby]
 # cssフレームワーク
+gem 'material_icons'
 gem 'materialize-sass', '~> 1.0.0'
-gem 'material_icons' 
 # rails日本語化
 gem 'rails-i18n', '~> 6.0.0'
 # 認証機能
@@ -79,8 +79,8 @@ gem 'carrierwave', '~> 2.0'
 # 画像のリサイズ
 gem 'mini_magick'
 # デバッグツール
-gem 'pry-rails'
 gem 'pry-byebug'
+gem 'pry-rails'
 # ページネーション
 gem 'kaminari'
 # 画像の保存先をS3にする
@@ -97,3 +97,6 @@ gem 'simple_calendar', '~> 2.0'
 gem 'activeadmin'
 # メール送信
 gem 'aws-ses'
+# コード解析
+gem 'rubocop', :require => false
+gem 'rubocop-rails', :require => false
