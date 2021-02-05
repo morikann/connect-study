@@ -3,9 +3,10 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 @import "media_queries";
 @import "profiles";
+@import "color";
 
 nav {
-  background: #26a69a;
+  background: $main_color;
 }
 
 nav .brand-logo {
@@ -32,7 +33,7 @@ ul {
   text-align: center;
 
   .link-color {
-    color: #26a69a;
+    color: $main_color;
   }
 }
 
@@ -47,7 +48,7 @@ ul {
 }
 
 .link-color {
-  color:#242424;
+  color: $black_color;
 
   span {
     font-size: 16px;
@@ -72,14 +73,14 @@ ul {
 }
 
 .top-other-user-purpose {
-  color: #262626;
+  color: $black_color;
   font-style: italic;
   font-size: 18px;
 }
 
 .top-user-purpose {
   @extend .profile-user-purpose;
-  color: #262626;
+  color: $black_color;
   margin: 0 24px;
   max-width: 252px;
   margin-bottom: 24px;
@@ -91,12 +92,12 @@ ul {
 }
 
 input[type="submit"] {
-  color: #fafafa;
+  color: $white_color;
 }
 
 // paginate
 .pagination li.active {
-  background-color: #26a69a;
+  background-color: $main_color;
 }
 
 // search
@@ -113,7 +114,7 @@ input[type="submit"] {
 }
 
 .search-btn {
-  color: #fafafa;
+  color: $white_color;
   width: 80px;
   margin-left: 10px;
 }
@@ -142,7 +143,7 @@ input[type="submit"] {
 .event-calendar-time {
   font-size: 12px;
   text-align: center;
-  color: #242424;
+  color: $black_color;
   margin-bottom: 10px;
 }
 
@@ -209,7 +210,7 @@ input[type="submit"] {
 .catch h1 {
   font-weight: 700;
   font-size: 48px;
-  color: #26a69a;
+  color: $main_color;
   text-align: left;
   line-height: 1.3;
   margin: 0;
@@ -223,7 +224,7 @@ input[type="submit"] {
 .catch p {
   font-size: 16px;
   line-height: 1.7;
-  color: #242424;
+  color: $black_color;
   margin: 30px 0;
 
   @include mq(sm) {
@@ -249,8 +250,8 @@ input[type="submit"] {
   padding: 10px 40px;
   border-radius: 30px;
   display: inline-block;
-  border: 2px solid #26a69a;
-  color: #26a69a;
+  border: 2px solid $main_color;
+  color: $main_color;
   background: #ffffff;
   cursor: pointer;
   font-weight: 700;
@@ -262,8 +263,8 @@ input[type="submit"] {
   }
 
   &:hover {
-    color: #fafafa;
-    background: #26a69a;
+    color: $white_color;
+    background: $main_color;
   }
 }
 
@@ -389,7 +390,7 @@ footer {
 }
 
 .service-background {
-  color: #242424;
+  color: $black_color;
   text-align: center;
   font-size: 18px;
   line-height: 2.4;
@@ -406,7 +407,7 @@ footer {
 .important {
   font-weight: 600;
   color: #EC6D64;
-  background: linear-gradient(transparent 0, #fafafa 0);
+  background: linear-gradient(transparent 0, $white_color 0);
   font-size: 20px;
 
   @include mq(sm) {

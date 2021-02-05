@@ -13,10 +13,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @user_profile = current_user.build_profile(profile_params)
+    user_profile = current_user.build_profile(profile_params)
     tag_list = profile_params[:tag].split(',')
-    if @user_profile.save
-      @user_profile.save_tags(tag_list)
+    if user_profile.save
+      user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの設定が完了しました"
       redirect_to root_url
     else
@@ -25,12 +25,12 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user_profile = Profile.find(params[:id])
+    user_profile = Profile.find(params[:id])
     tag_list = profile_params[:tag].split(',')
-    if @user_profile.update(profile_params)
-      @user_profile.save_tags(tag_list)
+    if user_profile.update(profile_params)
+      user_profile.save_tags(tag_list)
       flash[:notice] = "プロフィールの変更が完了しました"
-      redirect_to profile_url(@user_profile)
+      redirect_to profile_url(user_profile)
     else
       render 'edit'
     end

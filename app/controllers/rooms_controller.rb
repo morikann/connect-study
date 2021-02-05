@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = current_user.rooms.includes(users: :profile).order(created_at: :desc)
+    @rooms = current_user.rooms.includes([:study_event, users: :profile]).order(created_at: :desc)
   end
 
   def show
@@ -32,10 +32,10 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.create 
-    @currentUserEntry = Entry.create(user_id: current_user.id, room_id: @room.id)
-    @userEntry = Entry.create(room_params)
-    @user = User.find(room_params[:user_id])
-    @user.create_notification_message_room!(current_user)
+    currentUserEntry = Entry.create(user_id: current_user.id, room_id: @room.id)
+    userEntry = Entry.create(room_params)
+    user = User.find(room_params[:user_id])
+    user.create_notification_message_room!(current_user)
     redirect_to @room
   end
 
