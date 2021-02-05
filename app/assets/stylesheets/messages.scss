@@ -1,8 +1,10 @@
+@import "color";
+
 .message-top-wrapper {
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
-  background: #fafafa;
+  background: $white_color;
 }
 
 #messages-wrapper {
@@ -18,10 +20,10 @@
 
   .my-message {
     display: inline-block;
-    border: 1px solid #26a69a;
-    background-color: #26a69a;
+    border: 1px solid $main_color;
+    background-color: $main_color;
     border-radius: 10px;
-    color: #fafafa;
+    color: $white_color;
     padding: 10px 15px;
     text-align: left;
     word-wrap: break-word;
@@ -42,7 +44,7 @@
     background-color: rgb(235, 238, 240);
     border: 1px solid rgb(235, 238, 240);
     border-radius: 10px;
-    color: #262626;
+    color: $black_color;
     padding: 10px 15px;
   }
 }

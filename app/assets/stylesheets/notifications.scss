@@ -1,4 +1,5 @@
 @import "media_queries";
+@import "color";
 
 .no-message {
   text-align: center;
@@ -28,7 +29,7 @@ strong {
 }
 
 .notification-message {
-  color: #262626;
+  color: $black_color;
   font-size: 20px;
   vertical-align: middle;
 

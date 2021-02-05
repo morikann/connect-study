@@ -1,4 +1,5 @@
 @import 'media_queries';
+@import "color";
 
 // index
 .btn-fixed {
@@ -13,7 +14,7 @@
 }
 
 .follower-range-event {
-  border: 5px solid #26a69a;
+  border: 5px solid $main_color;
 }
 
 // new
@@ -83,7 +84,7 @@
 .stepbar li span {
   background-color: #BDBDBD;
   border-radius: 50%;
-  color: #fafafa;
+  color: $white_color;
   display: inline-block;
   height: 32px;
   line-height: 32px;
@@ -94,11 +95,11 @@
 }
 
 .stepbar .done:after {
-  background-color: #26a69a;
+  background-color: $main_color;
 }
 
 .stepbar .done span {
-  background-color: #26a69a;
+  background-color: $main_color;
 }
 
 .display-switch {
@@ -107,22 +108,22 @@
 }
 
 .back-btn-color {
-  background: #fafafa;
-  color: #26a69a;
-  border: 1px solid #26a69a;
+  background: $white_color;
+  color: $main_color;
+  border: 1px solid $main_color;
   transition: .2s ease-out;
   margin-right: 20px;
    
   &:hover {
-    color: #fafafa;
+    color: $white_color;
 
     input {
-      color: #fafafa;
+      color: $white_color;
     }
   }
 
   input {
-    color: #26a69a;
+    color: $main_color;
   }
 }
 
@@ -134,7 +135,7 @@
 }
 
 .event-label {
-  color: #9e9e9e;
+  color: $label_color;
   font-size: 0.8rem;
   margin-left: 10px;
 }
@@ -155,7 +156,7 @@ th {
 }
 
 .study-image-title {
-  color: #9e9e9e;
+  color: $label_color;
   font-size: 0.75rem;
   margin-bottom: 10px;
 }
@@ -174,7 +175,7 @@ th {
 
 .checkbox-username {
   font-size: 16px;
-  color: #262626;
+  color: $black_color;
 }
 
 // index
@@ -199,12 +200,12 @@ th {
 
 .study-event-card:hover .card-title a {
   transition: all .3s;
-  color: #26a69a;
+  color: $main_color;
   opacity: .8;
 }
 
 .study-event-title {
-  background: #262626;
+  background: $black_color;
 }
 
 .card-content-top{
@@ -235,7 +236,7 @@ th {
     width: 100%;
     font-size: 22px;
     font-weight: 600;
-    color: #262626;
+    color: $black_color;
   }
 }
 
@@ -310,7 +311,7 @@ th {
 .event-date-label {
   font-size: 24px;
   font-weight: 700;
-  color: #242424;
+  color: $black_color;
   margin-right: auto;
 
   @include mq(sm) {
@@ -335,7 +336,7 @@ th {
 .event-show-label {
   font-size: 24px;
   font-weight: 700;
-  color: #242424;
+  color: $black_color;
   margin-top: 50px;
 
   @include mq(sm) {
@@ -349,7 +350,7 @@ th {
 
   ul {
     margin-right: 15px;
-    color: #224422;
+    color: $black_color;
     transition: all .2s;
     text-align: center;
 
@@ -365,8 +366,8 @@ th {
 
 .event-show-location-name {
   display: inline-block;
-  color: #fafafa;
-  background: #242424;
+  color: $white_color;
+  background: $black_color;
   border-radius: 2px;
   font-weight: 600;
   font-size: 16px;
@@ -417,7 +418,7 @@ th {
 
 .search-form-wrapper {
   .chips, .select-wrapper input.select-dropdown {
-    border: 1px solid #9e9e9e;
+    border: 1px solid $label_color;
   }
 
   .chips {

@@ -1,10 +1,11 @@
 @import 'media_queries';
+@import "color";
 
 blockquote {
   font-weight: 800;
   font-size: 28px;
   margin-bottom: 30px;
-  border-left: 5px solid #26a69a;
+  border-left: 5px solid $main_color;
 }
 
 .group-chat {
