@@ -93,3 +93,5 @@ gem 'gon'
 gem 'simple_calendar', '~> 2.0'
 # 管理画面
 gem 'activeadmin'
+# メール送信
+gem 'aws-ses'
