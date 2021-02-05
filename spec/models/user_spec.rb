@@ -175,7 +175,7 @@ RSpec.describe User, type: :model do
     context "when a match is found" do
       # 検索文字列に一致するタグを登録しているユーザーを返すこと
       it "returns users that match the search term" do
-        expect(User.search({ tag: 'タグ名', prefecture_id: nil })).to include(@user, @other_user)
+        expect(User.search_user({ tag: 'タグ名', prefecture_id: nil })).to include(@user, @other_user)
       end
     end
     
@@ -183,7 +183,7 @@ RSpec.describe User, type: :model do
     context "when no match is found" do
       # 空のコレクションを返すこと
       it "returns an empty collection" do
-        expect(User.search({ tag: 'rails', prefecure_id: nil })).to be_empty
+        expect(User.search_user({ tag: 'rails', prefecure_id: nil })).to be_empty
       end
     end
   end
@@ -201,7 +201,7 @@ RSpec.describe User, type: :model do
     context "when a match is found" do
       # 検索文字に一致する都道府県を登録しているユーザーを返すこと
       it "returns users that match the search term" do
-        expect(User.search({ tag: nil, prefecture_id: 10 })).to include(@user, @other_user)
+        expect(User.search_user({ tag: nil, prefecture_id: 10 })).to include(@user, @other_user)
       end
     end
 
@@ -209,7 +209,7 @@ RSpec.describe User, type: :model do
     context "when no match is found" do
       # 空のコレクションを返すこと
       it "returns an empty collection" do
-        expect(User.search({ tag: nil, prefecture_id: 1 })).to be_empty
+        expect(User.search_user({ tag: nil, prefecture_id: 1 })).to be_empty
       end
     end
   end

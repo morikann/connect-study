@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.includes(profile: :tags).search_user(search_params).page(params[:page])
-    @tags = Tag.includes(:profiles)
+    @tags = Tag.all
   end
 
   def destroy
