@@ -76,6 +76,11 @@ GEM
       ruby2_keywords (>= 0.0.2, < 1.0)
     autoprefixer-rails (10.0.1.3)
       execjs
+    aws-ses (0.7.1)
+      builder
+      mail (> 2.2.5)
+      mime-types
+      xml-simple
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.5.0)
@@ -376,6 +381,7 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xml-simple (1.1.8)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.1)
@@ -386,6 +392,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   activeadmin
+  aws-ses
   bootsnap (>= 1.4.2)
   byebug
   capistrano (~> 3.10)
