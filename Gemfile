@@ -71,7 +71,6 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'devise'
 # devise日本語化
 gem 'devise-i18n'
-gem 'devise-i18n-views'
 # 都道府県データ
 gem 'active_hash'
 # 画像アップロード
@@ -96,7 +95,7 @@ gem 'simple_calendar', '~> 2.0'
 # 管理画面
 gem 'activeadmin'
 # メール送信
-gem 'aws-ses'
+gem 'aws-sdk-rails', '~> 3'
 # コード解析
 gem 'rubocop', :require => false
 gem 'rubocop-rails', :require => false
