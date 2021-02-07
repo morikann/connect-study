@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :require_admin, only: [:index, :show]
+  before_action :require_admin, only: %i[index, show]
 
   def index
     @reports = Report.includes(reporter_user: :profile, reported_user: :profile)

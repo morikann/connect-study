@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   before_action :require_admin, only: :destroy
+  before_action :set_user, only: %i[destroy following followers]
 
   def index
     @users = User.includes(profile: :tags).search_user(search_params).page(params[:page])
@@ -9,21 +10,18 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
-    redirect_to users_url, notice: "#{user.profile.username}を削除しました。"
+    @user.destroy
+    redirect_to users_url, notice: "#{@user.profile.username}を削除しました。"
   end
 
   def following
     @title = 'フォロー'
-    @user = User.find(params[:id])
     @users = @user.following.includes(profile: :tags).page(params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = 'フォロワー'
-    @user = User.find(params[:id])
     @users = @user.followers.includes(profile: :tags).page(params[:page])
     render 'show_follow'
   end
@@ -56,4 +54,7 @@ class UsersController < ApplicationController
     redirect_to root_url unless current_user.admin?
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
 end

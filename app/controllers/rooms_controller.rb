@@ -1,10 +1,11 @@
 class RoomsController < ApplicationController
+  before_action :set_room, only: %i[show event_users]
+  
   def index
     @rooms = current_user.rooms.includes([:study_event, users: :profile]).order(created_at: :desc)
   end
 
   def show
-    @room = Room.find(params[:id])
     if Entry.where(room_id: @room.id, user_id: current_user.id).present?
       @messages = @room.messages.includes(user: :profile).order(:id).last(15)
       @message = current_user.messages.build
@@ -40,13 +41,16 @@ class RoomsController < ApplicationController
   end
 
   def event_users
-    room = Room.find(params[:id])
-    @entries = room.entries.includes(user: :profile)
+    @entries = @room.entries.includes(user: :profile)
   end
 
   private
 
   def room_params
     params.require(:entry).permit(:user_id).merge(room_id: @room.id)
+  end
+
+  def set_room
+    @room = Room.find(params[:id])
   end
 end

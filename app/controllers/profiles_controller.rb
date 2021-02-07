@@ -1,14 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :prohibit_duplicate_profile, only: :new
-  before_action :correct_user, only: [:edit, :update]
-  skip_before_action :registration_profile, only: [:new, :create]
+  before_action :correct_user, only: %i[edit update]
+  before_action :set_profile, only: %i[edit update]
+  skip_before_action :registration_profile, only: %i[new create]
 
   def new
     @user_profile = current_user.build_profile
   end
 
   def edit
-    @user_profile = Profile.find(params[:id])
     gon.tag_list = @user_profile.tags
   end
 
@@ -25,7 +25,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user_profile = Profile.find(params[:id])
     tag_list = profile_params[:tag].split(',')
     if @user_profile.update(profile_params)
       @user_profile.save_tags(tag_list)
@@ -75,6 +74,10 @@ class ProfilesController < ApplicationController
   def correct_user
     @user = Profile.find(params[:id]).user
     redirect_to root_url unless @user == current_user
+  end
+
+  def set_profile
+    @user_profile = Profile.find(params[:id])
   end
 
 end
