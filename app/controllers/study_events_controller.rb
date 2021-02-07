@@ -1,4 +1,6 @@
 class StudyEventsController < ApplicationController
+  before_action :set_study_event, only: %i[edit update show destroy]
+
   def index
     @study_events = StudyEvent.includes(:location, :tags, user: :profile).search_event(search_params).page(params[:page])
   end
@@ -9,7 +11,6 @@ class StudyEventsController < ApplicationController
   end
 
   def edit
-    @study_event = StudyEvent.find(params[:id])
     gon.tag_list = @study_event.tags
   end
 
@@ -29,7 +30,6 @@ class StudyEventsController < ApplicationController
   end
 
   def update
-    @study_event = StudyEvent.find(params[:id])
     tag_list = study_event_params[:tag].split(',')
     if @study_event.update(study_event_params)
       @study_event.save_tags(tag_list)
@@ -41,15 +41,13 @@ class StudyEventsController < ApplicationController
   end
 
   def show
-    @study_event = StudyEvent.find(params[:id])
     gon.latitude = @study_event.location.latitude 
     gon.longitude = @study_event.location.longitude
     @notification = Notification.new
   end
 
   def destroy
-    study_event = StudyEvent.find(params[:id])
-    study_event.destroy 
+    @study_event.destroy 
     redirect_to profile_path(current_user.profile), notice: '勉強会を削除しました'
   end
 
@@ -159,5 +157,9 @@ class StudyEventsController < ApplicationController
 
   def event_exit_params
     params.require(:exit_the_event).permit(:study_event_owner_id, :study_event_id).merge(room_id: params[:id])
+  end
+
+  def set_study_event
+    @study_event = StudyEvent.find(params[:id])
   end
 end

@@ -35,10 +35,6 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def report_user
-  end
-
-
   private
 
   def notification_params
