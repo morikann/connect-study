@@ -1,6 +1,6 @@
 <%= form_with model: current_user.bookmarks.build do |f| %>
   <%= hidden_field_tag :study_event, study_event.id %>
-  <%= button_tag class: 'btn-floating waves-effect waves-light', type: 'submit' do %>
+  <%= button_tag class: 'btn-floating waves-effect waves-light', id: 'bookmark', type: 'submit' do %>
     <i class="far fa-bookmark"></i>
   <% end %>
 <% end %>

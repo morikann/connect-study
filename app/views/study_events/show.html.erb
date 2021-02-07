@@ -52,7 +52,7 @@
   </div>
   <div class="event-show-label">現在の参加メンバー</div>
   <div class="event-show-members">
-    <% @study_event.users.each do |user| %>
+    <% @study_event.users.includes(:profile).each do |user| %>
       <%= link_to profile_path(user.profile) do %>
         <ul>
           <li><%= image_tag user.profile.avatar.url, class: 'circle-small-img' %></li>
