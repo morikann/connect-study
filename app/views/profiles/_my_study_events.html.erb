@@ -28,11 +28,11 @@
               <li class="event-owner-name"><%= study_event.user.profile.username %></li>
               <% if @user == current_user %>
                 <li>
-                  <%= link_to edit_study_event_path(study_event), class: 'tooltipped btn-floating btn-small waves-effect waves-light', "data-turbolinks": false, data: { position: 'top', tooltip: '編集' } do %>
+                  <%= link_to edit_study_event_path(study_event), class: 'tooltipped btn-floating btn-small waves-effect waves-light', id: 'edit-study-event', "data-turbolinks": false, data: { position: 'top', tooltip: '編集' } do %>
                     <i class="far fa-edit"></i>
                   <% end %>
 
-                  <%= link_to study_event_path(study_event), method: :delete, class: 'tooltipped btn-floating btn-small waves-effect waves-light red', "data-turbolinks": false, data: { position: 'top', tooltip: '削除', confirm: "勉強会を削除します。よろしいですか？" } do %>
+                  <%= link_to study_event_path(study_event), method: :delete, class: 'tooltipped btn-floating btn-small waves-effect waves-light red', id: 'delete-study-event', "data-turbolinks": false, data: { position: 'top', tooltip: '削除', confirm: "勉強会を削除します。よろしいですか？" } do %>
                     <i class="far fa-trash-alt"></i>
                   <% end %>
                 </li>

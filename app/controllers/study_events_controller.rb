@@ -29,12 +29,12 @@ class StudyEventsController < ApplicationController
   end
 
   def update
-    study_event = StudyEvent.find(params[:id])
+    @study_event = StudyEvent.find(params[:id])
     tag_list = study_event_params[:tag].split(',')
-    if study_event.update(study_event_params)
-      study_event.save_tags(tag_list)
+    if @study_event.update(study_event_params)
+      @study_event.save_tags(tag_list)
       flash[:notice] = '勉強会の更新が完了しました'
-      redirect_to profile_path(current_user)
+      redirect_to profile_path(current_user.profile)
     else
       render 'edit'
     end
@@ -50,7 +50,7 @@ class StudyEventsController < ApplicationController
   def destroy
     study_event = StudyEvent.find(params[:id])
     study_event.destroy 
-    redirect_to profile_path(current_user), notice: '勉強会を削除しました'
+    redirect_to profile_path(current_user.profile), notice: '勉強会を削除しました'
   end
 
   def event_user

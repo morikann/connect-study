@@ -1,5 +1,5 @@
 <%= form_with model: current_user.bookmarks.find_by(study_event_id: study_event.id), method: :delete do |f| %>
-  <%= button_tag class: 'btn-floating waves-effect waves-light', type: 'submit' do %>
+  <%= button_tag class: 'btn-floating waves-effect waves-light', id: 'delete-bookmark', type: 'submit' do %>
     <i class="fas fa-bookmark"></i>
   <% end %>
 <% end %>

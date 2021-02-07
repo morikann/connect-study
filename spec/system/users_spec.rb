@@ -85,7 +85,7 @@ RSpec.describe "Users", type: :system do
 
     it "自身のアカウントを削除できること" do
       sign_in_as(user)
-        visit root_path
+      visit root_path
       click_link "アカウント"
 
       expect {
