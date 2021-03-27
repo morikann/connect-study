@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[destroy following followers]
 
   def index
-    @users = User.includes(profile: :tags).search_user(search_params).page(params[:page])
+    @users = User.includes(:profile).search_user(search_params).page(params[:page])
     @tags = Tag.all
   end
 
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def search_user_from_tag 
     tag_name = params[:tag_name]
-    @users = User.includes(profile: :tags).where(tags: { name: tag_name })
+    @users = User.includes(:profile).search_user_click_tag(tag_name)
     render :search_user
   end
 

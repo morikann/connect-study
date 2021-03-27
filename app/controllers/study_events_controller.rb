@@ -2,7 +2,7 @@ class StudyEventsController < ApplicationController
   before_action :set_study_event, only: %i[edit update show destroy]
 
   def index
-    @study_events = StudyEvent.includes(:location, :tags, user: :profile).search_event(search_params).page(params[:page])
+    @study_events = StudyEvent.includes(:location, :event_tags, user: :profile).search_event(search_params).page(params[:page])
   end
 
   def new  #step1
