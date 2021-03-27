@@ -36,6 +36,10 @@ class User < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
+  scope :search_user_click_tag, -> (tag) do
+    self.joins(profile: :tags).where(tags: {name: tag})
+  end
+
   scope :search_user, -> (search_params) do
     return if search_params.blank?
 
