@@ -79,6 +79,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  strong {
+    @include mq(sm) {
+      display: inline-block;
+    }
+  }
 }
 
 // index
