@@ -1,7 +1,7 @@
-server "18.176.132.206", user: "kanta", roles: %w{app db web}
+server "52.198.187.99", user: "ec2-user", roles: %w{app db web}
 
 set :ssh_options, {
-  keys: %w(~/.ssh/connect_study.pem),
+  keys: %w(~/.ssh/connect_study_own.pem),
   forward_agent: true,
   auth_methods: %w(publickey),
 }
