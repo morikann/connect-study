@@ -451,7 +451,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.6)
   capistrano-rbenv (~> 2.2)
   capistrano-rbenv-vars (~> 0.1)
-  capistrano3-puma (< 5)
+  capistrano3-puma
   capybara
   carrierwave (~> 2.0)
   devise
